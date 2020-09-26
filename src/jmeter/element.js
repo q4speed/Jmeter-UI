@@ -1,8 +1,9 @@
-import {TestPlan} from "@/jmeter/test-plan";
-import {JmeterTestPlan} from "@/jmeter";
+import {TestPlan} from "@/jmeter/others/test-plan";
+import {JmeterTestPlan} from "@/jmeter/others/jmeter-test-plan";
+import {UnsupportedComponent} from "@/jmeter/others/unspported-component";
 
 export const uuid = function () {
-  let d = new Date().getTime()
+  let d = new Date().getTime();
   let d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     let r = Math.random() * 16;
@@ -15,7 +16,12 @@ export const uuid = function () {
     }
     return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
   });
-}
+};
+
+export const ELEMENTS = {
+  jmeterTestPlan: JmeterTestPlan,
+  TestPlan: TestPlan,
+};
 
 export class Element {
   constructor(options = {}) {
@@ -69,33 +75,58 @@ export class Element {
     }
     this.elements.forEach(element => {
       json.push(element.toJson());
-    })
+    });
     return json;
   }
 }
 
-//
-// let intProp = function (element) {
-//   let options = {};
-//   options[element.attributes.name] = element.elements ? parseInt(element.elements[0].text) : undefined
-//   return options;
-// }
-//
-// let longProp = function (element) {
-//   return intProp(element);
-// }
-//
-// let boolProp = function (element) {
-//   let options = {};
-//   options[element.attributes.name] = element.elements ? element.elements[0].text === 'true' : undefined
-//   return options;
-// }
-//
-// let stringProp = function (element) {
-//   let options = {};
-//   options[element.attributes.name] = element.elements ? element.elements[0].text : undefined
-//   return options;
-// }
+export class TestElement extends Element {
+  constructor(options) {
+    super(options);
+  }
+
+  basicProps(elements, name) {
+    if (elements) {
+      let props = {};
+      elements.forEach(e => {
+        if (e.attributes.name === name) {
+          switch (e.name) {
+            case "intProp":
+              props[name] = this.intProp(e);
+              break;
+            case "longProp":
+              props[name] = this.longProp(e);
+              break;
+            case "boolProp":
+              props[name] = this.boolProp(e);
+              break;
+            case "stringProp":
+              props[name] = this.stringProp(e);
+              break;
+          }
+        }
+      });
+      return props;
+    }
+  }
+
+  intProp(element) {
+    return element.elements ? parseInt(element.elements[0].text) : undefined;
+  }
+
+  longProp(element) {
+    return this.intProp(element);
+  }
+
+  boolProp(element) {
+    return element.elements ? element.elements[0].text === 'true' : undefined;
+  }
+
+  stringProp(element) {
+    return element.elements ? element.elements[0].text : undefined;
+  }
+}
+
 
 
 

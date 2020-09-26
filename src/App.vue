@@ -6,7 +6,7 @@
 
 <script>
 
-import {JMX} from "@/jmeter/element/element";
+import {JMX} from "@/jmeter/element";
 import TestTree from "@/components/TestTree";
 
 export default {
