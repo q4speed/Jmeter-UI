@@ -1,6 +1,6 @@
-import {TestElement} from "@/jmeter/element";
+import Element from "@/jmeter/element";
 
-export class UnsupportedComponent extends TestElement {
+export default class UnsupportedComponent extends Element {
   constructor(options) {
     super(options)
   }

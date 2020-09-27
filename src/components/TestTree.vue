@@ -4,6 +4,7 @@
     node-key="id"
     :props="props"
     default-expand-all
+    :expand-on-click-node="false"
     draggable
     :allow-drop="allowDrop"
     :allow-drag="allowDrag">

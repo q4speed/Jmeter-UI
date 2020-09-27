@@ -1,10 +1,22 @@
-import {Element} from "@/jmeter/element";
+import Element from "@/jmeter/element";
+import {createHashTree} from "@/jmeter/components";
 
-export class JmeterTestPlan extends Element {
+export default class JmeterTestPlan extends Element {
   constructor(options) {
     super(options);
     if (options.elements) {
-      this.hashTree = this.createHashTree(options.elements[0]);
+      this.hashTree = createHashTree(options.elements[0]);
     }
+  }
+
+  toJson() {
+    let json = super.toJson();
+    if (this.hashTree) {
+      json.elements = [];
+      this.hashTree.forEach(e => {
+        json.elements.push(e.toJson());
+      })
+    }
+    return json;
   }
 }

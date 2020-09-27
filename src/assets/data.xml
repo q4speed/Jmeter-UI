@@ -5,11 +5,17 @@
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
-      <stringProp name="TestPlan.comments"/>
-      <stringProp name="TestPlan.user_define_classpath"/>
+      <stringProp name="TestPlan.comments">Test Plan Comments</stringProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel"
                    testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="v1" elementType="Argument">
+            <stringProp name="Argument.name">v1</stringProp>
+            <stringProp name="Argument.value">1234567890</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </elementProp>
     </TestPlan>
     <hashTree>
@@ -32,10 +38,18 @@
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提取Code" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel"
                        testclass="Arguments" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="a" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">b</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">a</stringProp>
+              </elementProp>
+            </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">www.baidu.com</stringProp>
-          <stringProp name="HTTPSampler.port"/>
+          <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
@@ -44,10 +58,10 @@
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"/>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout">60000</stringProp>
-          <stringProp name="HTTPSampler.response_timeout"/>
-          <stringProp name="TestPlan.comments">COmments</stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Comments</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="code RegexExtractor"
@@ -56,16 +70,18 @@
             <stringProp name="RegexExtractor.refname">code</stringProp>
             <stringProp name="RegexExtractor.regex">(.*)</stringProp>
             <stringProp name="RegexExtractor.template">$1$</stringProp>
-            <stringProp name="RegexExtractor.default"/>
-            <stringProp name="RegexExtractor.match_number"/>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+            <stringProp name="TestPlan.comments">Comments</stringProp>
           </RegexExtractor>
           <hashTree/>
         </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="${code} =~ 20" enabled="true">
-          <stringProp name="IfController.comments"/>
-          <stringProp name="IfController.condition">${__jexl3(${code}=~".*20.*")}</stringProp>
+          <stringProp name="IfController.comments"></stringProp>
+          <stringProp name="IfController.condition">${__jexl3(!empty(&quot;${code}&quot;))}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
+          <stringProp name="TestPlan.comments">Comments</stringProp>
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="If Code =~ 20"
@@ -83,7 +99,7 @@
               </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain">www.baidu.com</stringProp>
-            <stringProp name="HTTPSampler.port"/>
+            <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
@@ -92,9 +108,10 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"/>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout">60000</stringProp>
-            <stringProp name="HTTPSampler.response_timeout"/>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">Comments</stringProp>
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>
@@ -105,7 +122,7 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">www.baidu.com</stringProp>
-          <stringProp name="HTTPSampler.port"/>
+          <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
@@ -114,13 +131,15 @@
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"/>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout">60000</stringProp>
-          <stringProp name="HTTPSampler.response_timeout"/>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Comments</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="10000 ms" enabled="true">
-            <stringProp name="ConstantTimer.delay">10000</stringProp>
+            <stringProp name="ConstantTimer.delay">1000</stringProp>
+            <stringProp name="TestPlan.comments">Comments</stringProp>
           </ConstantTimer>
           <hashTree/>
         </hashTree>
@@ -160,7 +179,8 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename"/>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="TestPlan.comments">Comments</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>

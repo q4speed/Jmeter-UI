@@ -1,6 +1,6 @@
-import {TestElement} from "@/jmeter/element";
+import Element from "@/jmeter/element";
 
-export class TestPlan extends TestElement {
+export default class TestPlan extends Element {
   constructor(options) {
     super(options);
   }

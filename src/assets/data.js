@@ -1,4 +1,4 @@
-{
+export default {
   "declaration": {
     "attributes": {
       "version": "1.0",
@@ -73,7 +73,13 @@
                   "name": "stringProp",
                   "attributes": {
                     "name": "TestPlan.comments"
-                  }
+                  },
+                  "elements": [
+                    {
+                      "type": "text",
+                      "text": "Test Plan Comments"
+                    }
+                  ]
                 },
                 {
                   "type": "element",
@@ -99,7 +105,58 @@
                       "name": "collectionProp",
                       "attributes": {
                         "name": "Arguments.arguments"
-                      }
+                      },
+                      "elements": [
+                        {
+                          "type": "element",
+                          "name": "elementProp",
+                          "attributes": {
+                            "name": "v1",
+                            "elementType": "Argument"
+                          },
+                          "elements": [
+                            {
+                              "type": "element",
+                              "name": "stringProp",
+                              "attributes": {
+                                "name": "Argument.name"
+                              },
+                              "elements": [
+                                {
+                                  "type": "text",
+                                  "text": "v1"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "element",
+                              "name": "stringProp",
+                              "attributes": {
+                                "name": "Argument.value"
+                              },
+                              "elements": [
+                                {
+                                  "type": "text",
+                                  "text": "1234567890"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "element",
+                              "name": "stringProp",
+                              "attributes": {
+                                "name": "Argument.metadata"
+                              },
+                              "elements": [
+                                {
+                                  "type": "text",
+                                  "text": "="
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -295,7 +352,84 @@
                               "name": "collectionProp",
                               "attributes": {
                                 "name": "Arguments.arguments"
-                              }
+                              },
+                              "elements": [
+                                {
+                                  "type": "element",
+                                  "name": "elementProp",
+                                  "attributes": {
+                                    "name": "a",
+                                    "elementType": "HTTPArgument"
+                                  },
+                                  "elements": [
+                                    {
+                                      "type": "element",
+                                      "name": "boolProp",
+                                      "attributes": {
+                                        "name": "HTTPArgument.always_encode"
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "text",
+                                          "text": "false"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "element",
+                                      "name": "stringProp",
+                                      "attributes": {
+                                        "name": "Argument.value"
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "text",
+                                          "text": "b"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "element",
+                                      "name": "stringProp",
+                                      "attributes": {
+                                        "name": "Argument.metadata"
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "text",
+                                          "text": "="
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "element",
+                                      "name": "boolProp",
+                                      "attributes": {
+                                        "name": "HTTPArgument.use_equals"
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "text",
+                                          "text": "true"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "element",
+                                      "name": "stringProp",
+                                      "attributes": {
+                                        "name": "Argument.name"
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "text",
+                                          "text": "a"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           ]
                         },
@@ -459,7 +593,7 @@
                           "elements": [
                             {
                               "type": "text",
-                              "text": "COmments"
+                              "text": "Comments"
                             }
                           ]
                         }
@@ -544,6 +678,19 @@
                               "attributes": {
                                 "name": "RegexExtractor.match_number"
                               }
+                            },
+                            {
+                              "type": "element",
+                              "name": "stringProp",
+                              "attributes": {
+                                "name": "TestPlan.comments"
+                              },
+                              "elements": [
+                                {
+                                  "type": "text",
+                                  "text": "Comments"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -579,7 +726,7 @@
                           "elements": [
                             {
                               "type": "text",
-                              "text": "${__jexl3(${code}=~\".*20.*\")}"
+                              "text": "${__jexl3(!empty(\"${code}\"))}"
                             }
                           ]
                         },
@@ -606,6 +753,19 @@
                             {
                               "type": "text",
                               "text": "true"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "element",
+                          "name": "stringProp",
+                          "attributes": {
+                            "name": "TestPlan.comments"
+                          },
+                          "elements": [
+                            {
+                              "type": "text",
+                              "text": "Comments"
                             }
                           ]
                         }
@@ -872,6 +1032,19 @@
                               "attributes": {
                                 "name": "HTTPSampler.response_timeout"
                               }
+                            },
+                            {
+                              "type": "element",
+                              "name": "stringProp",
+                              "attributes": {
+                                "name": "TestPlan.comments"
+                              },
+                              "elements": [
+                                {
+                                  "type": "text",
+                                  "text": "Comments"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1061,6 +1234,19 @@
                           "attributes": {
                             "name": "HTTPSampler.response_timeout"
                           }
+                        },
+                        {
+                          "type": "element",
+                          "name": "stringProp",
+                          "attributes": {
+                            "name": "TestPlan.comments"
+                          },
+                          "elements": [
+                            {
+                              "type": "text",
+                              "text": "Comments"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -1087,7 +1273,20 @@
                               "elements": [
                                 {
                                   "type": "text",
-                                  "text": "10000"
+                                  "text": "1000"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "element",
+                              "name": "stringProp",
+                              "attributes": {
+                                "name": "TestPlan.comments"
+                              },
+                              "elements": [
+                                {
+                                  "type": "text",
+                                  "text": "Comments"
                                 }
                               ]
                             }
@@ -1425,6 +1624,19 @@
                       "attributes": {
                         "name": "filename"
                       }
+                    },
+                    {
+                      "type": "element",
+                      "name": "stringProp",
+                      "attributes": {
+                        "name": "TestPlan.comments"
+                      },
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "Comments"
+                        }
+                      ]
                     }
                   ]
                 },
