@@ -183,7 +183,6 @@ export default class ElementProp extends Element {
             props = new CollectionProp(e);
             break;
           case "objProp":
-            // eslint-disable-next-line no-case-declarations
             const obj = new ObjProp(e);
             props[obj.key] = obj;
             break;

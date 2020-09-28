@@ -33,6 +33,7 @@
     ],
     "rules": {
       "vue/no-unused-components": "off",
+      "no-case-declarations": "off",
       "no-console": "off",
       "no-unused-vars": "off",
       "no-unused-expressions": "off",
