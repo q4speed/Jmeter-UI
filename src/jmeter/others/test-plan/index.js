@@ -1,7 +1,7 @@
-import Element from "@/jmeter/element";
+import HashTreeElement from "@/jmeter/hashtree";
 
-export default class TestPlan extends Element {
-  constructor(options) {
+export default class TestPlan extends HashTreeElement {
+  constructor(options = {}) {
     super(options);
   }
 }

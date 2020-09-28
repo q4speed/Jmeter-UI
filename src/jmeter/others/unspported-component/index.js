@@ -1,7 +1,7 @@
-import Element from "@/jmeter/element";
+import HashTreeElement from "@/jmeter/hashtree";
 
-export default class UnsupportedComponent extends Element {
-  constructor(options) {
+export default class UnsupportedComponent extends HashTreeElement {
+  constructor(options = {}) {
     super(options)
   }
 }

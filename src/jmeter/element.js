@@ -1,5 +1,8 @@
 import {uuid} from "@/commons/utils";
 
+/**
+ * options: JXM转换的JSON对象(xml2json)
+ */
 export default class Element {
   constructor(options = {}) {
     this.id = options.id || uuid();

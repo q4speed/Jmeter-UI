@@ -2,7 +2,7 @@ import Element from "@/jmeter/element";
 import {createHashTree} from "@/jmeter/components";
 
 export default class JmeterTestPlan extends Element {
-  constructor(options) {
+  constructor(options = {}) {
     super(options);
     if (options.elements) {
       this.hashTree = createHashTree(options.elements[0]);
@@ -13,9 +13,19 @@ export default class JmeterTestPlan extends Element {
     let json = super.toJson();
     if (this.hashTree) {
       json.elements = [];
+      let elements = [];
       this.hashTree.forEach(e => {
-        json.elements.push(e.toJson());
+        let json = e.toJson();
+        json.forEach(o => {
+          elements.push(o);
+        })
       })
+      let hashTree = {
+        "type": "element",
+        "name": "hashTree",
+        "elements": elements
+      }
+      json.elements.push(hashTree);
     }
     return json;
   }

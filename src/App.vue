@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <test-tree :data="element"></test-tree>
+    <span>{{ json2xml(this.jmx.toJson()) }}</span>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import TestTree from "@/components/TestTree";
 import JMX from "@/jmeter/others/jmx";
 import json from "@/assets/data";
+import {json2xml} from "xml-js"
 
 export default {
   name: 'App',
@@ -18,7 +20,11 @@ export default {
       jmx: new JMX(json)
     }
   },
-  methods: {},
+  methods: {
+    json2xml(json) {
+      return json2xml(json);
+    }
+  },
   computed: {
     element() {
       // 从TestPlan开始

@@ -2,7 +2,7 @@ import Element from "@/jmeter/element";
 import {createElement} from "@/jmeter/components";
 
 export default class JMX extends Element {
-  constructor(options) {
+  constructor(options = {}) {
     super(options);
     this.declaration = options.declaration;
     if (options.elements) {
