@@ -9,7 +9,7 @@
 
 import TestTree from "@/components/TestTree";
 import JMX from "@/jmeter/others/jmx";
-import json from "@/assets/data";
+import json from "@/assets/demo";
 import {json2xml} from "xml-js"
 
 export default {
@@ -28,6 +28,7 @@ export default {
   computed: {
     element() {
       // 从TestPlan开始
+      console.log(this.jmx.elements[0].hashTree)
       return this.jmx.elements[0].hashTree;
     }
   }

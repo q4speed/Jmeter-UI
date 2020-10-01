@@ -6,7 +6,7 @@ export default class HashTreeElement extends ElementProp {
   }
 
   toJson() {
-    let json = super.toJson();
+    let self = super.toJson();
     let hashTree = {
       "type": "element",
       "name": "hashTree",
@@ -21,6 +21,6 @@ export default class HashTreeElement extends ElementProp {
       })
       hashTree.elements = elements;
     }
-    return [json, hashTree];
+    return [self, hashTree];
   }
 }

@@ -1,10 +1,33 @@
 import UnsupportedComponent from "@/jmeter/others/unspported-component";
 import JmeterTestPlan from "@/jmeter/others/jmeter-test-plan";
-import TestPlan from "@/jmeter/others/test-plan";
 
-export const COMPONENTS = {
+const components = require.context('@/jmeter/', true, /index\.js$/)
+
+const map = function (obj) {
+  let component = {};
+  component[obj.name] = obj;
+  return component;
+}
+
+const reduce = function (o1, o2) {
+  return {...o1, ...o2};
+}
+
+const filter = function (key) {
+  let specialKeys = ["others/jmx", "others/jmeter-test-plan"];
+  for (let sk of specialKeys) {
+    if (key.indexOf(sk) >= 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const COMPONENTS = {
+  ...components.keys().filter(filter).map(key => {
+    return map(components(key).default)
+  }).reduce(reduce),
   jmeterTestPlan: JmeterTestPlan,
-  TestPlan: TestPlan,
 };
 
 export const createElement = function (element) {
