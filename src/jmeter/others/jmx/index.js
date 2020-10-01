@@ -1,5 +1,5 @@
 import Element from "@/jmeter/element";
-import {createElement} from "@/jmeter/components";
+import {createComponent} from "@/jmeter/components";
 
 export default class JMX extends Element {
   constructor(options = {}) {
@@ -8,7 +8,7 @@ export default class JMX extends Element {
     if (options.elements) {
       this.elements = [];
       options.elements.forEach(e => {
-        this.elements.push(createElement(e));
+        this.elements.push(createComponent(e));
       })
     }
   }

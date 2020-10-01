@@ -30,7 +30,7 @@ const COMPONENTS = {
   jmeterTestPlan: JmeterTestPlan,
 };
 
-export const createElement = function (element) {
+export const createComponent = function (element) {
   if (element.name) {
     if (COMPONENTS[element.name]) {
       return new COMPONENTS[element.name](element);
@@ -44,7 +44,7 @@ export const createHashTree = function (options) {
   if (options.elements) {
     let list = [];
     for (let i = 0; i < options.elements.length; i += 2) {
-      let element = createElement(options.elements[i]);
+      let element = createComponent(options.elements[i]);
       element.hashTree = createHashTree(options.elements[i + 1]);
       list.push(element);
     }
