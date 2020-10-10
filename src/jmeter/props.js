@@ -3,7 +3,7 @@ import Element from "@/jmeter/element";
 /**
  * int, long, bool, string
  */
-class BasicProp extends Element {
+export class BasicProp extends Element {
   constructor(options = {}) {
     super(options);
     if (options.elements) {
@@ -26,7 +26,7 @@ class BasicProp extends Element {
 /**
  * value:数值
  */
-class IntProp extends BasicProp {
+export class IntProp extends BasicProp {
   constructor(options = {}) {
     super(options);
     this.value = options.elements ? parseInt(options.elements[0].text) : undefined;
@@ -36,7 +36,7 @@ class IntProp extends BasicProp {
 /**
  * value:数值
  */
-class LongProp extends BasicProp {
+export class LongProp extends BasicProp {
   constructor(options = {}) {
     super(options);
     this.value = options.elements ? parseInt(options.elements[0].text) : undefined;
@@ -56,7 +56,7 @@ class BoolProp extends BasicProp {
 /**
  * value:字符串
  */
-class StringProp extends BasicProp {
+export class StringProp extends BasicProp {
   constructor(options = {}) {
     super(options);
     this.value = options.elements ? options.elements[0].text : undefined;
@@ -67,7 +67,7 @@ class StringProp extends BasicProp {
 /**
  * value: name/value 对象
  */
-class ObjProp extends Element {
+export class ObjProp extends Element {
   constructor(options = {}) {
     super(options);
     if (options.elements) {
@@ -94,23 +94,23 @@ class ObjProp extends Element {
   }
 }
 
-class ObjValue extends Element {
+export class ObjValue extends Element {
   constructor(options = {}) {
     super(options);
     if (options.elements) {
-      this.values = {}
+      this.value = {}
       options.elements.forEach(e => {
-        this.values[e.name] = new BasicProp(e);
+        this.value[e.name] = new BasicProp(e);
       })
     }
   }
 
   toJson() {
     let json = super.toJson();
-    if (this.values !== undefined) {
+    if (this.value !== undefined) {
       json.elements = [];
-      Object.keys(this.values).forEach(v => {
-        json.elements.push(this.values[v].toJson());
+      Object.keys(this.value).forEach(v => {
+        json.elements.push(this.value[v].toJson());
       })
     }
     return json;
@@ -118,24 +118,24 @@ class ObjValue extends Element {
 }
 
 /**
- * values:数组
+ * value:数组
  */
-class CollectionProp extends Element {
+export class CollectionProp extends Element {
   constructor(options = {}) {
     super(options);
     if (options.elements) {
-      this.values = [];
+      this.value = [];
       options.elements.forEach(e => {
-        this.values.push(new ElementProp(e));
+        this.value.push(new ElementProp(e));
       })
     }
   }
 
   toJson() {
     let json = super.toJson();
-    if (this.values !== undefined) {
+    if (this.value !== undefined) {
       json.elements = [];
-      this.values.forEach(v => {
+      this.value.forEach(v => {
         json.elements.push(v.toJson());
       })
     }
@@ -144,67 +144,111 @@ class CollectionProp extends Element {
 }
 
 /**
- * values:对象
+ * value:对象
  */
-export default class ElementProp extends Element {
+export class ElementProp extends Element {
   constructor(options = {}) {
     super(options);
     if (options.elements) {
-      this.values = this.getProps(options.elements);
-    }
-  }
-
-  getProps(elements) {
-    if (elements) {
-      let props = {};
-      elements.forEach(e => {
-        let type = e.name;
-        let name;
-        if (e.attributes && e.attributes.name) {
-          name = e.attributes.name;
-        }
-        switch (type) {
-          case "intProp":
-            props[name] = new IntProp(e);
-            break;
-          case "longProp":
-            props[name] = new LongProp(e);
-            break;
-          case "boolProp":
-            props[name] = new BoolProp(e);
-            break;
-          case "stringProp":
-            props[name] = new StringProp(e);
-            break;
-          case "elementProp":
-            props[name] = new ElementProp(e);
-            break;
-          case "collectionProp":
-            props = new CollectionProp(e);
-            break;
-          case "objProp":
-            const obj = new ObjProp(e);
-            props[obj.key] = obj;
-            break;
-        }
-      });
-      return props;
+      this.value = getProps(options.elements);
     }
   }
 
   toJson() {
     let json = super.toJson();
-    if (this.values !== undefined) {
+    if (this.value !== undefined) {
       json.elements = [];
-      if (this.values instanceof CollectionProp) {
-        json.elements.push(this.values.toJson());
-      } else {
-        Object.keys(this.values).forEach(key => {
-          json.elements.push(this.values[key].toJson());
-        });
-      }
+      Object.keys(this.value).forEach(key => {
+        json.elements.push(this.value[key].toJson());
+      });
     }
     return json;
   }
 }
+
+export const getProps = function (elements) {
+  if (elements) {
+    let props = {};
+    elements.forEach(e => {
+      let type = e.name;
+      let name;
+      if (e.attributes && e.attributes.name) {
+        name = e.attributes.name;
+      }
+      switch (type) {
+        case "intProp":
+          props[name] = new IntProp(e);
+          break;
+        case "longProp":
+          props[name] = new LongProp(e);
+          break;
+        case "boolProp":
+          props[name] = new BoolProp(e);
+          break;
+        case "stringProp":
+          props[name] = new StringProp(e);
+          break;
+        case "elementProp":
+          props[name] = new ElementProp(e);
+          break;
+        case "collectionProp":
+          props[name] = new CollectionProp(e);
+          break;
+        case "objProp":
+          const obj = new ObjProp(e);
+          props[obj.key] = obj;
+          break;
+      }
+    });
+    return props;
+  }
+}
+
+export const basicProp = function (type, name, value) {
+  let options = {
+    "type": "element",
+    "name": "boolProp",
+    "attributes": {
+      "name": name
+    },
+    "elements": [
+      {
+        "type": "text",
+        "text": "" + value
+      }
+    ]
+  }
+
+  return new type(options);
+}
+
+export const intProp = function (name, value) {
+  return basicProp(IntProp, name, value)
+}
+
+export const longProp = function (name, value) {
+  return basicProp(LongProp, name, value)
+}
+
+export const boolProp = function (name, value) {
+  return basicProp(BoolProp, name, value)
+}
+
+export const stringProp = function (name, value) {
+  return basicProp(StringProp, name, value)
+}
+
+export const elementProp = function (name, elementType) {
+  let options = {
+    "type": "element",
+    "name": "elementProp",
+    "attributes": {
+      "name": name,
+      "elementType": elementType
+    },
+    elements: []
+  };
+  return new ElementProp(options);
+}
+
 

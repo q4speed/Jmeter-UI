@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <test-tree :data="element"></test-tree>
-    <span>{{ json2xml(this.jmx.toJson()) }}</span>
+    <el-button @click="showXML">showXML</el-button>
+    <pre>{{ xml }}</pre>
   </div>
 </template>
 
@@ -17,10 +18,15 @@ export default {
   components: {TestTree},
   data() {
     return {
-      jmx: new JMX(json)
+      jmx: new JMX(json),
+      xml: ""
     }
   },
   methods: {
+    showXML() {
+      let json = this.jmx.toJson();
+      this.xml = this.json2xml(json);
+    },
     json2xml(json) {
       return json2xml(json);
     }
@@ -28,7 +34,6 @@ export default {
   computed: {
     element() {
       // 从TestPlan开始
-      console.log(this.jmx.elements[0].hashTree)
       return this.jmx.elements[0].hashTree;
     }
   }

@@ -1,12 +1,23 @@
-import ElementProp from "@/jmeter/props";
+import Element from "@/jmeter/element";
+import {getProps} from "@/jmeter/props";
 
-export default class HashTreeElement extends ElementProp {
+export default class HashTreeElement extends Element {
   constructor(options = {}) {
     super(options);
+    if (options.elements) {
+      this.props = getProps(options.elements);
+    }
   }
 
   toJson() {
     let self = super.toJson();
+    if (this.props !== undefined) {
+      self.elements = [];
+      Object.keys(this.props).forEach(key => {
+        self.elements.push(this.props[key].toJson());
+      });
+    }
+
     let hashTree = {
       "type": "element",
       "name": "hashTree",
