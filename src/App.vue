@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <test-tree :data="element"></test-tree>
-    <el-button @click="showXML">showXML</el-button>
     <pre>{{ xml }}</pre>
+    <el-button @click="showXML">showXML</el-button>
   </div>
 </template>
 

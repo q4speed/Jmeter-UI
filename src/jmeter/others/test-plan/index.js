@@ -11,21 +11,24 @@ export default class TestPlan extends HashTreeElement {
     this.userDefineClasspath = this.props['TestPlan.user_define_classpath'];
 
     this.userDefinedVariables = [];
-    this.props['TestPlan.user_defined_variables'].value['Arguments.arguments'].value.forEach(elementProp => {
-      let name = elementProp.value['Argument.name'].value;
-      let value = elementProp.value['Argument.value'].value;
+
+    let collectionProp = this.props['TestPlan.user_defined_variables'].elements['Arguments.arguments'];
+    collectionProp.forEach(elementProp => {
+      let name = elementProp.elements['Argument.name'].value;
+      let value = elementProp.elements['Argument.value'].value;
       this.userDefinedVariables.push({name: name, value: value});
     })
   }
 
   updateProps() {
-    this.props['TestPlan.user_defined_variables'].value['Arguments.arguments'].value = [];
+    let collectionProp = this.props['TestPlan.user_defined_variables'].elements['Arguments.arguments'];
+    collectionProp.clear();
     this.userDefinedVariables.forEach(variable => {
-      let obj = elementProp(variable.name, "Argument");
-      obj.value['Argument.name'] = stringProp("Argument.name", variable.name)
-      obj.value['Argument.value'] = stringProp("Argument.value", variable.value)
-      obj.value['Argument.metadata'] = stringProp("Argument.metadata", "=")
-      this.props['TestPlan.user_defined_variables'].value['Arguments.arguments'].value.push(obj);
+      let ep = elementProp(variable.name, "Argument");
+      ep.add(stringProp("Argument.name", variable.name));
+      ep.add(stringProp("Argument.value", variable.value));
+      ep.add(stringProp("Argument.metadata", "="));
+      collectionProp.add(ep)
     })
   }
 
