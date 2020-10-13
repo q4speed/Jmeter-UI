@@ -173,7 +173,7 @@ export class CollectionProp extends Prop {
 }
 
 /**
- * elements:对象
+ * elements: Map
  */
 export class ElementProp extends Prop {
     constructor(options = {}) {
