@@ -30,6 +30,7 @@ export default class Element {
     }
     if (this.attributes) {
       json.attributes = this.attributes;
+      json.attributes.testname = this.label;
     }
     return json;
   }

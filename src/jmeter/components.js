@@ -1,5 +1,5 @@
 import UnsupportedComponent from "@/jmeter/components/others/unspported-component";
-import JmeterTestPlan from "@/jmeter/jmeter-test-plan";
+import JmeterTestPlan from "@/jmeter/jmx/jmeter-test-plan";
 
 const components = require.context('@/jmeter/components/', true, /index\.js$/)
 
