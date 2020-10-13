@@ -9,7 +9,7 @@
 <script>
 
 import TestTree from "@/components/TestTree";
-import JMX from "@/jmeter/others/jmx";
+import JMX from "@/jmeter/jmx";
 import json from "@/assets/demo";
 import {json2xml} from "xml-js"
 
