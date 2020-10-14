@@ -13,6 +13,11 @@ export default {
 </script>
 
 <style scoped>
+.components-field-set {
+  min-width: inherit;
+  border-color: #EFEFEF;
+}
+
 .components-field-set .title {
   font-size: 14px;
 }

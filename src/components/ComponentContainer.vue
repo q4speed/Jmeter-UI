@@ -23,4 +23,8 @@ export default {
   font-size: 16px;
   margin-bottom: 10px;
 }
+
+.components-container >>> .el-form-item {
+  margin-bottom: 10px;
+}
 </style>
