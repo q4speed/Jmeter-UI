@@ -16,7 +16,7 @@ export default class TestPlan extends HashTreeElement {
     collectionProp.forEach(elementProp => {
       let name = elementProp.elements['Argument.name'].value;
       let value = elementProp.elements['Argument.value'].value;
-      this.userDefinedVariables.push({name: name, value: value});
+      this.userDefinedVariables.push({name: name, value: value, enable: true});
     })
   }
 
@@ -24,11 +24,13 @@ export default class TestPlan extends HashTreeElement {
     let collectionProp = this.props['TestPlan.user_defined_variables'].elements['Arguments.arguments'];
     collectionProp.clear();
     this.userDefinedVariables.forEach(variable => {
-      let ep = elementProp(variable.name, "Argument");
-      ep.add(stringProp("Argument.name", variable.name));
-      ep.add(stringProp("Argument.value", variable.value));
-      ep.add(stringProp("Argument.metadata", "="));
-      collectionProp.add(ep)
+      if (variable.enable !== false) {
+        let ep = elementProp(variable.name, "Argument");
+        ep.add(stringProp("Argument.name", variable.name));
+        ep.add(stringProp("Argument.value", variable.value));
+        ep.add(stringProp("Argument.metadata", "="));
+        collectionProp.add(ep)
+      }
     })
   }
 

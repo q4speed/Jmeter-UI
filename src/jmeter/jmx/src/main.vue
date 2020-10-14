@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 .jmx-container {
-  background-color: #F5F5F5;
+  background-color: #F9F9F9;
   position: relative;
   height: 100vh;
 }
