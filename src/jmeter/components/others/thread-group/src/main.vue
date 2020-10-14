@@ -19,6 +19,14 @@
           <el-input type="number" v-model="object.rampTime.value"></el-input>
         </el-form-item>
 
+        <el-form-item label="循环数" prop="loops">
+          <el-input type="number" v-model="object.loops.value" :disabled="object.continueForever.value">
+            <template slot="prepend">
+              <el-checkbox v-model="object.continueForever.value" @change="changeContinueForever">无限循环</el-checkbox>
+            </template>
+          </el-input>
+        </el-form-item>
+
         <el-form-item label-width="0" prop="sameUserOnNextIteration">
           <el-checkbox v-model="object.sameUserOnNextIteration.value">每次迭代使用同一用户</el-checkbox>
         </el-form-item>
@@ -26,13 +34,13 @@
           <el-checkbox v-model="object.delayedStart.value">将线程创建延迟到需要时</el-checkbox>
         </el-form-item>
         <el-form-item label-width="0" prop="scheduler">
-          <el-checkbox v-model="object.scheduler.value">调度器</el-checkbox>
+          <el-checkbox v-model="object.scheduler.value" @change="changeScheduler">调度器</el-checkbox>
         </el-form-item>
         <el-form-item label="持续时间(秒)" prop="duration">
-          <el-input type="number" v-model="object.duration.value"></el-input>
+          <el-input type="number" v-model="object.duration.value" :disabled="!object.scheduler.value"></el-input>
         </el-form-item>
         <el-form-item label="启动延迟(秒)" prop="delay">
-          <el-input type="number" v-model="object.delay.value"></el-input>
+          <el-input type="number" v-model="object.delay.value" :disabled="!object.scheduler.value"></el-input>
         </el-form-item>
       </component-field-set>
     </el-form>
@@ -50,7 +58,21 @@ export default {
   props: {
     object: ThreadGroup
   },
-  methods: {}
+  methods: {
+    changeContinueForever(value) {
+      if (value === true) {
+        if (this.object.loops.value !== undefined) {
+          this.object.loops.value = undefined;
+        }
+      }
+    },
+    changeScheduler(value) {
+      if (value === false) {
+        this.object.duration.value = 0;
+        this.object.delay.value = 0
+      }
+    }
+  }
 }
 </script>
 

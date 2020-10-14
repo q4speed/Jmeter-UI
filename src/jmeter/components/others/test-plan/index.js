@@ -4,11 +4,11 @@ import {elementProp, stringProp} from "@/jmeter/props";
 export default class TestPlan extends HashTreeElement {
   constructor(options = {}) {
     super(options);
-    this.functionalMode = this.props['TestPlan.functional_mode'];
-    this.serializeThreadGroups = this.props['TestPlan.serialize_threadgroups'];
-    this.tearDownOnShutdown = this.props['TestPlan.tearDown_on_shutdown'];
-    this.comments = this.props['TestPlan.comments'];
-    this.userDefineClasspath = this.props['TestPlan.user_define_classpath'];
+
+    this.functionalMode = this.initBoolProp(this.props, 'TestPlan.functional_mode');
+    this.serializeThreadGroups = this.initBoolProp(this.props, 'TestPlan.serialize_threadgroups');
+    this.tearDownOnShutdown = this.initBoolProp(this.props, 'TestPlan.tearDown_on_shutdown');
+    this.userDefineClasspath = this.initStringProp(this.props, 'TestPlan.user_define_classpath');
 
     this.userDefinedVariables = [];
 

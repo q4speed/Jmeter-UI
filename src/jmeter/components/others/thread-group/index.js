@@ -9,14 +9,14 @@ export default class ThreadGroup extends HashTreeElement {
     this.rampTime = this.initStringProp(this.props, 'TestPlan.ramp_time', 1);
 
     let loopController = this.props['ThreadGroup.main_controller'];
-    this.continueForever = this.initBoolProp(loopController.elements, 'TestPlan.continue_forever');
-    this.loops = this.initBoolProp(loopController.elements, 'TestPlan.loops');
+    this.continueForever = this.initBoolProp(loopController.elements, 'ThreadGroup.continue_forever');
+    this.loops = this.initBoolProp(loopController.elements, 'ThreadGroup.loops');
 
-    this.sameUserOnNextIteration = this.initBoolProp(this.props, 'TestPlan.same_user_on_next_iteration');
-    this.delayedStart = this.initBoolProp(this.props, 'TestPlan.delayedStart');
-    this.scheduler = this.initBoolProp(this.props, 'TestPlan.scheduler');
-    this.delay = this.initStringProp(this.props, 'TestPlan.delay');
-    this.duration = this.initStringProp(this.props, 'TestPlan.duration');
+    this.sameUserOnNextIteration = this.initBoolProp(this.props, 'ThreadGroup.same_user_on_next_iteration');
+    this.delayedStart = this.initBoolProp(this.props, 'ThreadGroup.delayedStart');
+    this.scheduler = this.initBoolProp(this.props, 'ThreadGroup.scheduler');
+    this.delay = this.initStringProp(this.props, 'ThreadGroup.delay');
+    this.duration = this.initStringProp(this.props, 'ThreadGroup.duration');
   }
 
   toJson() {
