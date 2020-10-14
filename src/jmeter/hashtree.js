@@ -1,5 +1,5 @@
 import Element from "@/jmeter/element";
-import {getProps} from "@/jmeter/props";
+import {boolProp, getProps, intProp, longProp, stringProp} from "@/jmeter/props";
 
 export default class HashTreeElement extends Element {
   constructor(options = {}) {
@@ -7,6 +7,24 @@ export default class HashTreeElement extends Element {
     if (options.elements) {
       this.props = getProps(options.elements);
     }
+
+    this.comments = this.initStringProp(this.props, 'TestPlan.comments');
+  }
+
+  initIntProp(map, name, value) {
+    return map[name] || intProp(name, value);
+  }
+
+  initLongProp(map, name, value) {
+    return map[name] || longProp(name, value);
+  }
+
+  initBoolProp(map, name, value) {
+    return map[name] || boolProp(name, value);
+  }
+
+  initStringProp(map, name, value) {
+    return map[name] || stringProp(name, value);
   }
 
   toJson() {

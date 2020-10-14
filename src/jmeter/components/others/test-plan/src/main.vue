@@ -1,13 +1,6 @@
 <template>
-  <component-container :title="object.name">
+  <component-container :object="object">
     <el-form ref="object" :model="object" label-width="auto" size="mini">
-      <el-form-item label="名称" prop="label">
-        <el-input v-model="object.label"></el-input>
-      </el-form-item>
-      <el-form-item label="注释" prop="comments">
-        <el-input v-model="object.comments.value"></el-input>
-      </el-form-item>
-
       <test-plan-variables :items="object.userDefinedVariables"/>
 
       <el-form-item label-width="0" prop="serializeThreadGroups">

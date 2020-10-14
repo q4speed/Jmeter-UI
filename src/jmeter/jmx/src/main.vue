@@ -2,7 +2,7 @@
   <div class="jmx-container">
     <split-pane :min-percent='10' :default-percent='20' split="vertical">
       <template slot="paneL">
-        <components-tree :data="element" :select="select"></components-tree>
+        <components-tree :data="testPlan" :select="select"></components-tree>
       </template>
       <template slot="paneR">
         <component :is="selected.name" :object="selected" v-if="selected"></component>
@@ -28,10 +28,11 @@ export default {
   methods: {
     select(data) {
       this.selected = data;
+
     }
   },
   computed: {
-    element() {
+    testPlan() {
       // 从TestPlan开始
       return this.jmx.elements[0].hashTree;
     }

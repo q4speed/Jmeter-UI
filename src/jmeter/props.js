@@ -258,7 +258,7 @@ export const basicProp = function (type, name, value) {
     "elements": [
       {
         "type": "text",
-        "text": "" + value
+        "text": value === undefined ? "" : "" + value
       }
     ]
   }

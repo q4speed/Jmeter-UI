@@ -16,6 +16,7 @@ export default {
 .components-field-set {
   min-width: inherit;
   border-color: #EFEFEF;
+  margin-bottom: 10px;
 }
 
 .components-field-set .title {
