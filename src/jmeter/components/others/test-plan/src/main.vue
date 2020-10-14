@@ -7,7 +7,9 @@
       <el-form-item label="注释" prop="comments">
         <el-input v-model="object.comments.value"></el-input>
       </el-form-item>
+
       <test-plan-variables :items="object.userDefinedVariables"/>
+
       <el-form-item label-width="0" prop="serializeThreadGroups">
         <el-checkbox v-model="object.serializeThreadGroups.value">独立运行每个线程组（例如在一个组结束后运行下一个 ）</el-checkbox>
       </el-form-item>
@@ -25,13 +27,11 @@
 <script>
 import ComponentContainer from "@/components/ComponentContainer";
 import TestPlan from "@/jmeter/components/others/test-plan";
-import ComponentFieldSet from "@/components/ComponentFieldSet";
-import VariableFieldSet from "@/components/variables/VariableFieldSet";
 import TestPlanVariables from "@/jmeter/components/others/test-plan/src/TestPlanVariables";
 
 export default {
   name: "TestPlan",
-  components: {TestPlanVariables, VariableFieldSet, ComponentFieldSet, ComponentContainer},
+  components: {TestPlanVariables, ComponentContainer},
   props: {
     object: TestPlan
   },
