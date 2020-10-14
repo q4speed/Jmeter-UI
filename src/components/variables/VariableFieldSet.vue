@@ -62,7 +62,7 @@ export default {
 
 <style scoped>
 .variable-table {
-  background-color: #F5F5F5;
+  background-color: inherit;
 }
 
 .variable-table >>> .variable-table-th, .variable-table >>> .variable-table-td {
