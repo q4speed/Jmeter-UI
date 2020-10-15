@@ -5,7 +5,7 @@
         <components-tree :data="testPlan" :select="select"></components-tree>
       </template>
       <template slot="paneR">
-        <component :is="selected.name" :object="selected" v-if="selected"></component>
+        <component :is="className" :object="selected" v-if="selected"></component>
       </template>
     </split-pane>
   </div>
@@ -35,6 +35,9 @@ export default {
     testPlan() {
       // 从TestPlan开始
       return this.jmx.elements[0].hashTree;
+    },
+    className() {
+      return this.selected.constructor.name
     }
   }
 }
