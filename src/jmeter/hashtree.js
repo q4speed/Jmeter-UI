@@ -12,19 +12,31 @@ export default class HashTreeElement extends Element {
   }
 
   initIntProp(map, name, value) {
-    return map[name] || intProp(name, value);
+    if (map[name] === undefined) {
+      map[name] = intProp(name, value);
+    }
+    return map[name];
   }
 
   initLongProp(map, name, value) {
-    return map[name] || longProp(name, value);
+    if (map[name] === undefined) {
+      map[name] = longProp(name, value);
+    }
+    return map[name];
   }
 
   initBoolProp(map, name, value) {
-    return map[name] || boolProp(name, value);
+    if (map[name] === undefined) {
+      map[name] = boolProp(name, value);
+    }
+    return map[name];
   }
 
   initStringProp(map, name, value) {
-    return map[name] || stringProp(name, value);
+    if (map[name] === undefined) {
+      map[name] = stringProp(name, value);
+    }
+    return map[name];
   }
 
   toJson() {
