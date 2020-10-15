@@ -1,5 +1,6 @@
 <template>
-  <component-container :object="object">
+  <component-container :object="object"
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#Test_Plan">
     <el-form ref="object" :model="object" label-width="auto" size="mini">
       <test-plan-variables :items="object.userDefinedVariables"/>
 

@@ -18,8 +18,4 @@ export default class ThreadGroup extends HashTreeElement {
     this.delay = this.initStringProp(this.props, 'ThreadGroup.delay');
     this.duration = this.initStringProp(this.props, 'ThreadGroup.duration');
   }
-
-  toJson() {
-    return super.toJson();
-  }
 }

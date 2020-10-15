@@ -1,7 +1,10 @@
 <template>
   <div class="components-container">
     <slot name="title">
-      <div class="title">{{ object.name }}</div>
+      <div class="title">
+        {{ object.name }}
+        <el-link icon="el-icon-question" :underline="false" :href="helpUrl" v-if="helpUrl" target="_blank"/>
+      </div>
       <el-form ref="object" :model="object" label-width="auto" size="mini">
         <el-form-item label="名称" prop="label">
           <el-input v-model="object.label"></el-input>
@@ -18,7 +21,7 @@
 <script>
 export default {
   name: "ComponentContainer",
-  props: ["title", "object"]
+  props: ["helpUrl", "object"]
 }
 </script>
 
@@ -30,6 +33,11 @@ export default {
 .components-container .title {
   font-size: 16px;
   margin-bottom: 10px;
+}
+
+.components-container >>> .el-link {
+  margin-top: -2px;
+  font-size: 16px;
 }
 
 .components-container >>> .el-form-item {

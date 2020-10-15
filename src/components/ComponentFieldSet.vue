@@ -15,7 +15,10 @@ export default {
 <style scoped>
 .components-field-set {
   min-width: inherit;
-  border-color: #EFEFEF;
+  color: #606266;
+  border: 1px solid #DCDFE6;
+  border-radius: 4px;
+  transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
   margin-bottom: 10px;
 }
 

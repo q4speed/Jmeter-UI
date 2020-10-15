@@ -11,30 +11,30 @@ export default class HashTreeElement extends Element {
     this.comments = this.initStringProp(this.props, 'TestPlan.comments');
   }
 
-  initIntProp(map, name, value) {
+  initIntProp(map, name, defaultValue) {
     if (map[name] === undefined) {
-      map[name] = intProp(name, value);
+      map[name] = intProp(name, defaultValue);
     }
     return map[name];
   }
 
-  initLongProp(map, name, value) {
+  initLongProp(map, name, defaultValue) {
     if (map[name] === undefined) {
-      map[name] = longProp(name, value);
+      map[name] = longProp(name, defaultValue);
     }
     return map[name];
   }
 
-  initBoolProp(map, name, value) {
+  initBoolProp(map, name, defaultValue) {
     if (map[name] === undefined) {
-      map[name] = boolProp(name, value);
+      map[name] = boolProp(name, defaultValue);
     }
     return map[name];
   }
 
-  initStringProp(map, name, value) {
+  initStringProp(map, name, defaultValue) {
     if (map[name] === undefined) {
-      map[name] = stringProp(name, value);
+      map[name] = stringProp(name, defaultValue);
     }
     return map[name];
   }

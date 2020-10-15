@@ -1,5 +1,6 @@
 <template>
-  <component-container :object="object">
+  <component-container :object="object"
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#Thread_Group">
     <el-form ref="object" :model="object" label-width="140px" label-position="left" size="mini">
       <component-field-set title="在取样器错误后要执行的动作">
         <el-radio-group v-model="object.onSampleError.value">
