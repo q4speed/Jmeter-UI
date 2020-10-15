@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.2.1">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Condition" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Condition1" enabled="true">
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <stringProp name="TestPlan.comments">Test Plan Comments</stringProp>
-      <stringProp name="TestPlan.user_define_classpath"/>
+      <stringProp name="TestPlan.user_define_classpath">
+        /Users/q4speed/Downloads/apache-jmeter-5.2.1/bin/ApacheJMeter.jar
+      </stringProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel"
                    testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="v1" elementType="Argument">
             <stringProp name="Argument.name">v1</stringProp>
-            <stringProp name="Argument.value">1234567890</stringProp>
+            <stringProp name="Argument.value">10.111.82.18</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -30,35 +32,52 @@
                      testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="ThreadGroup.continue_forever">false</boolProp>
+          <stringProp name="ThreadGroup.loops">1</stringProp>
         </elementProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="TestPlan.comments">测试条件 Comments</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
       </ThreadGroup>
       <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="v1" elementType="Argument">
+              <stringProp name="Argument.name">v1</stringProp>
+              <stringProp name="Argument.value">v1</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+          <stringProp name="TestPlan.comments"></stringProp>
+        </Arguments>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提取Code" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel"
                        testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="a" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">a</stringProp>
                 <stringProp name="Argument.value">b</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">a</stringProp>
+                <stringProp name="HTTPArgument.content_type">text/plain</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">www.baidu.com</stringProp>
-          <stringProp name="HTTPSampler.port"/>
+          <stringProp name="HTTPSampler.domain">${neutron_url}</stringProp>
+          <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"/>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">60000</stringProp>
           <stringProp name="HTTPSampler.response_timeout"/>
           <stringProp name="TestPlan.comments">Comments</stringProp>
@@ -78,7 +97,7 @@
         </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="${code} =~ 20" enabled="true">
           <stringProp name="IfController.comments"/>
-          <stringProp name="IfController.condition">${__jexl3(!empty("${code}"))}</stringProp>
+          <stringProp name="IfController.condition">${__jexl3(${v1} == "v1")}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
           <stringProp name="TestPlan.comments">Comments</stringProp>
@@ -90,11 +109,12 @@
                          testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="code" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">code</stringProp>
                   <stringProp name="Argument.value">${code}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="HTTPArgument.content_type">text/plain</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -112,8 +132,24 @@
             <stringProp name="HTTPSampler.connect_timeout">60000</stringProp>
             <stringProp name="HTTPSampler.response_timeout"/>
             <stringProp name="TestPlan.comments">Comments</stringProp>
+            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
           </HTTPSamplerProxy>
-          <hashTree/>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">a1</stringProp>
+                  <stringProp name="Header.value">1</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">b2</stringProp>
+                  <stringProp name="Header.value">2</stringProp>
+                </elementProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments"></stringProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="wait 10000ms"
                           enabled="true">
@@ -135,6 +171,7 @@
           <stringProp name="HTTPSampler.connect_timeout">60000</stringProp>
           <stringProp name="HTTPSampler.response_timeout"/>
           <stringProp name="TestPlan.comments">Comments</stringProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
         </HTTPSamplerProxy>
         <hashTree>
           <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="10000 ms" enabled="true">

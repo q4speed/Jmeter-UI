@@ -8,7 +8,6 @@
 <script>
 
 import ComponentContainer from "@/components/ComponentContainer";
-import TCPSampler from "@/jmeter/components/samplers/tcp-sampler";
 import RegexExtractor from "@/jmeter/components/post-processors/regular-extractor";
 
 export default {

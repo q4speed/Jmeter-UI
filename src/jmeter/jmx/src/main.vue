@@ -14,21 +14,21 @@
 <script>
 import ComponentsTree from "@/components/ComponentsTree";
 import JMX from "@/jmeter/jmx";
-import json from "@/assets/demo";
 
 export default {
   name: "jmx",
   components: {ComponentsTree},
+  props: {
+    jmx: JMX
+  },
   data() {
     return {
-      jmx: new JMX(json),
       selected: "",
     }
   },
   methods: {
     select(data) {
       this.selected = data;
-
     }
   },
   computed: {
@@ -47,6 +47,6 @@ export default {
 .jmx-container {
   background-color: #F9F9F9;
   position: relative;
-  height: 100vh;
+  height: 100%;
 }
 </style>

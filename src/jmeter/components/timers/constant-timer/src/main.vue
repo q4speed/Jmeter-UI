@@ -3,7 +3,7 @@
                        help-url="https://jmeter.apache.org/usermanual/component_reference.html#Constant_Timer">
     <el-form ref="object" :model="object" label-width="auto" size="mini">
       <el-form-item label="线程延迟(毫秒)" prop="condition">
-        <el-input type="number" v-model="object.delay.value" :min="0" :step="1000"/>
+        <el-input v-model="object.delay.value" :min="0" :step="1000"/>
       </el-form-item>
     </el-form>
   </component-container>

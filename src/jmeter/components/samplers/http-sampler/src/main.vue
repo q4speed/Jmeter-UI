@@ -1,7 +1,14 @@
 <template>
-  <component-container :object="object">
-    <el-form ref="object" :model="object" size="mini">
-    </el-form>
+  <component-container :object="object"
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#HTTP_Request">
+    <el-tabs v-model="activeName">
+      <el-tab-pane label="基础" name="basic">
+        <http-basic-config :object="object"/>
+      </el-tab-pane>
+      <el-tab-pane label="高级" name="advanced">
+        <http-advanced-config :object="object"/>
+      </el-tab-pane>
+    </el-tabs>
   </component-container>
 </template>
 
@@ -9,12 +16,25 @@
 
 import ComponentContainer from "@/components/ComponentContainer";
 import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler";
+import ComponentFieldSet from "@/components/ComponentFieldSet";
+import HttpBasicConfig from "@/jmeter/components/samplers/http-sampler/src/HttpBasicConfig";
+import HttpAdvancedConfig from "@/jmeter/components/samplers/http-sampler/src/HttpAdvancedConfig";
 
 export default {
   name: "HTTPSamplerProxy",
-  components: {ComponentContainer},
+  components: {HttpAdvancedConfig, HttpBasicConfig, ComponentFieldSet, ComponentContainer},
   props: {
     object: HTTPSamplerProxy
+  },
+  data() {
+    return {
+      activeName: "basic",
+    }
+  },
+  methods: {
+    handleClick(tab) {
+      console.log(tab.name)
+    }
   }
 }
 </script>
