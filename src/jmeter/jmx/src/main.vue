@@ -16,7 +16,7 @@ import ComponentsTree from "@/components/ComponentsTree";
 import JMX from "@/jmeter/jmx";
 
 export default {
-  name: "jmx",
+  name: "JmxView",
   components: {ComponentsTree},
   props: {
     jmx: JMX

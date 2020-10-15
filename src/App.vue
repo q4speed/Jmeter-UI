@@ -5,16 +5,16 @@
       打开JMX文件
     </el-button>
     <el-button @click="download" size="mini">
-      下载JMX文件
+      保存JMX文件
     </el-button>
     默认显示的工程里demo.js文件（由demo.xml转换为json）
-    <jmx :jmx="jmx" v-if="jmx" style="height: 100%"/>
+    <jmx-view :jmx="jmx" v-if="jmx" style="height: 100%"/>
   </div>
 </template>
 
 <script>
 
-import Jmx from "@/jmeter/jmx/src/main";
+import JmxView from "@/jmeter/jmx/src/main";
 import {xml2json, json2xml} from "xml-js";
 import JMX from "@/jmeter/jmx";
 import {downloadFile} from "@/commons/utils";
@@ -22,7 +22,7 @@ import demo from "@/assets/demo";
 
 export default {
   name: 'App',
-  components: {Jmx},
+  components: {JmxView},
   data() {
     return {
       jmx: new JMX(demo)
