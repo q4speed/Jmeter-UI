@@ -1,7 +1,7 @@
-import HashTreeElement from "@/jmeter/hashtree";
 import {elementProp, stringProp} from "@/jmeter/props";
+import Configuration from "@/jmeter/components/configurations/configuration";
 
-export default class HeaderManager extends HashTreeElement {
+export default class HeaderManager extends Configuration {
   constructor(options = {}) {
     super(options);
 

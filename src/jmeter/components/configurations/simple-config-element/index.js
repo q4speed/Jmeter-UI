@@ -1,6 +1,6 @@
-import HashTreeElement from "@/jmeter/hashtree";
+import Configuration from "@/jmeter/components/configurations/configuration";
 
-export default class SimpleConfigElement extends HashTreeElement {
+export default class SimpleConfigElement extends Configuration {
   constructor(options = {}) {
     super(options);
   }

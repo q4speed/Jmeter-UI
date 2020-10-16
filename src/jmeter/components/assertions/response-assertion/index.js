@@ -1,6 +1,6 @@
-import HashTreeElement from "@/jmeter/hashtree";
+import Assertion from "@/jmeter/components/assertions/assertion";
 
-export default class ResponseAssertion extends HashTreeElement {
+export default class ResponseAssertion extends Assertion {
   constructor(options = {}) {
     super(options);
   }

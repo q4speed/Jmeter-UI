@@ -1,6 +1,6 @@
-import HashTreeElement from "@/jmeter/hashtree";
+import Controller from "@/jmeter/components/controllers/controller";
 
-export default class IfController extends HashTreeElement {
+export default class IfController extends Controller {
   constructor(options = {}) {
     super(options);
 

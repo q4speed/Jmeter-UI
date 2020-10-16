@@ -38,4 +38,12 @@ export default class TestPlan extends HashTreeElement {
     this.updateProps();
     return super.toJson();
   }
+
+  allowDrag() {
+    return false;
+  }
+
+  allowDrop(dragging) {
+    return dragging instanceof HashTreeElement;
+  }
 }

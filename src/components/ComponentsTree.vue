@@ -71,7 +71,7 @@ export default {
       }
     },
     allowDrop(draggingNode, dropNode) {
-      return dropNode.data.allowDrop();
+      return dropNode.data.allowDrop(draggingNode.data);
     },
     allowDrag(draggingNode) {
       return draggingNode.data.allowDrag();

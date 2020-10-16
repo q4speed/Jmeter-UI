@@ -43,8 +43,8 @@ export default class HashTreeElement extends Element {
     return true;
   }
 
-  allowDrop() {
-    return true;
+  allowDrop(dragging) {
+    return dragging instanceof HashTreeElement;
   }
 
   toJson() {

@@ -1,7 +1,7 @@
-import HashTreeElement from "@/jmeter/hashtree";
 import {boolProp, elementProp, stringProp} from "@/jmeter/props";
+import Sampler from "@/jmeter/components/samplers/sampler";
 
-export default class HTTPSamplerProxy extends HashTreeElement {
+export default class HTTPSamplerProxy extends Sampler {
   constructor(options = {}) {
     super(options);
     this.protocol = this.initStringProp(this.props, 'HTTPSampler.protocol', "https");

@@ -1,12 +1,8 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
-export default class ResultCollector extends HashTreeElement {
+export default class Assertion extends HashTreeElement {
   constructor(options = {}) {
     super(options);
-  }
-
-  allowDrag() {
-    return false;
   }
 
   allowDrop(dragging) {
