@@ -1,5 +1,5 @@
 <template>
-  <div class="component-tree">
+  <div class="component-tree" id="jmeter-tree">
     <el-tree
       node-key="id"
       default-expand-all
@@ -9,21 +9,19 @@
       :props="props"
       :expand-on-click-node="false"
       @node-click="select"
-      @node-contextmenu="rightClick"
+      @node-contextmenu="showMenu"
       :allow-drop="allowDrop"
       :allow-drag="allowDrag">
       <template v-slot:default="{ node }">
-        <span class="el-tree-node__label" slot="reference">
+        <span class="el-tree-node__label">
           <span>{{ node.label }}</span>
         </span>
       </template>
     </el-tree>
     <div v-show="menuVisible">
-      <ul id="menu" class="menu">
-        <li class="menu__item">新增</li>
-        <li class="menu__item">重命名</li>
-        <li class="menu__item">删除</li>
-      </ul>
+      <el-card id="menu" class="jmeter-menu">
+
+      </el-card>
     </div>
   </div>
 </template>
@@ -45,30 +43,24 @@ export default {
     }
   },
   methods: {
-    rightClick(event, object, node, element) { // 鼠标右击触发事件
-      // node.menu = true
-      console.log(node)
-      this.menuVisible = false // 先把模态框关死，目的是 第二次或者第n次右键鼠标的时候 它默认的是true
-      this.menuVisible = true  // 显示模态窗口，跳出自定义菜单栏
-      let menu = document.querySelector('#menu')
-      this.styleMenu(event, menu);
+    showMenu(event, data, node, element) {
+      let tree = document.querySelector("#jmeter-tree");
+      let treeLeft = tree.getBoundingClientRect().left;
+      let treeTop = tree.getBoundingClientRect().top;
+      let treeBottom = tree.getBoundingClientRect().bottom;
+      const MENU_HEIGHT = 100;
+
+      this.menuVisible = true;
+      let menu = document.querySelector('#menu');
+      menu.style.left = event.clientX + treeLeft + 1 + 'px';
+      if (event.clientY + MENU_HEIGHT >= treeBottom) {
+        menu.style.top = event.clientY - MENU_HEIGHT - treeTop + 'px';
+      } else {
+        menu.style.top = event.clientY - treeTop + 'px';
+      }
     },
-    foo() { // 取消鼠标监听事件 菜单栏
+    close() {
       this.menuVisible = false
-      document.removeEventListener('click', this.foo) // 要及时关掉监听，不关掉的是一个坑，不信你试试，虽然前台显示的时候没有啥毛病，加一个alert你就知道了
-    },
-    styleMenu(event, menu) {
-      if (event.clientX > 1800) {
-        menu.style.left = event.clientX - 100 + 'px';
-      } else {
-        menu.style.left = event.clientX + 1 + 'px';
-      }
-      document.addEventListener('click', this.foo); // 给整个document新增监听鼠标事件，点击任何位置执行foo方法
-      if (event.clientY > 700) {
-        menu.style.top = event.clientY - 30 + 'px';
-      } else {
-        menu.style.top = event.clientY - 10 + 'px';
-      }
     },
     allowDrop(draggingNode, dropNode) {
       return dropNode.data.allowDrop(draggingNode.data);
@@ -82,38 +74,18 @@ export default {
 
 <style scoped>
 .component-tree {
+  height: 100%;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 .component-tree > .el-tree {
   background-color: inherit;
 }
 
-.menu__item {
-  display: block;
-  line-height: 20px;
-  text-align: center;
-  margin: 10px;
-  cursor: default;
-}
-
-.menu__item:hover {
-  color: #FF0000;
-}
-
-.menu {
-  height: auto;
-  width: auto;
+.jmeter-menu {
+  height: 100px;
+  box-sizing: border-box;
   position: absolute;
-  font-size: 14px;
-  text-align: left;
-  border-radius: 10px;
-  border: 1px solid #c1c1c1;
-  background-color: #ffffff;
-}
-
-li:hover {
-  background-color: #E0E0E2;
-  color: white;
 }
 </style>

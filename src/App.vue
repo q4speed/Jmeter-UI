@@ -8,7 +8,7 @@
       保存JMX文件
     </el-button>
     默认显示的工程里demo.js文件（由demo.xml转换为json）
-    <jmx-view :jmx="jmx" v-if="jmx" style="height: 100%"/>
+    <jmx-view :jmx="jmx" v-if="jmx" style="height: calc(100% - 28px)"/>
   </div>
 </template>
 
