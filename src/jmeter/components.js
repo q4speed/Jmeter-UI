@@ -1,7 +1,16 @@
 import UnsupportedComponent from "@/jmeter/components/others/unspported-component";
 import JmeterTestPlan from "@/jmeter/jmx/jmeter-test-plan";
 
-const components = require.context('@/jmeter/components/', true, /index\.js$/)
+const components = require.context('@/jmeter/components/', true, /index\.js$/);
+const assertions = require.context('@/jmeter/components/assertions', true, /index\.js$/);
+
+// 菜单分类
+export const MENUS = {
+  "Assertion": [...assertions.keys().map(key => {
+    let component = assertions(key).default;
+    return {label: component.name, value: component.name};
+  })]
+}
 
 const map = function (component) {
   let components = {};
@@ -13,7 +22,7 @@ const reduce = function (c1, c2) {
   return {...c1, ...c2};
 }
 
-const COMPONENTS = {
+export const COMPONENTS = {
   ...components.keys().map(key => {
     return map(components(key).default)
   }).reduce(reduce),

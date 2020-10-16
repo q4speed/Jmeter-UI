@@ -17,6 +17,9 @@ export default class Element {
       if (options.attributes.testname) {
         this.label = options.attributes.testname;
       }
+      if (options.attributes.enabled) {
+        this.enabled = options.attributes.enabled === "true";
+      }
     }
   }
 
@@ -30,7 +33,12 @@ export default class Element {
     }
     if (this.attributes) {
       json.attributes = this.attributes;
-      json.attributes.testname = this.label;
+      if (this.label !== undefined) {
+        json.attributes.testname = this.label;
+      }
+      if (this.enabled !== undefined) {
+        json.attributes.enabled = this.enabled + "";
+      }
     }
     return json;
   }

@@ -1,11 +1,7 @@
 import HashTreeElement from "@/jmeter/hashtree";
-import Assertion from "@/jmeter/components/assertions/assertion";
-import Configuration from "@/jmeter/components/configurations/configuration";
-import Listener from "@/jmeter/components/listeners/listener";
-import Sampler from "@/jmeter/components/samplers/sampler";
-import PreProcessor from "@/jmeter/components/pre-pocessors/pre-processor";
-import PostProcessor from "@/jmeter/components/post-processors/post-processor";
-import Timer from "@/jmeter/components/timers/timer";
+
+const AllowChildren = ["Assertion", "Configuration", "Controller", "Sampler", "PreProcessor", "PostProcessor", "Timer", "Listener"];
+const AllowParent = ["Controller"];
 
 export default class Controller extends HashTreeElement {
   constructor(options = {}) {
@@ -13,10 +9,14 @@ export default class Controller extends HashTreeElement {
   }
 
   allowDrop(dragging) {
-    let types = [Assertion, Configuration, Controller, Sampler, PreProcessor, PostProcessor, Timer, Listener];
-    for (const type of types) {
+    for (const type of AllowChildren) {
       if (dragging instanceof type) return true;
     }
     return false;
   }
+
+  getAllowMenu() {
+    return {children: AllowChildren, parent: AllowParent};
+  }
+
 }
