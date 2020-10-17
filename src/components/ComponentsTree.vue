@@ -144,7 +144,8 @@ export default {
       document.removeEventListener('click', this.close);
     },
     exec(path) {
-      let command = path[path.length - 1];
+      let command = path[0];
+      let name = path[path.length - 1];
       let tree = this.$refs.tree;
       switch (command) {
         case "Cut":
@@ -154,11 +155,11 @@ export default {
         case "Paste":
           break;
         case "Duplicate":
-          let c = this.current.clone();
-          tree.insertAfter(c, this.current);
+          let clone = this.current.clone();
+          tree.insertAfter(clone, this.current.id);
           break;
         case "Remove":
-          tree.remove(this.current)
+          tree.remove(this.current.id);
           break;
         case "Enable":
           this.current.enabled = true;
@@ -166,10 +167,17 @@ export default {
         case "Disable":
           this.current.enabled = false;
           break;
-        default:
-          // command为控件类名
-          let component = createComponent(command);
-          tree.append(component, this.current);
+        case "Add":
+          let component = createComponent(name);
+          tree.append(component, this.current.id);
+          break;
+        case "Insert Parent":
+          let parent = createComponent(name);
+          tree.insertBefore(parent, this.current.id);
+          tree.remove(this.current.id);
+          tree.append(this.current, parent.id);
+          // TODO
+          break;
       }
       this.close();
     },

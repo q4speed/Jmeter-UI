@@ -10,11 +10,6 @@ export default class HashTreeElement extends Element {
 
     if (hashTree) {
       this.hashTree = loadHashTree(hashTree);
-      if (this.hashTree) {
-        this.hashTree.forEach(component => {
-          component.$parent = this;
-        })
-      }
     }
   }
 

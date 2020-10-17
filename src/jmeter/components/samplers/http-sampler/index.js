@@ -35,7 +35,7 @@ export default class HTTPSamplerProxy extends Sampler {
     this.arguments = [];
 
     let elementProp = this.initElementProp(this.props, 'HTTPsampler.Arguments', 'Arguments');
-    let collectionProp = this.initCollectionProp(elementProp, 'Arguments.arguments');
+    let collectionProp = this.initCollectionProp(elementProp.elements, 'Arguments.arguments');
 
     collectionProp.forEach(elementProp => {
       let name = elementProp.elements['Argument.name'].value;

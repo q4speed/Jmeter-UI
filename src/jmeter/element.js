@@ -6,12 +6,9 @@ import {uuid} from "@/commons/utils";
 export default class Element {
   constructor(options = {}) {
     this.id = uuid();
-    if (options.type) {
-      this.type = options.type || "element";
-    }
-    if (options.name) {
-      this.name = options.name;
-    }
+    this.type = options.type || "element";
+    this.name = options.name || this.constructor.name;
+
     if (options.attributes) {
       this.attributes = options.attributes;
       if (options.attributes.testname) {
