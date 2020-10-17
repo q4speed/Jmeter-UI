@@ -51,7 +51,7 @@
 <script>
 import ComponentContainer from "@/components/ComponentContainer";
 import ComponentFieldSet from "@/components/ComponentFieldSet";
-import ThreadGroup from "@/jmeter/components/others/thread-group";
+import ThreadGroup from "@/jmeter/components/others/thread-group/index";
 
 export default {
   name: "ThreadGroup",

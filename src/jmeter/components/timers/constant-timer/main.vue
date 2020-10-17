@@ -12,7 +12,7 @@
 <script>
 import ComponentContainer from "@/components/ComponentContainer";
 import ComponentFieldSet from "@/components/ComponentFieldSet";
-import ConstantTimer from "@/jmeter/components/timers/constant-timer";
+import ConstantTimer from "@/jmeter/components/timers/constant-timer/index";
 
 export default {
   name: "ConstantTimer",

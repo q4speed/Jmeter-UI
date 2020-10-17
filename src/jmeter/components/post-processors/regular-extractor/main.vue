@@ -8,7 +8,7 @@
 <script>
 
 import ComponentContainer from "@/components/ComponentContainer";
-import RegexExtractor from "@/jmeter/components/post-processors/regular-extractor";
+import RegexExtractor from "@/jmeter/components/post-processors/regular-extractor/index";
 
 export default {
   name: "RegexExtractor",

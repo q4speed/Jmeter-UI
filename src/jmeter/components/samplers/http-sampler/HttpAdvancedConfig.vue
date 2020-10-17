@@ -19,7 +19,7 @@
 
 <script>
 import ComponentFieldSet from "@/components/ComponentFieldSet";
-import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler";
+import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler/index";
 
 export default {
   name: "HttpAdvancedConfig",

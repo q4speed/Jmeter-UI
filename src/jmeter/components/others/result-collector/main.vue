@@ -8,7 +8,7 @@
 <script>
 
 import ComponentContainer from "@/components/ComponentContainer";
-import ResultCollector from "@/jmeter/components/others/result-collector";
+import ResultCollector from "@/jmeter/components/others/result-collector/index";
 
 export default {
   name: "ResultCollector",

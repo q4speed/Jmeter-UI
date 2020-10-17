@@ -73,8 +73,8 @@
 
 <script>
 import ComponentFieldSet from "@/components/ComponentFieldSet";
-import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler";
-import HttpVariables from "@/jmeter/components/samplers/http-sampler/src/HttpVariables";
+import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler/index";
+import HttpVariables from "@/jmeter/components/samplers/http-sampler/HttpVariables";
 
 export default {
   name: "HttpBasicConfig",

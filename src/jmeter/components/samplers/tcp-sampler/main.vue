@@ -8,13 +8,13 @@
 <script>
 
 import ComponentContainer from "@/components/ComponentContainer";
-import ResponseAssertion from "@/jmeter/components/assertions/response-assertion";
+import TCPSampler from "@/jmeter/components/samplers/tcp-sampler/index";
 
 export default {
-  name: "ResponseAssertion",
+  name: "TCPSampler",
   components: {ComponentContainer},
   props: {
-    object: ResponseAssertion
+    object: TCPSampler
   }
 }
 </script>

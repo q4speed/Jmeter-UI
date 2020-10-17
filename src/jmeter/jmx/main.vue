@@ -13,7 +13,7 @@
 
 <script>
 import ComponentsTree from "@/components/ComponentsTree";
-import JMX from "@/jmeter/jmx";
+import JMX from "@/jmeter/jmx/index";
 
 export default {
   name: "JmxView",

@@ -1,6 +1,9 @@
 <template>
   <component-container :object="object">
     <el-form ref="object" :model="object" size="mini">
+      <div class="un-support">
+        暂不支持，敬请期待
+      </div>
     </el-form>
   </component-container>
 </template>
@@ -8,17 +11,23 @@
 <script>
 
 import ComponentContainer from "@/components/ComponentContainer";
-import TCPSampler from "@/jmeter/components/samplers/tcp-sampler";
+import UnsupportedComponent from "@/jmeter/components/others/unspported-component/index";
 
 export default {
-  name: "TCPSampler",
+  name: "UnsupportedComponent",
   components: {ComponentContainer},
   props: {
-    object: TCPSampler
+    object: UnsupportedComponent
   }
 }
 </script>
 
 <style scoped>
-
+.un-support {
+  width: 100%;
+  height: 200px;
+  margin: 50px 0;
+  font-size: 20px;
+  text-align: center;
+}
 </style>

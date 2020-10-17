@@ -14,7 +14,7 @@
 
 <script>
 
-import JmxView from "@/jmeter/jmx/src/main";
+import JmxView from "@/jmeter/jmx/main";
 import {xml2json, json2xml} from "xml-js";
 import JMX from "@/jmeter/jmx";
 import {downloadFile} from "@/commons/utils";

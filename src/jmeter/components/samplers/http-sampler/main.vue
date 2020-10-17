@@ -15,10 +15,10 @@
 <script>
 
 import ComponentContainer from "@/components/ComponentContainer";
-import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler";
+import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler/index";
 import ComponentFieldSet from "@/components/ComponentFieldSet";
-import HttpBasicConfig from "@/jmeter/components/samplers/http-sampler/src/HttpBasicConfig";
-import HttpAdvancedConfig from "@/jmeter/components/samplers/http-sampler/src/HttpAdvancedConfig";
+import HttpBasicConfig from "@/jmeter/components/samplers/http-sampler/HttpBasicConfig";
+import HttpAdvancedConfig from "@/jmeter/components/samplers/http-sampler/HttpAdvancedConfig";
 
 export default {
   name: "HTTPSamplerProxy",

@@ -34,7 +34,7 @@
 <script>
 import ComponentContainer from "@/components/ComponentContainer";
 import ComponentFieldSet from "@/components/ComponentFieldSet";
-import IfController from "@/jmeter/components/controllers/if-controller";
+import IfController from "@/jmeter/components/controllers/if-controller/index";
 
 export default {
   name: "IfController",

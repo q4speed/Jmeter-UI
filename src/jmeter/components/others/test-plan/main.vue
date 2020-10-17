@@ -20,8 +20,8 @@
 
 <script>
 import ComponentContainer from "@/components/ComponentContainer";
-import TestPlan from "@/jmeter/components/others/test-plan";
-import TestPlanVariables from "@/jmeter/components/others/test-plan/src/TestPlanVariables";
+import TestPlan from "@/jmeter/components/others/test-plan/index";
+import TestPlanVariables from "@/jmeter/components/others/test-plan/TestPlanVariables";
 
 export default {
   name: "TestPlan",
