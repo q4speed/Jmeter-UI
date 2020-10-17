@@ -210,8 +210,8 @@ export class ElementProp extends Prop {
 }
 
 export const getProps = function (elements) {
+  let props = {};
   if (elements) {
-    let props = {};
     elements.forEach(e => {
       let type = e.name;
       let name;
@@ -243,8 +243,8 @@ export const getProps = function (elements) {
           break;
       }
     });
-    return props;
   }
+  return props;
 }
 
 export const basicProp = function (type, name, value) {

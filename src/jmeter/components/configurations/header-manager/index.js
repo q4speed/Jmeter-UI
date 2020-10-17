@@ -1,8 +1,18 @@
 import {elementProp, stringProp} from "@/jmeter/props";
 import Configuration from "@/jmeter/components/configurations/configuration";
 
+const DEFAULT_OPTIONS = {
+  options: {
+    attributes: {
+      guiclass: "HeaderPanel",
+      testclass: "HeaderManager",
+      testname: "HeaderManager",
+      enabled: "true"
+    },
+  }
+};
 export default class HeaderManager extends Configuration {
-  constructor(options = {}) {
+  constructor(options = DEFAULT_OPTIONS) {
     super(options);
 
     this.headers = [];

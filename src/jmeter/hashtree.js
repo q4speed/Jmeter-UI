@@ -1,14 +1,26 @@
 import Element from "@/jmeter/element";
 import {boolProp, getProps, intProp, longProp, stringProp} from "@/jmeter/props";
+import {loadHashTree, loadComponent} from "@/jmeter/components";
 
 export default class HashTreeElement extends Element {
-  constructor(options = {}) {
+  constructor({options: options, hashTree: hashTree}) {
     super(options);
-    if (options.elements) {
-      this.props = getProps(options.elements);
-    }
-
+    this.props = getProps(options.elements);
     this.comments = this.initStringProp(this.props, 'TestPlan.comments');
+
+    if (hashTree) {
+      this.hashTree = loadHashTree(hashTree);
+      if (this.hashTree) {
+        this.hashTree.forEach(component => {
+          component.$parent = this;
+        })
+      }
+    }
+  }
+
+  clone() {
+    let json = this.toJson();
+    return loadComponent(json.options, json.hashTree);
   }
 
   initIntProp(map, name, defaultValue) {
@@ -64,12 +76,11 @@ export default class HashTreeElement extends Element {
       let elements = [];
       this.hashTree.forEach(e => {
         let json = e.toJson();
-        json.forEach(o => {
-          elements.push(o);
-        })
+        elements.push(json.options);
+        elements.push(json.hashTree);
       })
       hashTree.elements = elements;
     }
-    return [self, hashTree];
+    return {options: self, hashTree: hashTree}
   }
 }

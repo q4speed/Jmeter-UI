@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.2.1">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Condition1" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Condition" enabled="true">
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
@@ -94,6 +94,20 @@
             <stringProp name="TestPlan.comments">Comments</stringProp>
           </RegexExtractor>
           <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">a</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">b</stringProp>
+                <stringProp name="Header.value">2</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments"></stringProp>
+          </HeaderManager>
+          <hashTree/>
         </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="${code} =~ 20" enabled="true">
           <stringProp name="IfController.comments"/>
@@ -134,22 +148,7 @@
             <stringProp name="TestPlan.comments">Comments</stringProp>
             <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
           </HTTPSamplerProxy>
-          <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">a1</stringProp>
-                  <stringProp name="Header.value">1</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">b2</stringProp>
-                  <stringProp name="Header.value">2</stringProp>
-                </elementProp>
-              </collectionProp>
-              <stringProp name="TestPlan.comments"></stringProp>
-            </HeaderManager>
-            <hashTree/>
-          </hashTree>
+          <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="wait 10000ms"
                           enabled="true">

@@ -1,8 +1,19 @@
 import {boolProp, elementProp, stringProp} from "@/jmeter/props";
 import Sampler from "@/jmeter/components/samplers/sampler";
 
+const DEFAULT_OPTIONS = {
+  options: {
+    attributes: {
+      guiclass: "HttpTestSampleGui",
+      testclass: "HTTPSamplerProxy",
+      testname: "HTTPSamplerProxy",
+      enabled: "true"
+    },
+  }
+};
+
 export default class HTTPSamplerProxy extends Sampler {
-  constructor(options = {}) {
+  constructor(options = DEFAULT_OPTIONS) {
     super(options);
     this.protocol = this.initStringProp(this.props, 'HTTPSampler.protocol', "https");
     this.domain = this.initStringProp(this.props, 'HTTPSampler.domain');

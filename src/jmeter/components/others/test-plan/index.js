@@ -1,8 +1,17 @@
 import HashTreeElement from "@/jmeter/hashtree";
 import {elementProp, stringProp} from "@/jmeter/props";
 
+
+const AllowChildren = ["Assertion", "Configuration", "Controller", "Sampler", "PreProcessor", "PostProcessor", "Timer", "Listener"];
+
+const DEFAULT_OPTIONS = {
+  options: {
+    attributes: {guiclass: "TestPlanGui", testclass: "TestPlan", testname: "TestPlan", enabled: "true"},
+  }
+};
+
 export default class TestPlan extends HashTreeElement {
-  constructor(options = {}) {
+  constructor(options = DEFAULT_OPTIONS) {
     super(options);
 
     this.functionalMode = this.initBoolProp(this.props, 'TestPlan.functional_mode');

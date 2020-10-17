@@ -5,9 +5,9 @@ import {uuid} from "@/commons/utils";
  */
 export default class Element {
   constructor(options = {}) {
-    this.id = options.id || uuid();
+    this.id = uuid();
     if (options.type) {
-      this.type = options.type;
+      this.type = options.type || "element";
     }
     if (options.name) {
       this.name = options.name;

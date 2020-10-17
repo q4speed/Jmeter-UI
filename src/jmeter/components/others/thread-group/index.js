@@ -1,7 +1,15 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
+const AllowChildren = ["Assertion", "Configuration", "Controller", "Sampler", "PreProcessor", "PostProcessor", "Timer", "Listener"];
+
+const DEFAULT_OPTIONS = {
+  options: {
+    attributes: {guiclass: "ThreadGroupGui", testclass: "ThreadGroup", testname: "ThreadGroup", enabled: "true"},
+  }
+};
+
 export default class ThreadGroup extends HashTreeElement {
-  constructor(options = {}) {
+  constructor(options = DEFAULT_OPTIONS) {
     super(options);
 
     this.onSampleError = this.initStringProp(this.props, 'ThreadGroup.on_sample_error');
@@ -17,5 +25,9 @@ export default class ThreadGroup extends HashTreeElement {
     this.scheduler = this.initBoolProp(this.props, 'ThreadGroup.scheduler');
     this.delay = this.initStringProp(this.props, 'ThreadGroup.delay');
     this.duration = this.initStringProp(this.props, 'ThreadGroup.duration');
+  }
+
+  getAllowMenu() {
+    return {children: AllowChildren};
   }
 }

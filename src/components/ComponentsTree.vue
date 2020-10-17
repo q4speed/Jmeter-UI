@@ -1,6 +1,7 @@
 <template>
   <div class="component-tree" id="jmeter-tree">
     <el-tree
+      ref="tree"
       node-key="id"
       default-expand-all
       draggable
@@ -18,31 +19,41 @@
         </span>
       </template>
     </el-tree>
-    <div v-show="menuVisible">
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-<!--      <el-cascader-panel :options="options" id="menu" class="jmeter-menu" @change="exec" ref="menu">-->
-<!--        <template v-slot:default="{ node, data }">-->
-<!--          <div class="divider" v-if="data.value === 'Divider'"></div>-->
-<!--          <span v-else>{{ data.label }}</span>-->
-<!--        </template>-->
-<!--      </el-cascader-panel>-->
+    <div id="menu" class="jmeter-menu" v-show="menuVisible">
+      <el-cascader-panel ref="menu" v-if="options.length > 0"
+                         :props="{expandTrigger:'hover'}"
+                         :options="options"
+                         :border="false"
+                         @change="exec">
+        <template v-slot:default="{ node, data }">
+          <div class="divider" v-if="data.value === 'Divider'"/>
+          <span v-else>{{ data.label }}</span>
+        </template>
+      </el-cascader-panel>
     </div>
   </div>
 </template>
 
 <script>
-import {MENUS} from "@/jmeter/components";
+import {MENUS, createComponent} from "@/jmeter/components";
+
+const BASIC_MENUS = [
+  // {value: 'Cut', label: 'Cut'},
+  // {value: 'Copy', label: 'Copy'},
+  // {value: 'Paste', label: 'Paste'},
+  {value: 'Duplicate', label: 'Duplicate'},
+  {value: 'Remove', label: 'Remove'},
+  {value: 'Divider', label: 'Divider', disabled: true},
+];
+const addMenus = (node, name) => {
+  if (MENUS[name]) {
+    let option = {label: name, value: name, children: []};
+    MENUS[name].forEach(o => {
+      option.children.push(o);
+    })
+    node.children.push(option);
+  }
+}
 
 export default {
   name: "ComponentsTree",
@@ -56,19 +67,17 @@ export default {
         label: "label",
         children: "hashTree"
       },
-      basic: [
-        {value: 'Cut', label: 'Cut'},
-        {value: 'Copy', label: 'Copy'},
-        {value: 'Paste', label: 'Paste'},
-        {value: 'Duplicate', label: 'Duplicate'},
-        {value: 'Remove', label: 'Remove'},
-      ],
       options: [],
+      current: null,
       menuVisible: false,
     }
   },
   methods: {
-    showMenu(event, data, node, element) {
+    showMenu(event, data) {
+      if (this.$refs.menu) {
+        this.$refs.menu.activePath = [];
+      }
+      this.current = data;
       this.getMenu(data);
       let tree = document.querySelector("#jmeter-tree");
       let treeLeft = tree.getBoundingClientRect().left;
@@ -84,43 +93,85 @@ export default {
       } else {
         menu.style.top = event.clientY - treeTop + 'px';
       }
+      document.addEventListener('click', this.close);
     },
     getMenu(data) {
-      let options = [];
-      this.basic.forEach(o => {
-        options.push(o);
+      this.options = [];
+      BASIC_MENUS.forEach(o => {
+        this.options.push(o);
       })
+
       if (data.enabled) {
-        options.push({value: 'Disable', label: 'Disable'});
+        this.options.push({value: 'Disable', label: 'Disable'});
       } else {
-        options.push({value: 'Enable', label: 'Enable'});
+        this.options.push({value: 'Enable', label: 'Enable'});
       }
+
       if (data.getAllowMenu) {
         let divider = {value: 'Divider', label: 'Divider', disabled: true}
-        options.unshift(divider);
+        this.options.unshift(divider);
 
         let allowMenu = data.getAllowMenu();
-        // TODO Insert Parent
-        let add = {
-          label: "Add", value: "Add", children: []
-        };
-        options.unshift(add);
-        allowMenu.children.forEach(c => {
-          let option = {label: c, value: c, children: []};
-          if (MENUS[c]) {
-            MENUS[c].forEach(o => {
-              option.children.push(o);
-            })
-          }
-          add.children.push(option);
-        })
+        // 允许的父节点
+        if (allowMenu.parent) {
+          let parent = {
+            label: "Insert Parent", value: "Insert Parent", children: []
+          };
+          allowMenu.parent.forEach(name => {
+            addMenus(parent, name);
+          })
+          this.options.unshift(parent);
+        }
+
+        // 允许的子节点
+        if (allowMenu.children) {
+          let add = {
+            label: "Add", value: "Add", children: []
+          };
+          allowMenu.children.forEach(name => {
+            addMenus(add, name);
+          })
+          this.options.unshift(add);
+        }
       }
-      this.options = options;
     },
-    exec(value) {
-      console.log(value)
+    close() {
+      this.options = [];
+      this.$refs.menu.activePath = [];
       this.$refs.menu.clearCheckedNodes();
+
       this.menuVisible = false
+      document.removeEventListener('click', this.close);
+    },
+    exec(path) {
+      let command = path[path.length - 1];
+      let tree = this.$refs.tree;
+      switch (command) {
+        case "Cut":
+          break;
+        case "Copy":
+          break;
+        case "Paste":
+          break;
+        case "Duplicate":
+          let c = this.current.clone();
+          tree.insertAfter(c, this.current);
+          break;
+        case "Remove":
+          tree.remove(this.current)
+          break;
+        case "Enable":
+          this.current.enabled = true;
+          break;
+        case "Disable":
+          this.current.enabled = false;
+          break;
+        default:
+          // command为控件类名
+          console.log(path)
+        // this.current.addComponent(createComponent(command));
+      }
+      this.close();
     },
     allowDrop(draggingNode, dropNode) {
       return dropNode.data.allowDrop(draggingNode.data);
@@ -157,6 +208,10 @@ export default {
   height: 1px;
   background-color: #dcdfe6;
   position: relative;
+}
+
+.jmeter-menu >>> .el-cascader-menu, .jmeter-menu >>> .el-cascader-menu__wrap {
+  height: 100%;
 }
 
 .jmeter-menu >>> .el-cascader-node {
