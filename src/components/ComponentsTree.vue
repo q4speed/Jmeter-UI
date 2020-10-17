@@ -168,8 +168,8 @@ export default {
           break;
         default:
           // command为控件类名
-          console.log(path)
-        // this.current.addComponent(createComponent(command));
+          let component = createComponent(command);
+          tree.append(component, this.current);
       }
       this.close();
     },

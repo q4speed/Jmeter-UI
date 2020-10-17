@@ -1,5 +1,5 @@
 import Element from "@/jmeter/element";
-import {boolProp, getProps, intProp, longProp, stringProp} from "@/jmeter/props";
+import {boolProp, intProp, longProp, stringProp, collectionProp, elementProp, getProps} from "@/jmeter/props";
 import {loadHashTree, loadComponent} from "@/jmeter/components";
 
 export default class HashTreeElement extends Element {
@@ -47,6 +47,20 @@ export default class HashTreeElement extends Element {
   initStringProp(map, name, defaultValue) {
     if (map[name] === undefined) {
       map[name] = stringProp(name, defaultValue);
+    }
+    return map[name];
+  }
+
+  initElementProp(map, name, elementType) {
+    if (map[name] === undefined) {
+      map[name] = elementProp(name, elementType);
+    }
+    return map[name];
+  }
+
+  initCollectionProp(map, name) {
+    if (map[name] === undefined) {
+      map[name] = collectionProp(name);
     }
     return map[name];
   }

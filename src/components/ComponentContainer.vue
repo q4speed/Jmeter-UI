@@ -2,7 +2,7 @@
   <div class="components-container">
     <slot name="title">
       <div class="title">
-        {{ object.name }} {{object.enabled}}
+        {{ object.name }}
         <el-link icon="el-icon-question" :underline="false" :href="helpUrl" v-if="helpUrl" target="_blank"/>
       </div>
       <el-form ref="object" :model="object" label-width="auto" size="mini">

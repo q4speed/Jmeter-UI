@@ -16,7 +16,7 @@ export default class HeaderManager extends Configuration {
     super(options);
 
     this.headers = [];
-    let collectionProp = this.props['HeaderManager.headers'];
+    let collectionProp = this.initCollectionProp(this.props, 'HeaderManager.headers');
     collectionProp.forEach(elementProp => {
       let name = elementProp.elements['Header.name'].value;
       let value = elementProp.elements['Header.value'].value;
