@@ -2,6 +2,8 @@ import Element from "@/jmeter/element";
 import {loadHashTree} from "@/jmeter/components";
 
 export default class JmeterTestPlan extends Element {
+  class = "jmeterTestPlan"
+
   constructor({options: options}) {
     super(options);
     this.hashTree = [];
@@ -30,3 +32,9 @@ export default class JmeterTestPlan extends Element {
     return json;
   }
 }
+
+export const schema = {
+  name: "jmeterTestPlan",
+  class: JmeterTestPlan
+}
+

@@ -17,3 +17,9 @@ export default class ConstantTimer extends HashTreeElement {
     this.delay = this.initStringProp(this.props, 'ConstantTimer.delay');
   }
 }
+
+export const schema = {
+  name: "ConstantTimer",
+  class: ConstantTimer
+}
+

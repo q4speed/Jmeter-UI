@@ -16,3 +16,9 @@ export default class RegexExtractor extends PostProcessor {
     super(options);
   }
 }
+
+export const schema = {
+  name: "RegexExtractor",
+  class: RegexExtractor
+}
+

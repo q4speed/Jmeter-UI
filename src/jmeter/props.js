@@ -40,6 +40,8 @@ export class BasicProp extends Prop {
  * value:数值
  */
 export class IntProp extends BasicProp {
+  name = "intProp";
+
   constructor(options = {}) {
     super(options);
     this.value = options.elements ? parseInt(options.elements[0].text) : undefined;
@@ -50,7 +52,9 @@ export class IntProp extends BasicProp {
  * value:数值
  */
 export class LongProp extends BasicProp {
-  constructor(options = {}) {
+    name = "longProp";
+
+    constructor(options = {}) {
     super(options);
     this.value = options.elements ? parseInt(options.elements[0].text) : undefined;
   }
@@ -60,7 +64,9 @@ export class LongProp extends BasicProp {
  * value:布尔
  */
 class BoolProp extends BasicProp {
-  constructor(options = {}) {
+    name = "boolProp";
+
+    constructor(options = {}) {
     super(options);
     this.value = options.elements ? options.elements[0].text === 'true' : undefined;
   }
@@ -70,7 +76,9 @@ class BoolProp extends BasicProp {
  * value:字符串
  */
 export class StringProp extends BasicProp {
-  constructor(options = {}) {
+    name = "stringProp";
+
+    constructor(options = {}) {
     super(options);
     this.value = options.elements ? options.elements[0].text : undefined;
   }
@@ -248,10 +256,8 @@ export const getProps = function (elements) {
 }
 
 export const basicProp = function (type, name, value) {
-  let tag = type.name.replace(type.name[0], type.name[0].toLowerCase());
   let options = {
     "type": "element",
-    "name": tag,
     "attributes": {
       "name": name
     },

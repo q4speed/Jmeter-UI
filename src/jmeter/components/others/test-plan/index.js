@@ -1,8 +1,9 @@
 import HashTreeElement from "@/jmeter/hashtree";
 import {elementProp, stringProp} from "@/jmeter/props";
+import ThreadGroup from "@/jmeter/components/others/thread-group";
 
-
-const AllowChildren = ["Assertion", "Configuration", "Controller", "Sampler", "PreProcessor", "PostProcessor", "Timer", "Listener"];
+const AllowDrop = [ThreadGroup]
+const AllowChildren = ["ThreadGroup"];
 
 const DEFAULT_OPTIONS = {
   options: {
@@ -53,7 +54,19 @@ export default class TestPlan extends HashTreeElement {
     return false;
   }
 
-  allowDrop(dragging) {
-    return dragging instanceof HashTreeElement;
+  allowDrop(dragging, drop, type) {
+    for (const type of AllowDrop) {
+      if (dragging instanceof type) return true;
+    }
+    return false;
   }
+
+  getAllowMenu() {
+    return {children: AllowChildren};
+  }
+}
+
+export const schema = {
+  name: "TestPlan",
+  class: TestPlan
 }

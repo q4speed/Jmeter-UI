@@ -64,7 +64,7 @@ export default class HashTreeElement extends Element {
     return true;
   }
 
-  allowDrop(dragging) {
+  allowDrop(dragging, drop, type) {
     return dragging instanceof HashTreeElement;
   }
 

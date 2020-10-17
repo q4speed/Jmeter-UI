@@ -6,6 +6,6 @@ export default class Configuration extends HashTreeElement {
   }
 
   allowDrop(dragging) {
-    return true;
+    return false;
   }
 }

@@ -14,6 +14,7 @@
 <script>
 import ComponentsTree from "@/components/ComponentsTree";
 import JMX from "@/jmeter/jmx/index";
+import {hasComponent} from "@/jmeter/components";
 
 export default {
   name: "JmxView",
@@ -37,7 +38,7 @@ export default {
       return this.jmx.elements[0].hashTree;
     },
     className() {
-      return this.selected.constructor.name
+      return hasComponent(this.selected.name);
     }
   }
 }

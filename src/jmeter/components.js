@@ -1,7 +1,9 @@
 import UnsupportedComponent from "@/jmeter/components/others/unspported-component";
 import JmeterTestPlan from "@/jmeter/jmx/jmeter-test-plan";
 
-const components = require.context('@/jmeter/components/', true, /index\.js$/);
+// JMX models
+const models = require.context('@/jmeter/components/', true, /index\.js$/);
+// 分类菜单
 const assertions = require.context('@/jmeter/components/assertions', true, /index\.js$/);
 const configurations = require.context('@/jmeter/components/configurations', true, /index\.js$/);
 const controllers = require.context('@/jmeter/components/controllers', true, /index\.js$/);
@@ -10,28 +12,13 @@ const postProcessors = require.context('@/jmeter/components/post-processors', tr
 const preProcessors = require.context('@/jmeter/components/pre-processors', true, /index\.js$/);
 const samplers = require.context('@/jmeter/components/samplers', true, /index\.js$/);
 const timers = require.context('@/jmeter/components/timers', true, /index\.js$/);
+const others = require.context('@/jmeter/components/others', true, /index\.js$/);
+// Vue控件
+const components = require.context('@/jmeter/components/', true, /main\.vue$/);
 
-const getMenus = list => {
-  return [...list.keys().map(key => {
-    let component = list(key).default;
-    return {label: component.name, value: component.name};
-  })]
-}
-// 菜单分类
-export const MENUS = {
-  "Assertion": getMenus(assertions),
-  "Configuration": getMenus(configurations),
-  "Controller": getMenus(controllers),
-  "Listener": getMenus(listeners),
-  "PostProcessor": getMenus(postProcessors),
-  "PreProcessor": getMenus(preProcessors),
-  "Sampler": getMenus(samplers),
-  "Timer": getMenus(timers),
-}
-
-const map = function (component) {
+const map = function (schema) {
   let components = {};
-  components[component.name] = component;
+  components[schema.name] = schema.class;
   return components;
 }
 
@@ -39,15 +26,15 @@ const reduce = function (c1, c2) {
   return {...c1, ...c2};
 }
 
-export const COMPONENTS = {
-  ...components.keys().map(key => {
-    return map(components(key).default)
+export const MODELS = {
+  ...models.keys().map(key => {
+    return map(models(key).schema)
   }).reduce(reduce),
   jmeterTestPlan: JmeterTestPlan,
 };
 
 export const createComponent = function (name) {
-  let component = COMPONENTS[name];
+  let component = MODELS[name];
   if (component) {
     return new component();
   } else {
@@ -57,7 +44,7 @@ export const createComponent = function (name) {
 
 export const loadComponent = function (element, hashTree) {
   if (element.name) {
-    let component = COMPONENTS[element.name];
+    let component = MODELS[element.name];
     if (component) {
       return new component({options: element, hashTree: hashTree});
     } else {
@@ -75,4 +62,33 @@ export const loadHashTree = function (options) {
     }
     return list;
   }
+}
+
+const getMenus = list => {
+  return [...list.keys().map(key => {
+    let name = list(key).schema.name;
+    return {label: name, value: name};
+  })]
+}
+
+// 菜单分类
+export const MENUS = {
+  "Assertion": getMenus(assertions),
+  "Configuration": getMenus(configurations),
+  "Controller": getMenus(controllers),
+  "Listener": getMenus(listeners),
+  "PostProcessor": getMenus(postProcessors),
+  "PreProcessor": getMenus(preProcessors),
+  "Sampler": getMenus(samplers),
+  "Timer": getMenus(timers),
+}
+
+export const COMPONENTS = [
+  ...components.keys().map(key => {
+    return components(key).default.name;
+  })
+]
+
+export const hasComponent = name => {
+  return COMPONENTS.includes(name) ? name : "UnsupportedComponent";
 }

@@ -20,3 +20,8 @@ export default class IfController extends Controller {
     this.useExpression = this.initBoolProp(this.props, 'IfController.useExpression', true);
   }
 }
+
+export const schema = {
+  name: "IfController",
+  class: IfController
+}

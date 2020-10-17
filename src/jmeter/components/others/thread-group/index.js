@@ -31,3 +31,8 @@ export default class ThreadGroup extends HashTreeElement {
     return {children: AllowChildren};
   }
 }
+
+export const schema = {
+  name: "ThreadGroup",
+  class: ThreadGroup
+}

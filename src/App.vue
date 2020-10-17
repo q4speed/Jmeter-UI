@@ -4,6 +4,9 @@
     <el-button @click="open" size="mini">
       打开JMX文件
     </el-button>
+    <el-button @click="log" size="mini">
+      控制台查看JMX
+    </el-button>
     <el-button @click="download" size="mini">
       保存JMX文件
     </el-button>
@@ -41,6 +44,11 @@ export default {
         this.jmx = new JMX(json);
       };
       reader.readAsText(file);
+    },
+    log(){
+      let json = this.jmx.toJson();
+      let xml = json2xml(json);
+      console.log(xml)
     },
     download() {
       if (this.jmx) {

@@ -181,8 +181,8 @@ export default {
       }
       this.close();
     },
-    allowDrop(draggingNode, dropNode) {
-      return dropNode.data.allowDrop(draggingNode.data);
+    allowDrop(draggingNode, dropNode, type) {
+      return dropNode.data.allowDrop(draggingNode.data, dropNode.data, type);
     },
     allowDrag(draggingNode) {
       return draggingNode.data.allowDrag();

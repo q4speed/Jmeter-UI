@@ -10,8 +10,14 @@ const DEFAULT_OPTIONS = {
     },
   }
 };
+
 export default class BackendListener extends Listener {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
   }
+}
+
+export const schema = {
+  name: "BackendListener",
+  class: BackendListener
 }

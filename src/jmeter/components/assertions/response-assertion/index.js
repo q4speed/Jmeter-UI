@@ -10,8 +10,14 @@ const DEFAULT_OPTIONS = {
     },
   }
 };
+
 export default class ResponseAssertion extends Assertion {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
   }
+}
+
+export const schema = {
+  name: "ResponseAssertion",
+  class: ResponseAssertion
 }

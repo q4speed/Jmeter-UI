@@ -83,3 +83,9 @@ export default class HTTPSamplerProxy extends Sampler {
     return super.toJson();
   }
 }
+
+export const schema = {
+  name: "HTTPSamplerProxy",
+  class: HTTPSamplerProxy
+}
+

@@ -11,6 +11,7 @@ const DEFAULT_OPTIONS = {
     },
   }
 };
+
 export default class HeaderManager extends Configuration {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
@@ -43,4 +44,9 @@ export default class HeaderManager extends Configuration {
     this.updateProps();
     return super.toJson();
   }
+}
+
+export const schema = {
+  name: "HeaderManager",
+  class: HeaderManager
 }

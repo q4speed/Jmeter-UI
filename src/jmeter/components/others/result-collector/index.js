@@ -2,7 +2,12 @@ import HashTreeElement from "@/jmeter/hashtree";
 
 const DEFAULT_OPTIONS = {
   options: {
-    attributes: {guiclass: "ViewResultsFullVisualizer", testclass: "ResultCollector", testname: "View Results Tree", enabled: "true"},
+    attributes: {
+      guiclass: "ViewResultsFullVisualizer",
+      testclass: "ResultCollector",
+      testname: "View Results Tree",
+      enabled: "true"
+    },
   }
 };
 
@@ -18,4 +23,9 @@ export default class ResultCollector extends HashTreeElement {
   allowDrop(dragging) {
     return false;
   }
+}
+
+export const schema = {
+  name: "ResultCollector",
+  class: ResultCollector
 }

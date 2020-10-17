@@ -7,12 +7,15 @@ export default class Element {
   constructor(options = {}) {
     this.id = uuid();
     this.type = options.type || "element";
-    this.name = options.name || this.constructor.name;
+    this.name = options.name
 
     if (options.attributes) {
       this.attributes = options.attributes;
       if (options.attributes.testname) {
         this.label = options.attributes.testname;
+      }
+      if (options.attributes.testclass && this.name === undefined) {
+        this.name = options.attributes.testclass;
       }
       if (options.attributes.enabled) {
         this.enabled = options.attributes.enabled === "true";
