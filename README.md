@@ -4,17 +4,14 @@
 ## Demo
 - https://q4speed.github.io/Jmeter-UI/
 
- ##  JmeterUI对比MeterSphere接口测试的几个优点
-1. JmeterUI的输入输出均为jmx，从而避免因为版本升级导致中间数据不兼容，MeterSphere每次升级必须仔细考虑是否兼容以前的数据，JmeterUI没有版本兼容问题。
-2. 数据结构清晰，开发简便(只需要按照Jmeter做就行了)，不需要用异构数据(MS存储的接口测试数据)转换为jmx
-3. 方便jmx导入(MeterSphere不能jmx导入到接口测试), 不用随着开发更新导入功能，即使jmx中存在未实现的控件或者用户自定义的控件，也不会影响使用。
+##  JmeterUI的几个优点
+1. 没有版本升级导致的兼容问题，JmeterUI的输入输出均为jmx，中间过程数据不存储(jmx -> model -> jmx)。
+2. 开发简单，数据结构清晰，按照Jmeter的控件做即可。
+3. 可以实现与Jmeter一致的复杂测试脚本。
+4. 比Jmeter更方便，Jmeter中很多需要写脚本的地方只能查文档，JmeterUI可以直接给出常用的脚本，不用再去查文档，例如IfController
+5. 反正都是自己做的，想要啥就有啥。
 
- ##  JmeterUI对比Jmeter界面的几个优点
-1. 操作更方便，例如Jmeter中很多需要写脚本的地方只能查文档，JmeterUI可以直接给出常用的脚本，不用再去查文档，例如IfController
-2. JmeterUI可以与MeterSphere集成，管理测试脚本非常方便。
-
- ##  v1.0
- 
+##  v1.0
 - [x] 主界面: 左右分栏可拖拽
 - [x] 提供基础接口: 导入jmx，输出JMX对象，生成jmx文件，导出jmx文件，json与xml互转
 - [x] 完成基本控件: TestPlan, ThreadGroup, HttpSampler, IfController, HeaderManager
