@@ -13,8 +13,9 @@
       @node-contextmenu="showMenu"
       :allow-drop="allowDrop"
       :allow-drag="allowDrag">
-      <template v-slot:default="{ node }">
+      <template v-slot:default="{ node, data }">
         <span class="el-tree-node__label">
+          <i :class="data.icon"></i>
           <span>{{ node.label }}</span>
         </span>
       </template>
@@ -200,6 +201,10 @@ export default {
 
 .component-tree > .el-tree {
   background-color: inherit;
+}
+
+.component-tree >>> .el-tree-node__label i {
+  margin-right: 5px;
 }
 
 .jmeter-menu {

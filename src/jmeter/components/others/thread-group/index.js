@@ -9,6 +9,8 @@ const DEFAULT_OPTIONS = {
 };
 
 export default class ThreadGroup extends HashTreeElement {
+  icon = "el-icon-s-unfold"
+
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
 

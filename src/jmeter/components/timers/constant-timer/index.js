@@ -1,4 +1,4 @@
-import HashTreeElement from "@/jmeter/hashtree";
+import Timer from "@/jmeter/components/timers/timer";
 
 const DEFAULT_OPTIONS = {
   options: {
@@ -11,7 +11,7 @@ const DEFAULT_OPTIONS = {
   }
 };
 
-export default class ConstantTimer extends HashTreeElement {
+export default class ConstantTimer extends Timer {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
     this.delay = this.initStringProp(this.props, 'ConstantTimer.delay');

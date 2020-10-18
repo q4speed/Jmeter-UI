@@ -13,6 +13,8 @@ const AllowChildren = ["Assertion", "Configuration", "Controller", "Sampler", "P
 const AllowParent = ["Controller"];
 
 export default class Controller extends HashTreeElement {
+  icon = "el-icon-guide"
+
   constructor(options = {}) {
     super(options);
   }

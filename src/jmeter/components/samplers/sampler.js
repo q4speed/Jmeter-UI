@@ -12,6 +12,8 @@ const AllowChildren = ["Assertion", "Configuration", "PreProcessor", "PostProces
 const AllowParent = ["Controller"];
 
 export default class Sampler extends HashTreeElement {
+  icon = "el-icon-link"
+
   constructor(options = {}) {
     super(options);
   }

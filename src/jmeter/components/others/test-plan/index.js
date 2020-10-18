@@ -12,6 +12,8 @@ const DEFAULT_OPTIONS = {
 };
 
 export default class TestPlan extends HashTreeElement {
+  icon = "el-icon-tickets"
+
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
 
