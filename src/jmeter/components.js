@@ -66,8 +66,7 @@ export const loadHashTree = function (options) {
 
 const getMenus = list => {
   return [...list.keys().map(key => {
-    let name = list(key).schema.name;
-    return {label: name, value: name};
+    return list(key).schema.name;
   })]
 }
 

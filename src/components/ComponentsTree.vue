@@ -28,7 +28,7 @@
                          @change="exec">
         <template v-slot:default="{ node, data }">
           <div class="divider" v-if="data.value === 'Divider'"/>
-          <span v-else>{{ data.label }}</span>
+          <span v-else>{{ t(data.label) }}</span>
         </template>
       </el-cascader-panel>
     </div>
@@ -37,20 +37,23 @@
 
 <script>
 import {MENUS, createComponent} from "@/jmeter/components";
+import Locale from "@/mixins/locale";
 
 const BASIC_MENUS = [
-  // {value: 'Cut', label: 'Cut'},
-  // {value: 'Copy', label: 'Copy'},
-  // {value: 'Paste', label: 'Paste'},
-  {value: 'Duplicate', label: 'Duplicate'},
-  {value: 'Remove', label: 'Remove'},
+  // {value: 'Cut', label: 'wm.commons.cut'},
+  // {value: 'Copy', label: 'wm.commons.copy'},
+  // {value: 'Paste', label: 'wm.commons.paste'},
+  {value: 'Duplicate', label: 'wm.commons.duplicate'},
+  {value: 'Remove', label: 'wm.commons.remove'},
   {value: 'Divider', label: 'Divider', disabled: true},
 ];
 const addMenus = (node, name) => {
   if (MENUS[name]) {
-    let option = {label: name, value: name, children: []};
-    MENUS[name].forEach(o => {
-      option.children.push(o);
+    let label = "wm." + name + ".label"
+    let option = {label: label, value: name, children: []};
+    MENUS[name].forEach(n => {
+      let l = "wm." + name + "." + n + ".label";
+      option.children.push({label: l, value: n});
     })
     node.children.push(option);
   }
@@ -58,6 +61,7 @@ const addMenus = (node, name) => {
 
 export default {
   name: "ComponentsTree",
+  mixins: [Locale],
   props: {
     data: Array,
     select: Function
@@ -103,9 +107,9 @@ export default {
       })
 
       if (data.enabled) {
-        this.options.push({value: 'Disable', label: 'Disable'});
+        this.options.push({value: 'Disable', label: 'wm.commons.disable'});
       } else {
-        this.options.push({value: 'Enable', label: 'Enable'});
+        this.options.push({value: 'Enable', label: 'wm.commons.enable'});
       }
 
       if (data.getAllowMenu) {
@@ -116,7 +120,7 @@ export default {
         // 允许的父节点
         if (allowMenu.parent) {
           let parent = {
-            label: "Insert Parent", value: "Insert Parent", children: []
+            label: "wm.commons.insert", value: "Insert Parent", children: []
           };
           allowMenu.parent.forEach(name => {
             addMenus(parent, name);
@@ -127,7 +131,7 @@ export default {
         // 允许的子节点
         if (allowMenu.children) {
           let add = {
-            label: "Add", value: "Add", children: []
+            label: "wm.commons.add", value: "Add", children: []
           };
           allowMenu.children.forEach(name => {
             addMenus(add, name);
@@ -177,7 +181,6 @@ export default {
           tree.insertBefore(parent, this.current.id);
           tree.remove(this.current.id);
           tree.append(this.current, parent.id);
-          // TODO
           break;
       }
       this.close();
