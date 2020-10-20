@@ -6,10 +6,10 @@
         <el-link icon="el-icon-question" :underline="false" :href="helpUrl" v-if="helpUrl" target="_blank"/>
       </div>
       <el-form ref="object" :model="object" label-width="auto" size="mini">
-        <el-form-item label="名称" prop="label">
+        <el-form-item :label="t('jmeter.commons.name')" prop="label">
           <el-input v-model="object.label"></el-input>
         </el-form-item>
-        <el-form-item label="注释" prop="comments">
+        <el-form-item :label="t('jmeter.commons.comments')" prop="comments">
           <el-input v-model="object.comments.value"></el-input>
         </el-form-item>
       </el-form>
@@ -19,9 +19,12 @@
 </template>
 
 <script>
+import Locale from "@/mixins/locale"
+
 export default {
   name: "ComponentContainer",
-  props: ["helpUrl", "object"]
+  props: ["helpUrl", "object"],
+  mixins: [Locale]
 }
 </script>
 

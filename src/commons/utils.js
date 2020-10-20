@@ -29,3 +29,7 @@ export function downloadFile(name, content) {
     navigator.msSaveBlob(blob, name)
   }
 }
+
+export function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
