@@ -2,45 +2,53 @@
   <component-container :object="object"
                        help-url="https://jmeter.apache.org/usermanual/component_reference.html#Thread_Group">
     <el-form ref="object" :model="object" label-width="140px" label-position="left" size="mini">
-      <component-field-set title="在取样器错误后要执行的动作">
+      <component-field-set :title="t('wm.others.thread_group.on_sample_error')">
         <el-radio-group v-model="object.onSampleError.value">
-          <el-radio label="continue">继续</el-radio>
-          <el-radio label="startnextloop">启动下一线程循环</el-radio>
-          <el-radio label="stopthread">停止线程</el-radio>
-          <el-radio label="stoptest">停止测试</el-radio>
-          <el-radio label="stoptestnow">立即停止测试</el-radio>
+          <el-radio label="continue">{{ t('wm.others.thread_group.continue') }}</el-radio>
+          <el-radio label="startnextloop">{{ t('wm.others.thread_group.next_loop') }}</el-radio>
+          <el-radio label="stopthread">{{ t('wm.others.thread_group.stop_thread') }}</el-radio>
+          <el-radio label="stoptest">{{ t('wm.others.thread_group.stop_test') }}</el-radio>
+          <el-radio label="stoptestnow">{{ t('wm.others.thread_group.stop_test_now') }}</el-radio>
         </el-radio-group>
       </component-field-set>
 
-      <component-field-set title="线程属性">
-        <el-form-item label="线程数" prop="numThreads">
+      <component-field-set :title="t('wm.others.thread_group.thread')">
+        <el-form-item :label="t('wm.others.thread_group.num_threads')" prop="numThreads">
           <el-input type="number" v-model="object.numThreads.value"></el-input>
         </el-form-item>
-        <el-form-item label="Ramp-Up时间(秒)" prop="rampTime">
+        <el-form-item :label="t('wm.others.thread_group.ramp_time')" prop="rampTime">
           <el-input type="number" v-model="object.rampTime.value"></el-input>
         </el-form-item>
 
-        <el-form-item label="循环数" prop="loops">
+        <el-form-item :label="t('wm.others.thread_group.loops')" prop="loops">
           <el-input type="number" v-model="object.loops.value" :disabled="object.continueForever.value">
             <template slot="prepend">
-              <el-checkbox v-model="object.continueForever.value" @change="changeContinueForever">无限循环</el-checkbox>
+              <el-checkbox v-model="object.continueForever.value" @change="changeContinueForever">
+                {{ t('wm.others.thread_group.forever') }}
+              </el-checkbox>
             </template>
           </el-input>
         </el-form-item>
 
         <el-form-item label-width="0" prop="sameUserOnNextIteration">
-          <el-checkbox v-model="object.sameUserOnNextIteration.value">每次迭代使用同一用户</el-checkbox>
+          <el-checkbox v-model="object.sameUserOnNextIteration.value">
+            {{ t('wm.others.thread_group.iteration') }}
+          </el-checkbox>
         </el-form-item>
         <el-form-item label-width="0" prop="delayedStart">
-          <el-checkbox v-model="object.delayedStart.value">将线程创建延迟到需要时</el-checkbox>
+          <el-checkbox v-model="object.delayedStart.value">
+            {{ t('wm.others.thread_group.delayed_start') }}
+          </el-checkbox>
         </el-form-item>
         <el-form-item label-width="0" prop="scheduler">
-          <el-checkbox v-model="object.scheduler.value" @change="changeScheduler">调度器</el-checkbox>
+          <el-checkbox v-model="object.scheduler.value" @change="changeScheduler">
+            {{ t('wm.others.thread_group.scheduler') }}
+          </el-checkbox>
         </el-form-item>
-        <el-form-item label="持续时间(秒)" prop="duration">
+        <el-form-item :label="t('wm.others.thread_group.duration')" prop="duration">
           <el-input type="number" v-model="object.duration.value" :disabled="!object.scheduler.value"></el-input>
         </el-form-item>
-        <el-form-item label="启动延迟(秒)" prop="delay">
+        <el-form-item :label="t('wm.others.thread_group.delay')" prop="delay">
           <el-input type="number" v-model="object.delay.value" :disabled="!object.scheduler.value"></el-input>
         </el-form-item>
       </component-field-set>
@@ -52,10 +60,12 @@
 import ComponentContainer from "@/components/ComponentContainer";
 import ComponentFieldSet from "@/components/ComponentFieldSet";
 import ThreadGroup from "@/jmeter/components/others/thread-group/index";
+import Locale from "@/mixins/locale";
 
 export default {
   name: "ThreadGroup",
   components: {ComponentFieldSet, ComponentContainer},
+  mixins: [Locale],
   props: {
     object: ThreadGroup
   },

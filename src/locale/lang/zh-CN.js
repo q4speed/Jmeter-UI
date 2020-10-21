@@ -112,6 +112,23 @@ export default {
     others: {
       thread_group: {
         label: "线程组",
+        on_sample_error: "在取样器错误后要执行的动作",
+        continue: "继续",
+        next_loop: "启动下一线程循环",
+        stop_thread: "停止线程",
+        stop_test: "停止测试",
+        stop_test_now: "立即停止测试",
+        thread: "线程属性",
+        num_threads: "线程数",
+        ramp_time: "Ramp-Up时间(秒)",
+        loops: "循环数",
+        forever: "无限循环",
+        iteration: "每次迭代使用同一用户",
+        delayed_start: "将线程创建延迟到需要时",
+        scheduler: "调度器",
+        duration: "持续时间(秒)",
+        delay: "启动延迟(秒)",
+
       }
     },
   }
