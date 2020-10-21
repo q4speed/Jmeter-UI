@@ -3,16 +3,6 @@ import JmeterTestPlan from "@/jmeter/jmx/jmeter-test-plan";
 
 // JMX models
 const models = require.context('@/jmeter/components/', true, /index\.js$/);
-// 分类菜单
-const assertions = require.context('@/jmeter/components/assertions', true, /index\.js$/);
-const configurations = require.context('@/jmeter/components/configurations', true, /index\.js$/);
-const controllers = require.context('@/jmeter/components/controllers', true, /index\.js$/);
-const listeners = require.context('@/jmeter/components/listeners', true, /index\.js$/);
-const postProcessors = require.context('@/jmeter/components/post-processors', true, /index\.js$/);
-const preProcessors = require.context('@/jmeter/components/pre-processors', true, /index\.js$/);
-const samplers = require.context('@/jmeter/components/samplers', true, /index\.js$/);
-const timers = require.context('@/jmeter/components/timers', true, /index\.js$/);
-const others = require.context('@/jmeter/components/others', true, /index\.js$/);
 // Vue控件
 const components = require.context('@/jmeter/components/', true, /main\.vue$/);
 
@@ -62,24 +52,6 @@ export const loadHashTree = function (options) {
     }
     return list;
   }
-}
-
-const getMenus = list => {
-  return [...list.keys().map(key => {
-    return list(key).schema.name;
-  })]
-}
-
-// 菜单分类
-export const MENUS = {
-  "Assertion": getMenus(assertions),
-  "Configuration": getMenus(configurations),
-  "Controller": getMenus(controllers),
-  "Listener": getMenus(listeners),
-  "PostProcessor": getMenus(postProcessors),
-  "PreProcessor": getMenus(preProcessors),
-  "Sampler": getMenus(samplers),
-  "Timer": getMenus(timers),
 }
 
 export const COMPONENTS = [

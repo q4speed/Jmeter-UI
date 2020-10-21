@@ -1,13 +1,10 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
-export default class Timer extends HashTreeElement {
-  icon = "el-icon-date"
+export const TYPE = "Timer";
 
+export default class Timer extends HashTreeElement {
   constructor(options = {}) {
     super(options);
-  }
-
-  allowDrop(dragging) {
-    return false;
+    this.$type = TYPE;
   }
 }

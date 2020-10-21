@@ -1,18 +1,11 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
-export default class UnsupportedComponent extends HashTreeElement {
-  icon = "el-icon-warning"
+export const TYPE = "UnsupportedComponent";
 
+export default class UnsupportedComponent extends HashTreeElement {
   constructor(options = {}) {
     super(options)
-  }
-
-  allowDrag() {
-    return false;
-  }
-
-  allowDrop(dragging) {
-    return false;
+    this.$type = TYPE;
   }
 }
 

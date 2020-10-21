@@ -1,13 +1,10 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
-export default class PostProcessor extends HashTreeElement {
-  icon = "el-icon-attract"
+export const TYPE = "PostProcessor";
 
+export default class PostProcessor extends HashTreeElement {
   constructor(options = {}) {
     super(options);
-  }
-
-  allowDrop(dragging) {
-    return false;
+    this.$type = TYPE;
   }
 }

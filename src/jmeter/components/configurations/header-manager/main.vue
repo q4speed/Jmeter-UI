@@ -1,14 +1,14 @@
 <template>
   <component-container :object="object"
                        help-url="https://jmeter.apache.org/usermanual/component_reference.html#HTTP_Header_Manager">
-    <variable-field-set :title="t('wm.Configuration.HeaderManager.title')" height="300" :items="object.headers">
-      <el-table-column :label="t('wm.Configuration.HeaderManager.name')">
+    <variable-field-set :title="t('wm.configurations.header_manager.title')" height="300" :items="object.headers">
+      <el-table-column :label="t('wm.configurations.header_manager.name')">
         <template v-slot:default="{row}">
           <el-input v-model="row.name" size="mini"/>
         </template>
       </el-table-column>
 
-      <el-table-column :label="t('wm.Configuration.HeaderManager.value')">
+      <el-table-column :label="t('wm.configurations.header_manager.value')">
         <template v-slot:default="{row}">
           <el-input v-model="row.value" size="mini"/>
         </template>

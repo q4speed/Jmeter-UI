@@ -36,28 +36,18 @@
 </template>
 
 <script>
-import {MENUS, createComponent} from "@/jmeter/components";
+import {createComponent} from "@/jmeter/components";
+import {allowDrag, allowDrop, getComponentMenus, getIcon} from "./menus";
 import Locale from "@/mixins/locale";
 
 const BASIC_MENUS = [
-  // {value: 'Cut', label: 'wm.commons.cut'},
-  // {value: 'Copy', label: 'wm.commons.copy'},
-  // {value: 'Paste', label: 'wm.commons.paste'},
+  {value: 'Cut', label: 'wm.commons.cut', disabled: true},
+  {value: 'Copy', label: 'wm.commons.copy', disabled: true},
+  {value: 'Paste', label: 'wm.commons.paste', disabled: true},
   {value: 'Duplicate', label: 'wm.commons.duplicate'},
   {value: 'Remove', label: 'wm.commons.remove'},
   {value: 'Divider', label: 'Divider', disabled: true},
 ];
-const addMenus = (node, name) => {
-  if (MENUS[name]) {
-    let label = "wm." + name + ".label"
-    let option = {label: label, value: name, children: []};
-    MENUS[name].forEach(n => {
-      let l = "wm." + name + "." + n + ".label";
-      option.children.push({label: l, value: n});
-    })
-    node.children.push(option);
-  }
-}
 
 export default {
   name: "ComponentsTree",
@@ -112,31 +102,21 @@ export default {
         this.options.push({value: 'Enable', label: 'wm.commons.enable'});
       }
 
-      if (data.getAllowMenu) {
+      let allowMenu = getComponentMenus(data);
+      if (allowMenu.children.length > 0 || allowMenu.parent.length > 0) {
         let divider = {value: 'Divider', label: 'Divider', disabled: true}
         this.options.unshift(divider);
 
-        let allowMenu = data.getAllowMenu();
-        // 允许的父节点
-        if (allowMenu.parent) {
-          let parent = {
-            label: "wm.commons.insert", value: "Insert Parent", children: []
-          };
-          allowMenu.parent.forEach(name => {
-            addMenus(parent, name);
-          })
-          this.options.unshift(parent);
+        if (allowMenu.parent.length > 0) {
+          this.options.unshift({
+            label: "wm.commons.insert", value: "Insert Parent", children: allowMenu.parent
+          });
         }
 
-        // 允许的子节点
-        if (allowMenu.children) {
-          let add = {
-            label: "wm.commons.add", value: "Add", children: []
-          };
-          allowMenu.children.forEach(name => {
-            addMenus(add, name);
-          })
-          this.options.unshift(add);
+        if (allowMenu.children.length > 0) {
+          this.options.unshift({
+            label: "wm.commons.add", value: "Add", children: allowMenu.children
+          });
         }
       }
     },
@@ -186,10 +166,13 @@ export default {
       this.close();
     },
     allowDrop(draggingNode, dropNode, type) {
-      return dropNode.data.allowDrop(draggingNode.data, dropNode.data, type);
+      return allowDrop(draggingNode.data, dropNode.data, type);
     },
     allowDrag(draggingNode) {
-      return draggingNode.data.allowDrag();
+      return allowDrag(draggingNode.data);
+    },
+    getIcon(data) {
+      return getIcon(data);
     }
   }
 }
@@ -230,7 +213,7 @@ export default {
   height: 100%;
 }
 
-.jmeter-menu >>> .el-cascader-node {
+.jmeter-menu >>> .el-cascader-node, .jmeter-menu >>> .el-cascader-menu__list.is-empty {
   height: 24px;
   line-height: 24px;
 }

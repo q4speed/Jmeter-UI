@@ -1,13 +1,10 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
-export default class Assertion extends HashTreeElement {
-  icon = "el-icon-finished"
+export const TYPE = "Assertion";
 
+export default class Assertion extends HashTreeElement {
   constructor(options = {}) {
     super(options);
-  }
-
-  allowDrop(dragging) {
-    return false;
+    this.$type = TYPE;
   }
 }

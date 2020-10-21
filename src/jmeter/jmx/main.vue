@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ComponentsTree from "@/components/ComponentsTree";
+import ComponentsTree from "@/components/tree/ComponentsTree";
 import JMX from "@/jmeter/jmx/index";
 import {hasComponent} from "@/jmeter/components";
 

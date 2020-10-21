@@ -60,14 +60,6 @@ export default class HashTreeElement extends Element {
     return map[name];
   }
 
-  allowDrag() {
-    return true;
-  }
-
-  allowDrop(dragging, drop, type) {
-    return dragging instanceof HashTreeElement;
-  }
-
   toJson() {
     let self = super.toJson();
     if (this.props !== undefined) {

@@ -1,13 +1,10 @@
 import HashTreeElement from "@/jmeter/hashtree";
 
-export default class Configuration extends HashTreeElement {
-  icon = "el-icon-setting"
+export const TYPE = "Configuration";
 
+export default class Configuration extends HashTreeElement {
   constructor(options = {}) {
     super(options);
-  }
-
-  allowDrop(dragging) {
-    return false;
+    this.$type = TYPE;
   }
 }

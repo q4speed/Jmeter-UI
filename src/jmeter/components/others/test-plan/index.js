@@ -1,9 +1,5 @@
 import HashTreeElement from "@/jmeter/hashtree";
 import {elementProp, stringProp} from "@/jmeter/props";
-import ThreadGroup from "@/jmeter/components/others/thread-group";
-
-const AllowDrop = [ThreadGroup]
-const AllowChildren = ["ThreadGroup"];
 
 const DEFAULT_OPTIONS = {
   options: {
@@ -11,11 +7,12 @@ const DEFAULT_OPTIONS = {
   }
 };
 
-export default class TestPlan extends HashTreeElement {
-  icon = "el-icon-tickets"
+export const TYPE = "TestPlan";
 
+export default class TestPlan extends HashTreeElement {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
+    this.$type = TYPE;
 
     this.functionalMode = this.initBoolProp(this.props, 'TestPlan.functional_mode');
     this.serializeThreadGroups = this.initBoolProp(this.props, 'TestPlan.serialize_threadgroups');
@@ -50,21 +47,6 @@ export default class TestPlan extends HashTreeElement {
   toJson() {
     this.updateProps();
     return super.toJson();
-  }
-
-  allowDrag() {
-    return false;
-  }
-
-  allowDrop(dragging, drop, type) {
-    for (const type of AllowDrop) {
-      if (dragging instanceof type) return true;
-    }
-    return false;
-  }
-
-  getAllowMenu() {
-    return {children: AllowChildren};
   }
 }
 

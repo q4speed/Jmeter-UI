@@ -19,7 +19,7 @@ export default {
   border: 1px solid #DCDFE6;
   border-radius: 4px;
   transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 .components-field-set .title {

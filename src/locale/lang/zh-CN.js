@@ -15,24 +15,24 @@ export default {
       remove: "删除",
       insert: "插入上级",
     },
-    Assertion: {
+    assertions: {
       label: "断言",
-      ResponseAssertion: {
+      response: {
         label: "响应断言",
       }
     },
-    Configuration: {
+    configurations: {
       label: "配置",
-      HeaderManager: {
+      header_manager: {
         label: "请求头管理器",
         title: "发送参数",
         name: "名称",
         value: "值",
       }
     },
-    Controller: {
+    controllers: {
       label: "控制器",
-      IfController: {
+      if: {
         label: "条件控制器",
         expression: "表达式",
         expressionDesc: "表达式的结果必须为true或false",
@@ -51,24 +51,24 @@ export default {
         value: "值"
       }
     },
-    Listener: {
+    listeners: {
       label: "监听器",
-      BackendListener: {
+      backend: {
         label: "后端监听器",
       }
     },
-    PostProcessor: {
+    post_processors: {
       label: "后置处理器",
-      RegexExtractor: {
+      regex_extractor: {
         label: "正则提取器",
       }
     },
-    PreProcessor: {
+    pre_processors: {
       label: "前置处理器",
     },
-    Sampler: {
+    samplers: {
       label: "取样器",
-      HTTPSamplerProxy: {
+      http: {
         label: "HTTP取样器",
         basic: "基础",
         advanced: "高级",
@@ -91,15 +91,22 @@ export default {
         titleTimeout: "超时（毫秒）",
         connectTimeout: "连接",
         responseTimeout: "响应"
+      },
+      tcp: {
+        label: "TCP取样器",
       }
     },
-    Timer: {
+    timers: {
       label: "计时器",
-      ConstantTimer: {
+      constant: {
         label: "固定计时器",
         delay: "线程延迟(毫秒)"
       }
     },
-    others: {},
+    others: {
+      thread_group: {
+        label: "线程组",
+      }
+    },
   }
 }
