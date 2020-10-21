@@ -1,27 +1,21 @@
 import UnsupportedComponent from "@/jmeter/components/others/unspported-component";
-import JmeterTestPlan from "@/jmeter/jmx/jmeter-test-plan";
 
 // JMX models
 const models = require.context('@/jmeter/components/', true, /index\.js$/);
 // Vue控件
 const components = require.context('@/jmeter/components/', true, /main\.vue$/);
 
-const map = function (schema) {
-  let components = {};
-  components[schema.name] = schema.class;
-  return components;
-}
+const MODELS = models.keys().map(key => {
+  return models(key).schema
+}).reduce((c1, c2) => {
+  return {...c1, ...c2}
+})
 
-const reduce = function (c1, c2) {
-  return {...c1, ...c2};
-}
-
-export const MODELS = {
-  ...models.keys().map(key => {
-    return map(models(key).schema)
-  }).reduce(reduce),
-  jmeterTestPlan: JmeterTestPlan,
-};
+const COMPONENTS = [
+  ...components.keys().map(key => {
+    return components(key).default.name;
+  })
+]
 
 export const createComponent = function (name) {
   let component = MODELS[name];
@@ -53,12 +47,6 @@ export const loadHashTree = function (options) {
     return list;
   }
 }
-
-export const COMPONENTS = [
-  ...components.keys().map(key => {
-    return components(key).default.name;
-  })
-]
 
 export const hasComponent = name => {
   return COMPONENTS.includes(name) ? name : "UnsupportedComponent";

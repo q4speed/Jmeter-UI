@@ -19,7 +19,6 @@ export default class ConstantTimer extends Timer {
 }
 
 export const schema = {
-  name: "ConstantTimer",
-  class: ConstantTimer
+  ConstantTimer: ConstantTimer
 }
 

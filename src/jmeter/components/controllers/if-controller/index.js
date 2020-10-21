@@ -22,6 +22,5 @@ export default class IfController extends Controller {
 }
 
 export const schema = {
-  name: "IfController",
-  class: IfController
+  IfController: IfController
 }

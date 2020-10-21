@@ -10,6 +10,5 @@ export default class UnsupportedComponent extends HashTreeElement {
 }
 
 export const schema = {
-  name: "UnsupportedComponent",
-  class: UnsupportedComponent
+  UnsupportedComponent: UnsupportedComponent
 }

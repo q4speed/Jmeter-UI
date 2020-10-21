@@ -21,6 +21,5 @@ export default class ResultCollector extends HashTreeElement {
 }
 
 export const schema = {
-  name: "ResultCollector",
-  class: ResultCollector
+  ResultCollector: ResultCollector
 }

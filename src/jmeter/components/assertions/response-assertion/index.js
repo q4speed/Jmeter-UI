@@ -18,6 +18,5 @@ export default class ResponseAssertion extends Assertion {
 }
 
 export const schema = {
-  name: "ResponseAssertion",
-  class: ResponseAssertion
+  ResponseAssertion: ResponseAssertion
 }

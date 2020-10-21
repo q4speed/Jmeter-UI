@@ -18,6 +18,5 @@ export default class BackendListener extends Listener {
 }
 
 export const schema = {
-  name: "BackendListener",
-  class: BackendListener
+  BackendListener: BackendListener
 }

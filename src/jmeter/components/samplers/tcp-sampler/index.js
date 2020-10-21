@@ -18,6 +18,5 @@ export default class TCPSampler extends Sampler {
 }
 
 export const schema = {
-  name: "TCPSampler",
-  class: TCPSampler
+  TCPSampler: TCPSampler
 }

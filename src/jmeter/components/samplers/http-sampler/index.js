@@ -85,7 +85,6 @@ export default class HTTPSamplerProxy extends Sampler {
 }
 
 export const schema = {
-  name: "HTTPSamplerProxy",
-  class: HTTPSamplerProxy
+  HTTPSamplerProxy: HTTPSamplerProxy
 }
 

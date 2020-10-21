@@ -51,6 +51,5 @@ export default class TestPlan extends HashTreeElement {
 }
 
 export const schema = {
-  name: "TestPlan",
-  class: TestPlan
+  TestPlan: TestPlan
 }

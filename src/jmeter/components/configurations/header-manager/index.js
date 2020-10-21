@@ -47,6 +47,5 @@ export default class HeaderManager extends Configuration {
 }
 
 export const schema = {
-  name: "HeaderManager",
-  class: HeaderManager
+  HeaderManager: HeaderManager
 }
