@@ -5,13 +5,13 @@
       <test-plan-variables :items="object.userDefinedVariables"/>
 
       <el-form-item label-width="0" prop="serializeThreadGroups">
-        <el-checkbox v-model="object.serializeThreadGroups.value">独立运行每个线程组（例如在一个组结束后运行下一个 ）</el-checkbox>
+        <el-checkbox v-model="object.serializeThreadGroups.value">{{ t('wm.others.test_plan.serialize') }}</el-checkbox>
       </el-form-item>
       <el-form-item label-width="0" prop="tearDownOnShutdown">
-        <el-checkbox v-model="object.tearDownOnShutdown.value">主线程结束后运行tearDown线程组</el-checkbox>
+        <el-checkbox v-model="object.tearDownOnShutdown.value">{{ t('wm.others.test_plan.tear_down') }}</el-checkbox>
       </el-form-item>
       <el-form-item label-width="0" prop="functionalMode">
-        <el-checkbox v-model="object.functionalMode.value">函数测试模式</el-checkbox>
+        <el-checkbox v-model="object.functionalMode.value">{{ t('wm.others.test_plan.functional') }}</el-checkbox>
       </el-form-item>
       <!-- TODO classpath-->
     </el-form>
@@ -22,10 +22,12 @@
 import ComponentContainer from "@/components/ComponentContainer";
 import TestPlan from "@/jmeter/components/others/test-plan/index";
 import TestPlanVariables from "@/jmeter/components/others/test-plan/TestPlanVariables";
+import Locale from "@/mixins/locale";
 
 export default {
   name: "TestPlan",
   components: {TestPlanVariables, ComponentContainer},
+  mixins: [Locale],
   props: {
     object: TestPlan
   },

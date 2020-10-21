@@ -1,7 +1,7 @@
 export default {
   wm: {
     commons: {
-      clear: "清除",
+      clear: "清空",
       name: "名称",
       comments: "注释",
       please_select: "请选择",
@@ -110,6 +110,15 @@ export default {
       }
     },
     others: {
+      test_plan: {
+        label: "测试计划",
+        variables: "用户自定义变量",
+        name: "名称",
+        value: "值",
+        serialize: "独立运行每个线程组（例如在一个组结束后运行下一个 ）",
+        tear_down: "主线程结束后运行tearDown线程组",
+        functional: "函数测试模式",
+      },
       thread_group: {
         label: "线程组",
         on_sample_error: "在取样器错误后要执行的动作",
