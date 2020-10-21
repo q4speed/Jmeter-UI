@@ -1,32 +1,32 @@
 <template>
   <el-form ref="basic" :model="object" label-width="auto" size="mini">
-    <component-field-set title="Web服务器">
+    <component-field-set :title="t('wm.samplers.http.web_server')">
       <el-row type="flex" :gutter="10">
         <el-col class="protocol-col">
-          <el-form-item label="协议" prop="protocol" label-width="60px">
-            <el-select v-model="object.protocol.value" placeholder="请选择">
-              <el-option value="https" label="https"/>
-              <el-option value="http" label="http"/>
+          <el-form-item :label="t('wm.samplers.http.protocol')" prop="protocol" label-width="60px">
+            <el-select v-model="object.protocol.value" :placeholder="t('wm.commons.please_select')">
+              <el-option value="https" label="HTTPS"/>
+              <el-option value="http" label="HTTP"/>
             </el-select>
           </el-form-item>
         </el-col>
         <el-col>
-          <el-form-item label="服务器名称或IP" prop="domain">
+          <el-form-item :label="t('wm.samplers.http.domain')" prop="domain">
             <el-input v-model="object.domain.value"/>
           </el-form-item>
         </el-col>
         <el-col class="port-col">
-          <el-form-item label="端口号" prop="port" label-width="60px">
+          <el-form-item :label="t('wm.samplers.http.port')" prop="port" label-width="60px">
             <el-input v-model="object.port.value"/>
           </el-form-item>
         </el-col>
       </el-row>
     </component-field-set>
-    <component-field-set title="HTTP请求">
+    <component-field-set :title="t('wm.samplers.http.http_request')">
       <el-row type="flex" :gutter="10">
         <el-col class="method-col">
-          <el-form-item label="方法" prop="method" label-width="60px">
-            <el-select v-model="object.method.value" placeholder="请选择">
+          <el-form-item :label="t('wm.samplers.http.method')" prop="method" label-width="60px">
+            <el-select v-model="object.method.value" :placeholder="t('wm.commons.please_select')">
               <el-option label="GET" value="GET"/>
               <el-option label="POST" value="POST"/>
               <el-option label="PUT" value="PUT"/>
@@ -39,31 +39,31 @@
           </el-form-item>
         </el-col>
         <el-col>
-          <el-form-item label="路径" prop="path" label-width="40px">
+          <el-form-item :label="t('wm.samplers.http.path')" prop="path" label-width="40px">
             <el-input v-model="object.path.value"/>
           </el-form-item>
         </el-col>
         <el-col class="content-encoding-col">
-          <el-form-item label="内容编码" prop="contentEncoding" label-width="80px">
+          <el-form-item :label="t('wm.samplers.http.content_encoding')" prop="contentEncoding" label-width="80px">
             <el-input v-model="object.contentEncoding.value"/>
           </el-form-item>
         </el-col>
       </el-row>
 
-      <el-checkbox v-model="object.autoRedirects.value">自动重定向</el-checkbox>
-      <el-checkbox v-model="object.followRedirects.value">跟随重定向</el-checkbox>
-      <el-checkbox v-model="object.useKeepalive.value">使用Keepalive</el-checkbox>
-      <el-checkbox v-model="object.doMultipartPost.value">POST使用multipart/form-data</el-checkbox>
-      <el-checkbox v-model="object.browserCompatibleMultipart.value">与浏览器兼容的头</el-checkbox>
+      <el-checkbox v-model="object.autoRedirects.value">{{ t('wm.samplers.http.auto_redirects') }}</el-checkbox>
+      <el-checkbox v-model="object.followRedirects.value">{{ t('wm.samplers.http.follow_redirects') }}</el-checkbox>
+      <el-checkbox v-model="object.useKeepalive.value">{{ t('wm.samplers.http.use_keepalive') }}</el-checkbox>
+      <el-checkbox v-model="object.doMultipartPost.value">{{ t('wm.samplers.http.do_multipart_post') }}</el-checkbox>
+      <el-checkbox v-model="object.browserCompatibleMultipart.value">{{ t('wm.samplers.http.browser') }}</el-checkbox>
 
       <el-tabs v-model="activeName">
-        <el-tab-pane label="参数" name="params">
+        <el-tab-pane :label="t('wm.samplers.http.arguments')" name="arguments">
           <http-variables :items="object.arguments"/>
         </el-tab-pane>
-        <el-tab-pane label="消息体" name="body">
+        <el-tab-pane :label="t('wm.samplers.http.body')" name="body">
           <el-input type="textarea" v-model="object.body" :autosize="{minRows: 6, maxRows: 10}"/>
         </el-tab-pane>
-        <el-tab-pane label="文件上传" name="file">
+        <el-tab-pane :label="t('wm.samplers.http.file')" name="file">
           TODO
         </el-tab-pane>
       </el-tabs>
@@ -75,16 +75,18 @@
 import ComponentFieldSet from "@/components/ComponentFieldSet";
 import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler/index";
 import HttpVariables from "@/jmeter/components/samplers/http-sampler/HttpVariables";
+import Locale from "@/mixins/locale";
 
 export default {
   name: "HttpBasicConfig",
   components: {HttpVariables, ComponentFieldSet},
+  mixins: [Locale],
   props: {
     object: HTTPSamplerProxy
   },
   data() {
     return {
-      activeName: "params",
+      activeName: "arguments",
     }
   },
 }
