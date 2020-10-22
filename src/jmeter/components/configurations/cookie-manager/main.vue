@@ -1,6 +1,6 @@
 <template>
   <component-container :object="object"
-                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#HTTP_Header_Manager">
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#HTTP_Cookie_Manager">
     <component-field-set :title="t('wm.configurations.cookie_manager.options')">
       <el-form ref="object" :model="object" label-width="auto" label-position="left" size="mini">
         <el-form-item label-width="0" prop="clearEachIteration">

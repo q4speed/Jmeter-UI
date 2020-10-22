@@ -1,6 +1,6 @@
 <template>
   <component-container :object="object"
-                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#HTTP_Header_Manager">
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#User_Defined_Variables">
     <variable-field-set :title="t('wm.configurations.arguments.title')" height="300" :items="object.arguments">
       <el-table-column :label="t('wm.configurations.arguments.name')">
         <template v-slot:default="{row}">
