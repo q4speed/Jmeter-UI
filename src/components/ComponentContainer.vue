@@ -2,8 +2,11 @@
   <div class="components-container">
     <slot name="title">
       <div class="title">
-        {{ object.name }}
-        <el-link icon="el-icon-question" :underline="false" :href="helpUrl" v-if="helpUrl" target="_blank"/>
+        <el-row type="flex" align="middle">
+          <span v-if="title">{{ title }}</span>
+          <span v-else>{{ object.name }}</span>
+          <el-link icon="el-icon-question" :underline="false" :href="helpUrl" v-if="helpUrl" target="_blank"/>
+        </el-row>
       </div>
       <el-form ref="object" :model="object" label-width="auto" size="mini">
         <el-form-item :label="t('wm.commons.name')" prop="label">
@@ -23,7 +26,7 @@ import Locale from "@/mixins/locale"
 
 export default {
   name: "ComponentContainer",
-  props: ["helpUrl", "object"],
+  props: ["helpUrl", "object", "title"],
   mixins: [Locale]
 }
 </script>
@@ -38,8 +41,8 @@ export default {
   margin-bottom: 10px;
 }
 
-.components-container >>> .el-link {
-  line-height: 20px;
+.components-container >>> i {
+  margin-left: 5px;
   font-size: 16px;
 }
 
