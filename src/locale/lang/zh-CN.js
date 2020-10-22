@@ -28,6 +28,19 @@ export default {
         title: "发送参数",
         name: "名称",
         value: "值",
+      },
+      cookie_manager: {
+        label: "Cookie管理器",
+        options: "选项",
+        clear: "每次迭代清除Cookie",
+        control: "使用线程组的配置控制Cookie清理",
+        policy: "Cookie 策略",
+        cookies: "自定义Cookie",
+        name: "名称",
+        value: "值",
+        domain: "域名",
+        path: "路径",
+        secure: "secure",
       }
     },
     controllers: {

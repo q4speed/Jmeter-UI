@@ -23,7 +23,8 @@ MENUS[Configuration] = {
   label: "wm.configurations.label",
   value: Configuration,
   children: [
-    {label: "wm.configurations.header_manager.label", value: "HeaderManager"}
+    {label: "wm.configurations.header_manager.label", value: "HeaderManager"},
+    {label: "wm.configurations.cookie_manager.label", value: "CookieManager"}
   ],
 }
 MENUS[Controller] = {
