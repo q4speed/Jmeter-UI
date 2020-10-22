@@ -18,7 +18,7 @@
 - [x] 完成左侧树基本功能，菜单，增删改查，可拖拽(根据控件判断是否可拖拽)
 
 ## v1.1
-- [ ] 提供国际化
+- [x] 提供国际化
 - [ ] 完成常用控件: DubboSampler, TCPSampler, JDBCSampler, ResponseAssertion, DurationAssertion, JSONPathAssertion, 
 CookieManager, DNSCacheManager, JSR223PreProcessor, JSR223PostProcessor, RegexExtractor, JSONPostProcessor, XPath2Extractor,ConstantTimer
 

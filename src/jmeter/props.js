@@ -147,7 +147,25 @@ export class CollectionProp extends Prop {
     this.elements = [];
     if (options.elements) {
       options.elements.forEach(e => {
-        this.add(new ElementProp(e));
+        let prop;
+        switch (e.name) {
+          case "intProp":
+            prop = new IntProp(e);
+            break;
+          case "longProp":
+            prop = new LongProp(e);
+            break;
+          case "boolProp":
+            prop = new BoolProp(e);
+            break;
+          case "stringProp":
+            prop = new StringProp(e);
+            break;
+          case "elementProp":
+            prop = new ElementProp(e);
+            break;
+        }
+        this.add(prop);
       })
     }
   }

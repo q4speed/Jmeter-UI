@@ -25,7 +25,8 @@ MENUS[Configuration] = {
   children: [
     {label: "wm.configurations.header_manager.label", value: "HeaderManager"},
     {label: "wm.configurations.cookie_manager.label", value: "CookieManager"},
-    {label: "wm.configurations.arguments.label", value: "Arguments"}
+    {label: "wm.configurations.dns_cache_manager.label", value: "DNSCacheManager"},
+    {label: "wm.configurations.arguments.label", value: "Arguments"},
   ],
 }
 MENUS[Controller] = {

@@ -48,6 +48,18 @@ export default {
         domain: "域名",
         path: "路径",
         secure: "安全",
+      },
+      dns_cache_manager: {
+        label: "DNS缓存管理器",
+        options: "选项",
+        clear: "每次迭代清除Cookie",
+        system: "使用系统的DNS",
+        custom: "使用自定义DNS",
+        servers: "DNS服务器",
+        server: "主机名称或IP",
+        hosts: "静态主机列表",
+        host: "Host",
+        address: "主机名称或IP",
       }
     },
     controllers: {
