@@ -37,7 +37,7 @@
 
 <script>
 import {createComponent} from "@/jmeter/components";
-import {allowDrag, allowDrop, getComponentMenus, getIcon} from "./menus";
+import {allowDrag, allowDrop, getComponentMenus, getIcon} from "./tree";
 import Locale from "@/mixins/locale";
 
 const BASIC_MENUS = [

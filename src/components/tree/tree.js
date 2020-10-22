@@ -1,4 +1,3 @@
-// 自定义类别(TestPlan, ThreadGroup除外，为了这里统一)
 import {TYPE as Assertion} from "@/jmeter/components/assertions/assertion";
 import {TYPE as Configuration} from "@/jmeter/components/configurations/configuration";
 import {TYPE as Controller} from "@/jmeter/components/controllers/controller";
@@ -167,4 +166,4 @@ export const getIcon = (component) => {
   return ICONS[component.$type] || "";
 }
 
-export default {allowDrop, allowDrag, getComponentMenus, getIcon}
+export default {allowDrop, allowDrag, getIcon, getComponentMenus}
