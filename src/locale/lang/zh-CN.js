@@ -22,7 +22,14 @@ export default {
       }
     },
     configurations: {
-      label: "配置",
+      label: "配置元件",
+      arguments: {
+        label: "变量管理器",
+        title: "自定义变量",
+        name: "名称",
+        value: "值",
+        desc: "描述",
+      },
       header_manager: {
         label: "请求头管理器",
         title: "发送参数",
