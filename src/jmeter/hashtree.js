@@ -18,46 +18,46 @@ export default class HashTreeElement extends Element {
     return loadComponent(json.options, json.hashTree);
   }
 
-  initIntProp(map, name, defaultValue) {
-    if (map[name] === undefined) {
-      map[name] = intProp(name, defaultValue);
+  initIntProp(name, defaultValue) {
+    if (this.props[name] === undefined) {
+      this.props[name] = intProp(name, defaultValue);
     }
-    return map[name];
+    return this.props[name];
   }
 
-  initLongProp(map, name, defaultValue) {
-    if (map[name] === undefined) {
-      map[name] = longProp(name, defaultValue);
+  initLongProp(name, defaultValue) {
+    if (this.props[name] === undefined) {
+      this.props[name] = longProp(name, defaultValue);
     }
-    return map[name];
+    return this.props[name];
   }
 
-  initBoolProp(map, name, defaultValue) {
-    if (map[name] === undefined) {
-      map[name] = boolProp(name, defaultValue);
+  initBoolProp(name, defaultValue) {
+    if (this.props[name] === undefined) {
+      this.props[name] = boolProp(name, defaultValue);
     }
-    return map[name];
+    return this.props[name];
   }
 
-  initStringProp(map, name, defaultValue) {
-    if (map[name] === undefined) {
-      map[name] = stringProp(name, defaultValue);
+  initStringProp(name, defaultValue) {
+    if (this.props[name] === undefined) {
+      this.props[name] = stringProp(name, defaultValue);
     }
-    return map[name];
+    return this.props[name];
   }
 
-  initElementProp(map, name, elementType) {
-    if (map[name] === undefined) {
-      map[name] = elementProp(name, elementType);
+  initElementProp(name, elementType) {
+    if (this.props[name] === undefined) {
+      this.props[name] = elementProp(name, elementType);
     }
-    return map[name];
+    return this.props[name];
   }
 
-  initCollectionProp(map, name) {
-    if (map[name] === undefined) {
-      map[name] = collectionProp(name);
+  initCollectionProp(name) {
+    if (this.props[name] === undefined) {
+      this.props[name] = collectionProp(name);
     }
-    return map[name];
+    return this.props[name];
   }
 
   toJson() {

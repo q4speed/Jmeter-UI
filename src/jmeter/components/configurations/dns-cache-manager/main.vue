@@ -17,7 +17,7 @@
       </el-form>
     </component-field-set>
     <variable-field-set :title="t('wm.configurations.dns_cache_manager.servers')" height="200" :items="object.servers"
-                        :disabled="object.isCustomResolver.value">
+                        :disabled="!object.isCustomResolver.value">
       <el-table-column :label="t('wm.configurations.dns_cache_manager.server')">
         <template v-slot:default="{row}">
           <el-input v-model="row.server" size="mini"/>
@@ -25,10 +25,10 @@
       </el-table-column>
     </variable-field-set>
     <variable-field-set :title="t('wm.configurations.dns_cache_manager.hosts')" height="200" :items="object.hosts"
-                        :disabled="object.isCustomResolver.value">
+                        :disabled="!object.isCustomResolver.value">
       <el-table-column :label="t('wm.configurations.dns_cache_manager.host')">
         <template v-slot:default="{row}">
-          <el-input v-model="row.host" size="mini"/>
+          <el-input v-model="row.name" size="mini"/>
         </template>
       </el-table-column>
       <el-table-column :label="t('wm.configurations.dns_cache_manager.address')">

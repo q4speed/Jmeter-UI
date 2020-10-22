@@ -210,6 +210,41 @@ export class ElementProp extends Prop {
     }
   }
 
+  initIntProp(name, defaultValue) {
+    if (this.elements[name] === undefined) {
+      this.elements[name] = intProp(name, defaultValue);
+    }
+    return this.elements[name];
+  }
+
+  initLongProp(name, defaultValue) {
+    if (this.elements[name] === undefined) {
+      this.elements[name] = longProp(name, defaultValue);
+    }
+    return this.elements[name];
+  }
+
+  initBoolProp(name, defaultValue) {
+    if (this.elements[name] === undefined) {
+      this.elements[name] = boolProp(name, defaultValue);
+    }
+    return this.elements[name];
+  }
+
+  initStringProp(name, defaultValue) {
+    if (this.elements[name] === undefined) {
+      this.elements[name] = stringProp(name, defaultValue);
+    }
+    return this.elements[name];
+  }
+
+  initCollectionProp(name) {
+    if (this.elements[name] === undefined) {
+      this.elements[name] = collectionProp(name);
+    }
+    return this.elements[name];
+  }
+
   add(prop) {
     if (prop instanceof Prop) {
       this.elements[prop.key] = prop;

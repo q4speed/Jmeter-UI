@@ -16,20 +16,20 @@ export default class DNSCacheManager extends Configuration {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
 
-    this.clearEachIteration = this.initBoolProp(this.props, "DNSCacheManager.clearEachIteration", false)
-    this.isCustomResolver = this.initBoolProp(this.props, "DNSCacheManager.isCustomResolver", false)
+    this.clearEachIteration = this.initBoolProp("DNSCacheManager.clearEachIteration", false)
+    this.isCustomResolver = this.initBoolProp("DNSCacheManager.isCustomResolver", false)
 
     this.servers = [];
-    let serversCollectionProp = this.initCollectionProp(this.props, 'DNSCacheManager.servers');
+    let serversCollectionProp = this.initCollectionProp('DNSCacheManager.servers');
     serversCollectionProp.forEach(stringProp => {
       this.servers.push({server: stringProp.value, enable: true});
     })
 
     this.hosts = [];
-    let hostsCollectionProp = this.initCollectionProp(this.props, 'DNSCacheManager.hosts');
+    let hostsCollectionProp = this.initCollectionProp('DNSCacheManager.hosts');
     hostsCollectionProp.forEach(elementProp => {
-      let name = this.initStringProp(elementProp.elements, 'StaticHost.Name').value;
-      let address = this.initStringProp(elementProp.elements, 'StaticHost.Address').value;
+      let name = elementProp.initStringProp('StaticHost.Name').value;
+      let address = elementProp.initStringProp('StaticHost.Address').value;
       let host = {name: name, address: address, enable: true};
       this.hosts.push(host);
     })
@@ -38,19 +38,19 @@ export default class DNSCacheManager extends Configuration {
   updateProps() {
     let serversCollectionProp = this.props['DNSCacheManager.servers'];
     serversCollectionProp.clear();
-    this.servers.forEach(item => {
+    this.servers.forEach((item, index) => {
       if (item.enable !== false) {
-        serversCollectionProp.add(stringProp("", item.server));
+        serversCollectionProp.add(stringProp(index, item.server));
       }
     })
 
-    let hostsCollectionProp = this.props['DNSCacheManager.servers'];
+    let hostsCollectionProp = this.props['DNSCacheManager.hosts'];
     hostsCollectionProp.clear();
     this.hosts.forEach(item => {
       if (item.enable !== false) {
         let ep = elementProp(item.name, "StaticHost");
         ep.add(stringProp("StaticHost.Name", item.name));
-        ep.add(stringProp("StaticHost.Address", item.value));
+        ep.add(stringProp("StaticHost.Address", item.address));
         hostsCollectionProp.add(ep)
       }
     })

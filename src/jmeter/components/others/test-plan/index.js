@@ -14,18 +14,18 @@ export default class TestPlan extends HashTreeElement {
     super(options);
     this.$type = TYPE;
 
-    this.functionalMode = this.initBoolProp(this.props, 'TestPlan.functional_mode');
-    this.serializeThreadGroups = this.initBoolProp(this.props, 'TestPlan.serialize_threadgroups');
-    this.tearDownOnShutdown = this.initBoolProp(this.props, 'TestPlan.tearDown_on_shutdown');
-    this.userDefineClasspath = this.initStringProp(this.props, 'TestPlan.user_define_classpath');
+    this.functionalMode = this.initBoolProp('TestPlan.functional_mode');
+    this.serializeThreadGroups = this.initBoolProp('TestPlan.serialize_threadgroups');
+    this.tearDownOnShutdown = this.initBoolProp('TestPlan.tearDown_on_shutdown');
+    this.userDefineClasspath = this.initStringProp('TestPlan.user_define_classpath');
 
     this.userDefinedVariables = [];
 
-    let elementProp = this.initElementProp(this.props, 'TestPlan.user_defined_variables', 'Arguments');
-    let collectionProp = this.initCollectionProp(elementProp.elements, 'Arguments.arguments');
-    collectionProp.forEach(element => {
-      let name = element.elements['Argument.name'].value;
-      let value = element.elements['Argument.value'].value;
+    let elementProp = this.initElementProp('TestPlan.user_defined_variables', 'Arguments');
+    let collectionProp = elementProp.initCollectionProp('Arguments.arguments');
+    collectionProp.forEach(ep => {
+      let name = ep.initStringProp('Argument.name').value;
+      let value = ep.initStringProp('Argument.value').value;
       this.userDefinedVariables.push({name: name, value: value, enable: true});
     })
   }

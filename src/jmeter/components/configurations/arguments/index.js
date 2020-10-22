@@ -17,12 +17,12 @@ export default class Arguments extends Configuration {
     super(options);
 
     this.arguments = [];
-    let collectionProp = this.initCollectionProp(this.props, 'Arguments.arguments');
+    let collectionProp = this.initCollectionProp('Arguments.arguments');
     collectionProp.forEach(elementProp => {
-      let name = this.initStringProp(elementProp.elements, 'Argument.name').value;
-      let value = this.initStringProp(elementProp.elements, 'Argument.value').value;
-      let desc = this.initStringProp(elementProp.elements, 'Argument.desc').value;
-      let metadata = this.initStringProp(elementProp.elements, 'Argument.metadata', "=").value;
+      let name = elementProp.initStringProp('Argument.name').value;
+      let value = elementProp.initStringProp('Argument.value').value;
+      let desc = elementProp.initStringProp('Argument.desc').value;
+      let metadata = elementProp.initStringProp('Argument.metadata', "=").value;
       let argument = {name: name, value: value, desc: desc, metadata: metadata, enable: true};
 
       this.arguments.push(argument);

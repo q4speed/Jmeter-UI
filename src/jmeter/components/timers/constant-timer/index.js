@@ -14,7 +14,7 @@ const DEFAULT_OPTIONS = {
 export default class ConstantTimer extends Timer {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
-    this.delay = this.initStringProp(this.props, 'ConstantTimer.delay');
+    this.delay = this.initStringProp('ConstantTimer.delay');
   }
 }
 

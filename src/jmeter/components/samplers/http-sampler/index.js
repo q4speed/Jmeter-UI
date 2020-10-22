@@ -15,41 +15,43 @@ const DEFAULT_OPTIONS = {
 export default class HTTPSamplerProxy extends Sampler {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
-    this.protocol = this.initStringProp(this.props, 'HTTPSampler.protocol', "https");
-    this.domain = this.initStringProp(this.props, 'HTTPSampler.domain');
-    this.port = this.initStringProp(this.props, 'HTTPSampler.port');
+    this.protocol = this.initStringProp('HTTPSampler.protocol', "https");
+    this.domain = this.initStringProp('HTTPSampler.domain');
+    this.port = this.initStringProp('HTTPSampler.port');
 
-    this.method = this.initStringProp(this.props, 'HTTPSampler.method', "GET");
-    this.path = this.initStringProp(this.props, 'HTTPSampler.path');
-    this.contentEncoding = this.initStringProp(this.props, 'HTTPSampler.contentEncoding', "UTF-8");
+    this.method = this.initStringProp('HTTPSampler.method', "GET");
+    this.path = this.initStringProp('HTTPSampler.path');
+    this.contentEncoding = this.initStringProp('HTTPSampler.contentEncoding', "UTF-8");
 
-    this.autoRedirects = this.initBoolProp(this.props, 'HTTPSampler.auto_redirects');
-    this.followRedirects = this.initBoolProp(this.props, 'HTTPSampler.follow_redirects', true);
-    this.useKeepalive = this.initBoolProp(this.props, 'HTTPSampler.use_keepalive', true);
-    this.doMultipartPost = this.initBoolProp(this.props, 'HTTPSampler.DO_MULTIPART_POST');
-    this.browserCompatibleMultipart = this.initBoolProp(this.props, 'HTTPSampler.BROWSER_COMPATIBLE_MULTIPART');
-    this.embeddedUrlRe = this.initStringProp(this.props, 'HTTPSampler.embedded_url_re');
-    this.connectTimeout = this.initStringProp(this.props, 'HTTPSampler.connect_timeout');
-    this.responseTimeout = this.initStringProp(this.props, 'HTTPSampler.response_timeout');
+    this.autoRedirects = this.initBoolProp('HTTPSampler.auto_redirects');
+    this.followRedirects = this.initBoolProp('HTTPSampler.follow_redirects', true);
+    this.useKeepalive = this.initBoolProp('HTTPSampler.use_keepalive', true);
+    this.doMultipartPost = this.initBoolProp('HTTPSampler.DO_MULTIPART_POST');
+    this.browserCompatibleMultipart = this.initBoolProp('HTTPSampler.BROWSER_COMPATIBLE_MULTIPART');
+    this.embeddedUrlRe = this.initStringProp('HTTPSampler.embedded_url_re');
+    this.connectTimeout = this.initStringProp('HTTPSampler.connect_timeout');
+    this.responseTimeout = this.initStringProp('HTTPSampler.response_timeout');
 
     this.arguments = [];
 
-    let elementProp = this.initElementProp(this.props, 'HTTPsampler.Arguments', 'Arguments');
-    let collectionProp = this.initCollectionProp(elementProp.elements, 'Arguments.arguments');
+    let elementProp = this.initElementProp('HTTPsampler.Arguments', 'Arguments');
+    let collectionProp = elementProp.initCollectionProp('Arguments.arguments');
 
     collectionProp.forEach(elementProp => {
-      let name = elementProp.elements['Argument.name'].value;
-      let value = elementProp.elements['Argument.value'].value;
+      let name = elementProp.initStringProp('Argument.name').value;
+      let value = elementProp.initStringProp('Argument.value').value;
 
-      let alwaysEncode = elementProp.elements['HTTPArgument.always_encode'].value;
-      let useEquals = elementProp.elements['HTTPArgument.use_equals'].value || true;
-      let arg = {name: name, value: value, alwaysEncode: alwaysEncode, useEquals: useEquals, enable: true};
-      let contentType = elementProp.elements['HTTPArgument.content_type'];
-      if (contentType) {
-        arg.contentType = contentType.value;
-      } else {
-        arg.contentType = "text/plain";
-      }
+      let alwaysEncode = elementProp.initBoolProp('HTTPArgument.always_encode').value;
+      let useEquals = elementProp.initBoolProp('HTTPArgument.use_equals', true).value;
+      let contentType = elementProp.initStringProp('HTTPArgument.content_type', "text/plain").value;
+      let arg = {
+        name: name,
+        value: value,
+        alwaysEncode: alwaysEncode,
+        useEquals: useEquals,
+        contentType: contentType,
+        enable: true
+      };
 
       this.arguments.push(arg);
     })
@@ -70,7 +72,7 @@ export default class HTTPSamplerProxy extends Sampler {
         ep.add(stringProp("Argument.metadata", "="));
         ep.add(boolProp("HTTPArgument.always_encode", variable.alwaysEncode));
         ep.add(boolProp("HTTPArgument.use_equals", variable.useEquals));
-        if (variable.contentType) {
+        if (variable.contentType && variable.contentType !== "text/plain") {
           ep.add(stringProp("HTTPArgument.content_type", variable.contentType));
         }
         collectionProp.add(ep)

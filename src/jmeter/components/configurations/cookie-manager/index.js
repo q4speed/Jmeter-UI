@@ -16,21 +16,21 @@ export default class CookieManager extends Configuration {
   constructor(options = DEFAULT_OPTIONS) {
     super(options);
 
-    this.clearEachIteration = this.initBoolProp(this.props, "CookieManager.clearEachIteration", false)
-    this.controlledByThreadGroup = this.initBoolProp(this.props, "CookieManager.controlledByThreadGroup", false)
-    this.policy = this.initStringProp(this.props, "CookieManager.policy")
+    this.clearEachIteration = this.initBoolProp("CookieManager.clearEachIteration", false)
+    this.controlledByThreadGroup = this.initBoolProp("CookieManager.controlledByThreadGroup", false)
+    this.policy = this.initStringProp("CookieManager.policy")
 
     this.cookies = [];
-    let collectionProp = this.initCollectionProp(this.props, 'CookieManager.cookies');
+    let collectionProp = this.initCollectionProp('CookieManager.cookies');
     collectionProp.forEach(elementProp => {
       let name = elementProp.key;
-      let value = this.initStringProp(elementProp.elements, 'Cookie.value').value;
-      let domain = this.initStringProp(elementProp.elements, 'Cookie.domain').value;
-      let path = this.initStringProp(elementProp.elements, 'Cookie.path').value;
-      let secure = this.initBoolProp(elementProp.elements, 'Cookie.secure', false).value;
-      let expires = this.initLongProp(elementProp.elements, 'Cookie.expires', 0).value;
-      let pathSpecified = this.initBoolProp(elementProp.elements, 'Cookie.path_specified', false).value;
-      let domainSpecified = this.initBoolProp(elementProp.elements, 'Cookie.domain_specified', false).value;
+      let value = elementProp.initStringProp('Cookie.value').value;
+      let domain = elementProp.initStringProp('Cookie.domain').value;
+      let path = elementProp.initStringProp('Cookie.path').value;
+      let secure = elementProp.initBoolProp('Cookie.secure', false).value;
+      let expires = elementProp.initLongProp('Cookie.expires', 0).value;
+      let pathSpecified = elementProp.initBoolProp('Cookie.path_specified', false).value;
+      let domainSpecified = elementProp.initBoolProp('Cookie.domain_specified', false).value;
       let cookie = {
         name: name,
         value: value,
