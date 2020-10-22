@@ -24,13 +24,13 @@ export default class CookieManager extends Configuration {
     let collectionProp = this.initCollectionProp(this.props, 'CookieManager.cookies');
     collectionProp.forEach(elementProp => {
       let name = elementProp.key;
-      let value = elementProp.elements['Cookie.value'].value;
-      let domain = elementProp.elements['Cookie.domain'].value;
-      let path = elementProp.elements['Cookie.path'].value;
-      let secure = elementProp.elements['Cookie.secure'].value;
-      let expires = elementProp.elements['Cookie.expires'].value;
-      let pathSpecified = elementProp.elements['Cookie.path_specified'].value;
-      let domainSpecified = elementProp.elements['Cookie.domain_specified'].value;
+      let value = this.initStringProp(elementProp.elements, 'Cookie.value').value;
+      let domain = this.initStringProp(elementProp.elements, 'Cookie.domain').value;
+      let path = this.initStringProp(elementProp.elements, 'Cookie.path').value;
+      let secure = this.initBoolProp(elementProp.elements, 'Cookie.secure', false).value;
+      let expires = this.initLongProp(elementProp.elements, 'Cookie.expires', 0).value;
+      let pathSpecified = this.initBoolProp(elementProp.elements, 'Cookie.path_specified', false).value;
+      let domainSpecified = this.initBoolProp(elementProp.elements, 'Cookie.domain_specified', false).value;
       let cookie = {
         name: name,
         value: value,
