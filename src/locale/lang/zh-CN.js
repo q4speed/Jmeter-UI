@@ -40,7 +40,7 @@ export default {
         value: "值",
         domain: "域名",
         path: "路径",
-        secure: "secure",
+        secure: "安全",
       }
     },
     controllers: {
