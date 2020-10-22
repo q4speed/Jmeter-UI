@@ -6,7 +6,7 @@ export default class HashTreeElement extends Element {
   constructor({options: options, hashTree: hashTree}) {
     super(options);
     this.props = getProps(options.elements);
-    this.comments = this.initStringProp(this.props, 'TestPlan.comments');
+    this.comments = this.initStringProp('TestPlan.comments');
 
     if (hashTree) {
       this.hashTree = loadHashTree(hashTree);
@@ -65,7 +65,10 @@ export default class HashTreeElement extends Element {
     if (this.props !== undefined) {
       self.elements = [];
       Object.keys(this.props).forEach(key => {
-        self.elements.push(this.props[key].toJson());
+        let json = this.props[key].toJson();
+        if (json !== undefined) {
+          self.elements.push(json);
+        }
       });
     }
 

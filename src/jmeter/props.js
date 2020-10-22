@@ -20,19 +20,15 @@ export class BasicProp extends Prop {
     }
   }
 
-  set(value = "") {
-    this.value = value;
-  }
-
   toJson() {
-    let json = super.toJson();
     if (this.value !== undefined) {
+      let json = super.toJson();
       json.elements = [{
         "type": "text",
         "text": "" + this.value
       }]
+      return json;
     }
-    return json;
   }
 }
 
@@ -191,7 +187,10 @@ export class CollectionProp extends Prop {
     if (this.elements && this.elements.length > 0) {
       json.elements = [];
       this.elements.forEach(v => {
-        json.elements.push(v.toJson());
+        let element = v.toJson();
+        if (element !== undefined) {
+          json.elements.push(element);
+        }
       })
     }
     return json;
@@ -263,7 +262,10 @@ export class ElementProp extends Prop {
     if (keys.length > 0) {
       json.elements = [];
       keys.forEach(key => {
-        json.elements.push(this.elements[key].toJson());
+        let element = this.elements[key].toJson();
+        if (element !== undefined) {
+          json.elements.push(element);
+        }
       });
     }
     return json;
@@ -310,18 +312,19 @@ export const getProps = function (elements) {
 
 export const basicProp = function (type, name, value) {
   let options = {
-    "type": "element",
-    "attributes": {
-      "name": name
-    },
-    "elements": [
+    type: "element",
+    attributes: {
+      name: name
+    }
+  }
+  if (value !== undefined) {
+    options.elements = [
       {
-        "type": "text",
-        "text": value === undefined ? "" : "" + value
+        type: "text",
+        text: "" + value
       }
     ]
   }
-
   return new type(options);
 }
 

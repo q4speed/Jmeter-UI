@@ -18,12 +18,12 @@ export default class ThreadGroup extends HashTreeElement {
     this.rampTime = this.initStringProp('ThreadGroup.ramp_time', 1);
 
     let loopController = this.initElementProp('ThreadGroup.main_controller', 'LoopController');
-    this.continueForever = loopController.initBoolProp('ThreadGroup.continue_forever');
-    this.loops = loopController.initStringProp('ThreadGroup.loops', 1);
+    this.continueForever = loopController.initBoolProp('LoopController.continue_forever', false);
+    this.loops = loopController.initStringProp('LoopController.loops', 1);
 
-    this.sameUserOnNextIteration = this.initBoolProp('ThreadGroup.same_user_on_next_iteration');
+    this.sameUserOnNextIteration = this.initBoolProp('ThreadGroup.same_user_on_next_iteration', false);
     this.delayedStart = this.initBoolProp('ThreadGroup.delayedStart');
-    this.scheduler = this.initBoolProp('ThreadGroup.scheduler');
+    this.scheduler = this.initBoolProp('ThreadGroup.scheduler', false);
     this.delay = this.initStringProp('ThreadGroup.delay');
     this.duration = this.initStringProp('ThreadGroup.duration');
   }
