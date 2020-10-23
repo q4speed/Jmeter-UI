@@ -9,9 +9,9 @@
       </el-tooltip>
     </component-field-set>
     <component-field-set :title="t('wm.assertions.response_assertion.scope')">
-      <el-radio-group v-model="object.scope.value">
+      <el-radio-group v-model="scope" @change="changeScope">
         <el-radio label="all">{{ t('wm.assertions.response_assertion.all') }}</el-radio>
-        <el-radio label="">{{ t('wm.assertions.response_assertion.main') }}</el-radio>
+        <el-radio label="main">{{ t('wm.assertions.response_assertion.main') }}</el-radio>
         <el-radio label="children">{{ t('wm.assertions.response_assertion.children') }}</el-radio>
         <el-radio label="variable">{{ t('wm.assertions.response_assertion.variable') }}</el-radio>
         <el-input v-model="object.variable.value" size="mini" class="scope_variable" clearable @focus="clickVariable"/>
@@ -65,6 +65,7 @@ export default {
     const NOT = 1 << 2
     const OR = 1 << 5
     return {
+      scope: this.object.scope.value || "main",
       fields: [
         {name: 'wm.assertions.response_assertion.response_data', value: 'Assertion.response_data'},
         {name: 'wm.assertions.response_assertion.response_code', value: 'Assertion.response_code'},
@@ -92,6 +93,13 @@ export default {
     }
   },
   methods: {
+    changeScope(label) {
+      if (label === "main") {
+        this.object.scope.value = undefined;
+      } else {
+        this.object.scope.value = label;
+      }
+    },
     clickVariable() {
       this.object.scope.value = "variable";
     },

@@ -44,6 +44,14 @@ export default {
         or: "或",
         string: "内容",
         message: "自定义失败消息"
+      },
+      duration_assertion: {
+        label: "持续时间断言",
+        scope: "应用范围",
+        all: "主样本和子样本",
+        main: "主样本",
+        children: "子样本",
+        duration: "持续时间（毫秒）",
       }
     },
     configurations: {
