@@ -16,7 +16,7 @@ MENUS[Assertion] = {
   label: "wm.assertions.label",
   value: Assertion,
   children: [
-    {label: "wm.assertions.response.label", value: "ResponseAssertion"}
+    {label: "wm.assertions.response_assertion.label", value: "ResponseAssertion"}
   ],
 };
 MENUS[Configuration] = {

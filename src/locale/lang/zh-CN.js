@@ -17,8 +17,33 @@ export default {
     },
     assertions: {
       label: "断言",
-      response: {
+      response_assertion: {
         label: "响应断言",
+        scope: "应用范围",
+        all: "主样本和子样本",
+        main: "主样本",
+        children: "子样本",
+        variable: "Jmeter变量",
+        test_field: "测试字段",
+        sample_label: "样本名称",
+        response_data: "响应文本",
+        response_code: "响应码",
+        response_message: "响应消息",
+        response_headers: "响应头",
+        request_data: "请求数据",
+        request_headers: "请求头",
+        document: "文档(文本)",
+        ignore_status: "忽略状态",
+        ignore_status_desc: "选中“忽略状态”复选框时，将在评估“断言”之前将“响应”状态强制为成功。通常HTTP响应在4xx和5xx范围内的被视为不成功，“忽略状态”复选框可用于将状态设置为成功。请注意，这将清除所有先前的断言失败，因此请确保仅在第一个断言上设置此项。",
+        test_type: "模式匹配规则",
+        contains: "包括",
+        match: "匹配",
+        equals: "相等",
+        substring: "子字符串",
+        not: "非",
+        or: "或",
+        string: "内容",
+        message: "自定义失败消息"
       }
     },
     configurations: {

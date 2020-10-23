@@ -1,6 +1,6 @@
 <template>
   <fieldset class="components-field-set">
-    <legend class="title">{{ title }}</legend>
+    <legend class="title" v-if="title">{{ title }}</legend>
     <slot></slot>
   </fieldset>
 </template>
