@@ -19,12 +19,12 @@
       </el-radio-group>
     </component-field-set>
     <component-field-set :title="t('wm.assertions.response_assertion.test_field')">
-      <el-radio-group v-model="object.testField.value" class="testField">
+      <el-radio-group v-model="object.testField.value">
         <el-radio v-for="f in fields" :key="f.value" :label="f.value">{{ t(f.name) }}</el-radio>
       </el-radio-group>
     </component-field-set>
     <component-field-set :title="t('wm.assertions.response_assertion.test_type')">
-      <el-radio-group v-model="testType.value" class="testType" @change="changeTestType">
+      <el-radio-group v-model="testType.value" @change="changeTestType">
         <el-radio :label="contains">{{ t('wm.assertions.response_assertion.contains') }}</el-radio>
         <el-radio :label="match">{{ t('wm.assertions.response_assertion.match') }}</el-radio>
         <el-radio :label="equals">{{ t('wm.assertions.response_assertion.equals') }}</el-radio>
@@ -102,6 +102,7 @@ export default {
       }
     },
     clickVariable() {
+      this.scope = "variable";
       this.object.scope.value = "variable";
     },
     changeTestType() {
