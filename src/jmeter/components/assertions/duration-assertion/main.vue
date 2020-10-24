@@ -1,5 +1,6 @@
 <template>
-  <component-container :object="object">
+  <component-container :object="object"
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#Duration_Assertion">
     <component-field-set :title="t('wm.assertions.duration_assertion.scope')">
       <el-radio-group v-model="scope" @change="change">
         <el-radio label="all">{{ t('wm.assertions.duration_assertion.all') }}</el-radio>

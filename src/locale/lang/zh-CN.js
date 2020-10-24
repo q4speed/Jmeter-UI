@@ -52,6 +52,15 @@ export default {
         main: "主样本",
         children: "子样本",
         duration: "持续时间（毫秒）",
+      },
+      json_assertion: {
+        label: "JSON断言",
+        json_path: "断言JSON路径存在",
+        json_validation: "附加断言值",
+        is_regex: "匹配为正则表达式",
+        expected_value: "期望值",
+        expect_null: "期望为null",
+        invert: "反转断言（如果满足以上条件，将失败）"
       }
     },
     configurations: {

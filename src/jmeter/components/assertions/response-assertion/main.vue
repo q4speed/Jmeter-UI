@@ -1,5 +1,6 @@
 <template>
-  <component-container :object="object">
+  <component-container :object="object"
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#Response_Assertion">
     <component-field-set>
       <el-checkbox v-model="object.assumeSuccess.value">
         {{ t('wm.assertions.response_assertion.ignore_status') }}
