@@ -204,6 +204,20 @@ export default {
     },
     pre_processors: {
       label: "前置处理器",
+      jsr223_pre_processor: {
+        label: "脚本预处理器",
+        script_set: "脚本设置",
+        script_language: "脚本语言",
+        language: "语言",
+        language_desc: "javascript有性能问题，不建议使用",
+        parameters: "参数",
+        parameters_desc: "传递给脚本的参数。Parameters - 包含参数作为单个变量的字符串; args - 包含参数的字符串数组，空格分割",
+        filename: "脚本文件",
+        filename_desc: "脚本文件会覆盖自定义脚本",
+        cache: "脚本编译缓存",
+        cache_desc: "如果语言支持Compilable接口，则缓存脚本编译的结果（Groovy是其中之一，而Java，beanshell和javascript不支持）",
+        script: "自定义脚本",
+      }
     },
     samplers: {
       label: "取样器",

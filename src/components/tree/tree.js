@@ -62,7 +62,9 @@ MENUS[PostProcessor] =
 MENUS[PreProcessor] = {
   label: "wm.pre_processors.label",
   value: PreProcessor,
-  children: [],
+  children: [
+    {label: "wm.pre_processors.jsr223_pre_processor.label", value: "JSR223PreProcessor"},
+  ],
 }
 MENUS[Sampler] = {
   label: "wm.samplers.label",

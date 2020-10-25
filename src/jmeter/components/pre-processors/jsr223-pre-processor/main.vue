@@ -1,12 +1,12 @@
 <template>
   <component-container :object="object"
-                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#JSR223_PostProcessor">
-    <component-field-set :title="t('wm.post_processors.jsr223_post_processor.script_set')">
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#JSR223_PreProcessor">
+    <component-field-set :title="t('wm.pre_processors.jsr223_pre_processor.script_set')">
       <el-form ref="object" :model="object" label-position="left" label-width="120px" size="mini">
         <el-form-item prop="scriptLanguage">
           <template v-slot:label>
-            <span>{{ t('wm.post_processors.jsr223_post_processor.script_language') }}</span>
-            <icon-tooltip :content="t('wm.post_processors.jsr223_post_processor.language_desc')"/>
+            <span>{{ t('wm.pre_processors.jsr223_pre_processor.script_language') }}</span>
+            <icon-tooltip :content="t('wm.pre_processors.jsr223_pre_processor.language_desc')"/>
           </template>
           <el-select v-model="object.scriptLanguage.value"
                      :placeholder="t('wm.commons.please_select')"
@@ -30,31 +30,31 @@
 
         <el-form-item prop="parameters">
           <template v-slot:label>
-            <span>{{ t('wm.post_processors.jsr223_post_processor.parameters') }}</span>
-            <icon-tooltip :content="t('wm.post_processors.jsr223_post_processor.parameters_desc')"/>
+            <span>{{ t('wm.pre_processors.jsr223_pre_processor.parameters') }}</span>
+            <icon-tooltip :content="t('wm.pre_processors.jsr223_pre_processor.parameters_desc')"/>
           </template>
           <el-input v-model="object.parameters.value"/>
         </el-form-item>
 
-        <!--        <el-form-item :label="t('wm.post_processors.jsr223_post_processor.filename')" prop="filename">-->
+        <!--        <el-form-item :label="t('wm.pre_processors.jsr223_pre_processor.filename')" prop="filename">-->
         <!--          <template v-slot:label>-->
-        <!--            <span>{{ t('wm.post_processors.jsr223_post_processor.filename') }}</span>-->
-        <!--            <icon-tooltip :content="t('wm.post_processors.jsr223_post_processor.filename_desc')"/>-->
+        <!--            <span>{{ t('wm.pre_processors.jsr223_pre_processor.filename') }}</span>-->
+        <!--            <icon-tooltip :content="t('wm.pre_processors.jsr223_pre_processor.filename_desc')"/>-->
         <!--          </template>-->
         <!--          <el-input v-model="object.filename.value"/>-->
         <!--        </el-form-item>-->
 
         <el-form-item prop="cacheKey">
           <template v-slot:label>
-            <span>{{ t('wm.post_processors.jsr223_post_processor.cache') }}</span>
-            <icon-tooltip :content="t('wm.post_processors.jsr223_post_processor.cache_desc')"/>
+            <span>{{ t('wm.pre_processors.jsr223_pre_processor.cache') }}</span>
+            <icon-tooltip :content="t('wm.pre_processors.jsr223_pre_processor.cache_desc')"/>
           </template>
           <el-checkbox v-model="object.cacheKey.value"/>
         </el-form-item>
       </el-form>
     </component-field-set>
 
-    <component-field-set :title="t('wm.post_processors.jsr223_post_processor.script')">
+    <component-field-set :title="t('wm.pre_processors.jsr223_pre_processor.script')">
       <el-input type="textarea" v-model="object.script.value" :autosize="{minRows: 10, maxRows: 20}"/>
     </component-field-set>
   </component-container>
@@ -65,15 +65,15 @@
 import ComponentContainer from "@/components/ComponentContainer";
 import ComponentFieldSet from "@/components/ComponentFieldSet";
 import Locale from "@/mixins/locale";
-import JSR223PostProcessor from "./index";
 import IconTooltip from "@/components/IconTooltip";
+import JSR223PreProcessor from "./index";
 
 export default {
-  name: "JSR223PostProcessor",
+  name: "JSR223PreProcessor",
   components: {IconTooltip, ComponentContainer, ComponentFieldSet},
   mixins: [Locale],
   props: {
-    object: JSR223PostProcessor
+    object: JSR223PreProcessor
   }
 }
 </script>
