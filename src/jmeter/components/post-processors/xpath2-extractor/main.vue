@@ -1,6 +1,6 @@
 <template>
   <component-container :object="object"
-                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#JSON_Extractor">
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#XPath2_Extractor">
     <component-field-set :title="t('wm.post_processors.xpath2_extractor.scope')">
       <el-radio-group v-model="scope" @change="changeScope">
         <el-radio label="all">{{ t('wm.post_processors.xpath2_extractor.all') }}</el-radio>
