@@ -253,6 +253,22 @@ export default {
       },
       tcp: {
         label: "TCP取样器",
+        classname: "TCPClient",
+        target_server: "目标服务器",
+        server: "服务器名称或IP",
+        port: "端口",
+        timeout: "超时时间（毫秒）",
+        connect: "连接",
+        response: "响应",
+        re_use: "重用连接",
+        close: "关闭连接",
+        no_delay: "无延迟",
+        so_linger: "SO_LINGER",
+        eol_byte: "行尾(EOL)字节值",
+        request: "发送内容",
+        login: "登录设置",
+        username: "用户名",
+        password: "密码",
       }
     },
     timers: {
