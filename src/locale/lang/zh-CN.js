@@ -169,6 +169,21 @@ export default {
         default: "默认值",
         concat: "计算串联变量",
         concat_desc: "如果找到多个结果，将使用逗号 , 分隔符将它们连接起来，并将其存储在名为 变量名称_ALL 的变量中"
+      },
+      xpath2_extractor: {
+        label: "XPath提取器",
+        scope: "应用范围",
+        all: "主样本和子样本",
+        main: "主样本",
+        children: "子样本",
+        variable: "Jmeter变量",
+        ref_name: "变量名称",
+        xpath_query: "XPath表达式",
+        match_number: "匹配数字(0代表随机)",
+        default: "默认值",
+        namespaces: "命名空间别名列表",
+        namespaces_desc: "用来解析文档的名称空间别名列表，每个声明一行。按以下方式指定它们：prefix = namespace。",
+        fragment: "返回整个XPath片段而不是文本内容"
       }
     },
     pre_processors: {

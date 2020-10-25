@@ -2,14 +2,12 @@ import Element from "@/jmeter/element";
 import {loadHashTree} from "@/jmeter/components";
 
 const DEFAULT_OPTIONS = {
-  options: {
-    attributes: {version: "1.2", properties: "5.0", jmeter: "5.2.1"},
-  }
+  type: "element",
+  name: "jmeterTestPlan",
+  attributes: {version: "1.2", properties: "5.0", jmeter: "5.2.1"}
 };
 
 export default class JmeterTestPlan extends Element {
-  class = "jmeterTestPlan"
-
   constructor({options = DEFAULT_OPTIONS} = {options}) {
     super(options);
     this.hashTree = [];

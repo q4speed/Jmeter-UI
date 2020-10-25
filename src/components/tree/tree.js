@@ -54,7 +54,8 @@ MENUS[PostProcessor] =
     value: PostProcessor,
     children: [
       {label: "wm.post_processors.regex_extractor.label", value: "RegexExtractor"},
-      {label: "wm.post_processors.json_processor.label", value: "JSONPostProcessor"}
+      {label: "wm.post_processors.json_processor.label", value: "JSONPostProcessor"},
+      {label: "wm.post_processors.xpath2_extractor.label", value: "XPath2Extractor"},
     ],
   }
 MENUS[PreProcessor] = {
