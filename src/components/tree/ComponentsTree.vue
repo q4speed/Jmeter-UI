@@ -204,8 +204,8 @@ export default {
 }
 
 .jmeter-menu .divider {
-  height: 1px;
-  background-color: #dcdfe6;
+  margin: 5px 0;
+  border-top: 1px solid #dcdfe6;
   position: relative;
 }
 
@@ -213,8 +213,8 @@ export default {
   height: 100%;
 }
 
-.jmeter-menu >>> .el-cascader-node, .jmeter-menu >>> .el-cascader-menu__list.is-empty {
-  height: 24px;
+.jmeter-menu >>> .el-cascader-node {
+  height: auto;
   line-height: 24px;
 }
 </style>

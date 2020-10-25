@@ -11,7 +11,9 @@ import {TYPE as ThreadGroup} from "@/jmeter/components/others/thread-group";
 import {TYPE as UnsupportedComponent} from "@/jmeter/components/others/unspported-component";
 import {TYPE as ResultCollector} from "@/jmeter/components/others/result-collector";
 
+const Divider = "Divider";
 const MENUS = {};
+MENUS[Divider] = {value: Divider, label: Divider, disabled: true};
 MENUS[Assertion] = {
   label: "wm.assertions.label",
   value: Assertion,
@@ -114,16 +116,16 @@ const allowChildren = (component) => {
   let children;
   switch (component.$type) {
     case Controller:
-      children = [Assertion, Configuration, Controller, Sampler, PreProcessor, PostProcessor, Timer, Listener];
+      children = [Sampler, Divider, Controller, Divider, Assertion, Divider, Timer, Divider, PreProcessor, PostProcessor, Divider, Configuration, Listener];
       break;
     case Sampler:
-      children = [Assertion, Configuration, PreProcessor, PostProcessor, Timer, Listener];
+      children = [Assertion, Divider, Timer, Divider, PreProcessor, PostProcessor, Divider, Configuration, Listener];
       break;
     case TestPlan:
-      children = [Assertion, Configuration, Controller, Sampler, PreProcessor, PostProcessor, Timer, Listener];
+      children = [ThreadGroup, Divider, Configuration, Listener, Divider, Timer, Divider, PreProcessor, PostProcessor, Assertion];
       break;
     case ThreadGroup:
-      children = [Assertion, Configuration, Controller, Sampler, PreProcessor, PostProcessor, Timer, Listener];
+      children = [Sampler, Divider, Controller, Divider, PreProcessor, PostProcessor, Assertion, Divider, Timer, Divider, Configuration, Listener];
       break;
     default:
       children = [];

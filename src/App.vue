@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <input id="file" type="file" accept=".jmx" @change="loadFile" v-show="false"/>
+    <el-button @click="create" size="mini">
+      创建JMX
+    </el-button>
     <el-button @click="open" size="mini">
       打开JMX文件
     </el-button>
@@ -10,7 +13,6 @@
     <el-button @click="download" size="mini">
       保存JMX文件
     </el-button>
-    默认显示的工程里demo.js文件（由demo.xml转换为json）
     <jmx-view :jmx="jmx" v-if="jmx" style="height: calc(100% - 28px)"/>
   </div>
 </template>
@@ -22,6 +24,8 @@ import {xml2json, json2xml} from "xml-js";
 import JMX from "@/jmeter/jmx";
 import {downloadFile} from "@/commons/utils";
 import demo from "@/assets/demo";
+import JmeterTestPlan from "@/jmeter/components/others/jmeter-test-plan";
+import TestPlan from "@/jmeter/components/others/test-plan";
 
 export default {
   name: 'App',
@@ -32,6 +36,14 @@ export default {
     }
   },
   methods: {
+    create() {
+      let jmx = new JMX();
+      let jmeterTestPlan = new JmeterTestPlan();
+      let testPlan = new TestPlan();
+      jmeterTestPlan.hashTree = [testPlan];
+      jmx.elements = [jmeterTestPlan];
+      this.jmx = jmx;
+    },
     open() {
       document.getElementById("file").click();
     },
@@ -45,7 +57,7 @@ export default {
       };
       reader.readAsText(file);
     },
-    log(){
+    log() {
       let json = this.jmx.toJson();
       let xml = json2xml(json);
       console.log(xml)

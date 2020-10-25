@@ -211,7 +211,7 @@ export default {
       }
     },
     timers: {
-      label: "计时器",
+      label: "定时器",
       constant: {
         label: "固定计时器",
         delay: "线程延迟(毫秒)"

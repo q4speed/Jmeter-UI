@@ -1,10 +1,16 @@
 import Element from "@/jmeter/element";
 import {loadHashTree} from "@/jmeter/components";
 
-export default class Index extends Element {
+const DEFAULT_OPTIONS = {
+  options: {
+    attributes: {version: "1.2", properties: "5.0", jmeter: "5.2.1"},
+  }
+};
+
+export default class JmeterTestPlan extends Element {
   class = "jmeterTestPlan"
 
-  constructor({options: options}) {
+  constructor({options = DEFAULT_OPTIONS} = {options}) {
     super(options);
     this.hashTree = [];
     if (options.elements) {
@@ -34,6 +40,6 @@ export default class Index extends Element {
 }
 
 export const schema = {
-  jmeterTestPlan: Index
+  jmeterTestPlan: JmeterTestPlan
 }
 
