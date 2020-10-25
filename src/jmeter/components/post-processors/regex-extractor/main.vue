@@ -1,5 +1,6 @@
 <template>
-  <component-container :object="object">
+  <component-container :object="object"
+                       help-url="https://jmeter.apache.org/usermanual/component_reference.html#Regular_Expression_Extractor">
     <component-field-set :title="t('wm.post_processors.regex_extractor.scope')">
       <el-radio-group v-model="scope" @change="changeScope">
         <el-radio label="all">{{ t('wm.post_processors.regex_extractor.all') }}</el-radio>
@@ -33,7 +34,7 @@
       </el-form-item>
 
       <el-form-item :label="t('wm.post_processors.regex_extractor.default')" prop="default">
-        <el-input type="number" v-model="object.default.value" :disabled="object.defaultEmpty.value">
+        <el-input v-model="object.default.value" :disabled="object.defaultEmpty.value">
           <template slot="prepend">
             <el-checkbox v-model="object.defaultEmpty.value" @change="changeEmpty">
               {{ t('wm.post_processors.regex_extractor.default_empty') }}
