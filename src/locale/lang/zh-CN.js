@@ -1,3 +1,5 @@
+import JSR223PostProcessor from "@/jmeter/components/post-processors/jsr223-post-processor";
+
 export default {
   wm: {
     commons: {
@@ -184,6 +186,20 @@ export default {
         namespaces: "命名空间别名列表",
         namespaces_desc: "用来解析文档的名称空间别名列表，每个声明一行。按以下方式指定它们：prefix = namespace。",
         fragment: "返回整个XPath片段而不是文本内容"
+      },
+      jsr223_post_processor: {
+        label: "脚本提取器",
+        script_set: "脚本设置",
+        script_language: "脚本语言",
+        language: "语言",
+        language_desc: "javascript有性能问题，不建议使用",
+        parameters: "参数",
+        parameters_desc: "传递给脚本的参数。Parameters - 包含参数作为单个变量的字符串; args - 包含参数的字符串数组，空格分割",
+        filename: "脚本文件",
+        filename_desc: "脚本文件会覆盖自定义脚本",
+        cache: "脚本编译缓存",
+        cache_desc: "如果语言支持Compilable接口，则缓存脚本编译的结果（Groovy是其中之一，而Java，beanshell和javascript不支持）",
+        script: "自定义脚本",
       }
     },
     pre_processors: {
