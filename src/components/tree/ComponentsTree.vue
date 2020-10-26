@@ -15,7 +15,7 @@
       :allow-drag="allowDrag">
       <template v-slot:default="{ node, data }">
         <span class="el-tree-node__label">
-          <i :class="data.icon"></i>
+          <i :class="getIcon(data)"></i>
           <span>{{ node.label }}</span>
         </span>
       </template>
