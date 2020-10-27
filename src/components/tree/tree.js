@@ -71,7 +71,8 @@ MENUS[Sampler] = {
   value: Sampler,
   children: [
     {label: "wm.samplers.http.label", value: "HTTPSamplerProxy"},
-    {label: "wm.samplers.tcp.label", value: "TCPSampler"}
+    {label: "wm.samplers.tcp.label", value: "TCPSampler"},
+    {label: "wm.samplers.jdbc.label", value: "JDBCSampler"},
   ],
 }
 MENUS[Timer] = {

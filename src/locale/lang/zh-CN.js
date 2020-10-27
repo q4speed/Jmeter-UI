@@ -269,6 +269,21 @@ export default {
         login: "登录设置",
         username: "用户名",
         password: "密码",
+      },
+      jdbc: {
+        label: "JDBC取样器",
+        data_source: "连接池名称",
+        data_source_desc: "JDBC连接配置中定义的连接池名称",
+        sql_query: "SQL查询",
+        query: "查询",
+        query_type: "查询类型",
+        query_arguments: "参数值",
+        query_arguments_types: "参数类型",
+        query_timeout: "查询超时(秒)",
+        result_set_handler: "结果集处理方式",
+        result_set_max_rows: "最大返回行数",
+        result_variable: "结果变量名称",
+        variable_names: "变量名称",
       }
     },
     timers: {
@@ -306,7 +321,6 @@ export default {
         scheduler: "调度器",
         duration: "持续时间(秒)",
         delay: "启动延迟(秒)",
-
       }
     },
   }
