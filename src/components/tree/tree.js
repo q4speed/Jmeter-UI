@@ -32,6 +32,7 @@ MENUS[Configuration] = {
     {label: "wm.configurations.cookie_manager.label", value: "CookieManager"},
     {label: "wm.configurations.dns_cache_manager.label", value: "DNSCacheManager"},
     {label: "wm.configurations.arguments.label", value: "Arguments"},
+    {label: "wm.configurations.jdbc_data_source.label", value: "JDBCDataSource"},
   ],
 }
 MENUS[Controller] = {
