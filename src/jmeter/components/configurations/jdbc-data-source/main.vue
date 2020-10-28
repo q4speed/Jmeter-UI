@@ -23,19 +23,17 @@
 
 import ComponentContainer from "@/components/ComponentContainer";
 import Locale from "@/mixins/locale";
-import ComponentFieldSet from "@/components/ComponentFieldSet";
 import IconTooltip from "@/components/IconTooltip";
 import JDBCDataSource from "./index";
-import PoolConfiguration from "@/jmeter/components/configurations/jdbc-data-source/PoolConfiguration";
-import PoolValidation from "@/jmeter/components/configurations/jdbc-data-source/PoolValidation";
-import DatabaseConnectionConfiguration
-  from "@/jmeter/components/configurations/jdbc-data-source/DatabaseConnectionConfiguration";
+import PoolConfiguration from "./PoolConfiguration";
+import PoolValidation from "./PoolValidation";
+import DatabaseConnectionConfiguration from "./DatabaseConnectionConfiguration";
 
 export default {
   name: "JDBCDataSource",
   components: {
     DatabaseConnectionConfiguration,
-    PoolValidation, PoolConfiguration, ComponentContainer, ComponentFieldSet, IconTooltip
+    PoolValidation, PoolConfiguration, ComponentContainer, IconTooltip
   },
   mixins: [Locale],
   props: {
@@ -45,7 +43,5 @@ export default {
 </script>
 
 <style scoped>
-.select-100 {
-  width: 100%;
-}
+
 </style>
