@@ -19,7 +19,7 @@
 
 ## v1.1
 - [x] 提供国际化
-- [ ] 完成常用控件: DubboSampler, TCPSampler, JDBCSampler, ResponseAssertion, DurationAssertion, JSONPathAssertion, 
+- [x] 完成常用控件: TCPSampler, JDBCSampler, ResponseAssertion, DurationAssertion, JSONPathAssertion, 
 CookieManager, DNSCacheManager, JSR223PreProcessor, JSR223PostProcessor, RegexExtractor, JSONPostProcessor, XPath2Extractor,ConstantTimer
 
 # Jmeter-UI
