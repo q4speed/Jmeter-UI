@@ -13,6 +13,7 @@
     <el-button @click="download" size="mini">
       保存JMX文件
     </el-button>
+    <span> 增删控件：右键菜单</span>
     <jmx-view :jmx="jmx" v-if="jmx" style="height: calc(100% - 28px)"/>
   </div>
 </template>
