@@ -14,7 +14,7 @@
       :allow-drop="allowDrop"
       :allow-drag="allowDrag">
       <template v-slot:default="{ node, data }">
-        <span class="el-tree-node__label">
+        <span class="el-tree-node__label" :class="{disabled: !data.enabled}">
           <i :class="getIcon(data)"></i>
           <span>{{ node.label }}</span>
         </span>
@@ -128,6 +128,22 @@ export default {
       this.menuVisible = false
       document.removeEventListener('click', this.close);
     },
+    enable(data) {
+      data.enabled = true;
+      if (data.hashTree) {
+        data.hashTree.forEach(child => {
+          this.enable(child);
+        })
+      }
+    },
+    disable(data) {
+      data.enabled = false;
+      if (data.hashTree) {
+        data.hashTree.forEach(child => {
+          this.disable(child);
+        })
+      }
+    },
     exec(path) {
       let command = path[0];
       let name = path[path.length - 1];
@@ -147,10 +163,10 @@ export default {
           tree.remove(this.current.id);
           break;
         case "Enable":
-          this.current.enabled = true;
+          this.enable(this.current);
           break;
         case "Disable":
-          this.current.enabled = false;
+          this.disable(this.current);
           break;
         case "Add":
           let component = createComponent(name);
@@ -173,7 +189,7 @@ export default {
     },
     getIcon(data) {
       return getIcon(data);
-    }
+    },
   }
 }
 </script>
@@ -191,6 +207,12 @@ export default {
 
 .component-tree >>> .el-tree-node__label i {
   margin-right: 5px;
+}
+
+.component-tree >>> .el-tree-node__label.disabled {
+  color: #FFF;
+  background-color: #c8c9cc;
+  border-color: #c8c9cc;
 }
 
 .jmeter-menu {
