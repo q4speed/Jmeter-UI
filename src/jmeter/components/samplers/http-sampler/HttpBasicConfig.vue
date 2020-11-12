@@ -57,14 +57,14 @@
       <el-checkbox v-model="object.browserCompatibleMultipart.value">{{ t('wm.samplers.http.browser') }}</el-checkbox>
 
       <el-tabs v-model="activeName">
-        <el-tab-pane :label="t('wm.samplers.http.arguments')" name="arguments">
+        <el-tab-pane :label="t('wm.samplers.http.arguments')" name="arguments" :disabled="hasBody">
           <http-variables :items="object.arguments"/>
         </el-tab-pane>
-        <el-tab-pane :label="t('wm.samplers.http.body')" name="body">
-          <el-input type="textarea" v-model="object.body" :autosize="{minRows: 6, maxRows: 10}"/>
+        <el-tab-pane :label="t('wm.samplers.http.body')" name="body" :disabled="hasArguments">
+          <el-input type="textarea" v-model="object.body" :autosize="{minRows: 6, maxRows: 10}" @change="changeBody"/>
         </el-tab-pane>
         <el-tab-pane :label="t('wm.samplers.http.file')" name="file">
-          TODO
+          <http-files :items="object.files"/>
         </el-tab-pane>
       </el-tabs>
     </component-field-set>
@@ -76,10 +76,11 @@ import ComponentFieldSet from "@/components/ComponentFieldSet";
 import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler/index";
 import HttpVariables from "@/jmeter/components/samplers/http-sampler/HttpVariables";
 import Locale from "@/mixins/locale";
+import HttpFiles from "@/jmeter/components/samplers/http-sampler/HttpFiles";
 
 export default {
   name: "HttpBasicConfig",
-  components: {HttpVariables, ComponentFieldSet},
+  components: {HttpFiles, HttpVariables, ComponentFieldSet},
   mixins: [Locale],
   props: {
     object: HTTPSamplerProxy
@@ -89,6 +90,19 @@ export default {
       activeName: "arguments",
     }
   },
+  methods: {
+    changeBody() {
+      this.object.postBodyRaw.value = this.hasBody;
+    }
+  },
+  computed: {
+    hasBody() {
+      return this.object.body !== undefined && this.object.body.trim() !== "";
+    },
+    hasArguments() {
+      return this.object.arguments !== undefined && this.object.arguments.length > 0;
+    }
+  }
 }
 </script>
 

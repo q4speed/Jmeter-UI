@@ -26,7 +26,8 @@ export default class HTTPSamplerProxy extends Sampler {
     this.autoRedirects = this.initBoolProp('HTTPSampler.auto_redirects');
     this.followRedirects = this.initBoolProp('HTTPSampler.follow_redirects', true);
     this.useKeepalive = this.initBoolProp('HTTPSampler.use_keepalive', true);
-    this.doMultipartPost = this.initBoolProp('HTTPSampler.DO_MULTIPART_POST');
+    this.postBodyRaw = this.initBoolProp('HTTPSampler.postBodyRaw');
+    this.doMultipartPost = this.initBoolProp('HTTPSampler.DO_MULTIPART_POST', false);
     this.browserCompatibleMultipart = this.initBoolProp('HTTPSampler.BROWSER_COMPATIBLE_MULTIPART');
     this.embeddedUrlRe = this.initStringProp('HTTPSampler.embedded_url_re');
     this.connectTimeout = this.initStringProp('HTTPSampler.connect_timeout');
@@ -59,9 +60,24 @@ export default class HTTPSamplerProxy extends Sampler {
     if (this.arguments.length > 0 && this.arguments[0].name === "") {
       this.body = this.arguments[0].value;
     }
+
+    this.files = [];
+    let filesProp = this.initElementProp("HTTPsampler.Files", "HTTPFileArgs");
+    let filesCollectionProp = filesProp.initCollectionProp('HTTPFileArgs.files');
+    filesCollectionProp.forEach(elementProp => {
+      let path = elementProp.initStringProp('File.path').value;
+      let name = elementProp.initStringProp('File.paramname').value;
+      let type = elementProp.initBoolProp('File.mimetype').value;
+      let file = {path: path, name: name, type: type, enable: true};
+
+      this.files.push(file);
+    });
   }
 
   updateProps() {
+    if (this.body && this.postBodyRaw.value) {
+      this.arguments = [{name: "", value: this.body, alwaysEncode: false}];
+    }
     let collectionProp = this.props['HTTPsampler.Arguments'].elements['Arguments.arguments'];
     collectionProp.clear();
     this.arguments.forEach(variable => {
@@ -76,6 +92,18 @@ export default class HTTPSamplerProxy extends Sampler {
           ep.add(stringProp("HTTPArgument.content_type", variable.contentType));
         }
         collectionProp.add(ep)
+      }
+    })
+
+    let filesProp = this.props["HTTPsampler.Files"].elements["HTTPFileArgs.files"];
+    filesProp.clear();
+    this.files.forEach(file => {
+      if (file.enable !== false) {
+        let ep = elementProp(file.path, "HTTPFileArg");
+        ep.add(stringProp("File.path", file.path));
+        ep.add(stringProp("File.paramname", file.name));
+        ep.add(stringProp("File.mimetype", file.type));
+        filesProp.add(ep);
       }
     })
   }

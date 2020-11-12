@@ -1,5 +1,3 @@
-import JSR223PostProcessor from "@/jmeter/components/post-processors/jsr223-post-processor";
-
 export default {
   wm: {
     commons: {
@@ -267,6 +265,8 @@ export default {
         arguments: "参数",
         body: "消息体",
         file: "文件上传",
+        file_path: "文件路径",
+        param_name: "变量名称",
         timeout: "超时（毫秒）",
         connect: "连接",
         response: "响应",

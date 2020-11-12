@@ -21,7 +21,7 @@ export class BasicProp extends Prop {
   }
 
   toJson() {
-    if (this.value !== undefined) {
+    if (this.value !== undefined && this.value !== "") {
       let json = super.toJson();
       json.elements = [{
         "type": "text",
