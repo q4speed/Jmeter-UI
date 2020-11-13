@@ -1,10 +1,12 @@
 import locale from "@/locale"
+import Setting from "@/jmeter/setting"
 
 const components = require.context('@/jmeter/components/', true, /main\.vue$/);
 
 const install = function (Vue, opts = {}) {
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
+  Setting.use(opts.setting)
 
   components.keys().forEach(key => {
     let component = components(key).default;

@@ -39,6 +39,7 @@
 import {createComponent} from "@/jmeter/components";
 import {allowDrag, allowDrop, getComponentMenus, getIcon} from "./tree";
 import Locale from "@/mixins/locale";
+import {Setting} from "@/jmeter/setting";
 
 const BASIC_MENUS = [
   {value: 'Cut', label: 'wm.commons.cut', disabled: true},
@@ -69,6 +70,12 @@ export default {
   },
   methods: {
     showMenu(event, data) {
+      // Setting中设置了禁用菜单
+      let setting = Setting[data.name];
+      if (setting && setting.menu && setting.menu.disabled) {
+        return;
+      }
+
       if (this.$refs.menu) {
         this.$refs.menu.activePath = [];
       }
@@ -182,15 +189,28 @@ export default {
       this.close();
     },
     allowDrop(draggingNode, dropNode, type) {
-      return allowDrop(draggingNode.data, dropNode.data, type);
+      let drag = draggingNode.data;
+      let drop = dropNode.data;
+      if (type !== "inner") {
+        drop = dropNode.parent.data
+      }
+      let setting = Setting[drop.name];
+      if (setting && setting.tree && setting.tree.drop === false) {
+        return false;
+      }
+      return allowDrop(drag, drop, type);
     },
     allowDrag(draggingNode) {
+      let setting = Setting[draggingNode.data.name];
+      if (setting && setting.tree && setting.tree.drag === false) {
+        return false;
+      }
       return allowDrag(draggingNode.data);
     },
     getIcon(data) {
       return getIcon(data);
     },
-  }
+  },
 }
 </script>
 

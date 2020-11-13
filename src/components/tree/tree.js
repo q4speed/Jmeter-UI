@@ -140,12 +140,9 @@ const allowChildren = (component) => {
   return children;
 }
 
-export const allowDrop = (dragging, drop, type) => {
-  if (type === "inner") {
-    let allowDrop = allowChildren(drop);
-    return allowDrop.includes(dragging.$type);
-  }
-  return true;
+export const allowDrop = (dragging, drop) => {
+  let allowDrop = allowChildren(drop);
+  return allowDrop.includes(dragging.$type);
 }
 
 export const allowDrag = (dragging) => {
