@@ -1,21 +1,19 @@
 <template>
-  <component-container :object="object"
+  <component-container :object="object" ref="container"
                        help-url="https://jmeter.apache.org/usermanual/component_reference.html#JDBC_Connection_Configuration">
-    <el-form ref="object" :model="object" label-position="left" label-width="180px" size="mini">
-      <el-form-item prop="dataSource">
-        <template v-slot:label>
-          <span>{{ t('wm.configurations.jdbc_data_source.data_source') }}</span>
-          <icon-tooltip :content="t('wm.configurations.jdbc_data_source.data_source_desc')"/>
-        </template>
-        <el-input v-model="object.dataSource.value"/>
-      </el-form-item>
+    <el-form-item label-width="120px" prop="dataSource">
+      <template v-slot:label>
+        <span>{{ t('wm.configurations.jdbc_data_source.data_source') }}</span>
+        <icon-tooltip :content="t('wm.configurations.jdbc_data_source.data_source_desc')"/>
+      </template>
+      <el-input v-model="object.dataSource.value"/>
+    </el-form-item>
 
-      <pool-configuration :object="object"/>
+    <pool-configuration :object="object"/>
 
-      <pool-validation :object="object"/>
+    <pool-validation :object="object"/>
 
-      <database-connection-configuration :object="object"/>
-    </el-form>
+    <database-connection-configuration :object="object"/>
   </component-container>
 </template>
 

@@ -10,39 +10,38 @@
         <el-input v-model="object.variable.value" size="mini" class="scope_variable" clearable @focus="clickVariable"/>
       </el-radio-group>
     </component-field-set>
+
     <component-field-set :title="t('wm.post_processors.regex_extractor.test_field')">
       <el-radio-group v-model="object.useHeaders.value" class="testField">
         <el-radio v-for="f in fields" :key="f.value" :label="f.value">{{ t(f.name) }}</el-radio>
       </el-radio-group>
     </component-field-set>
 
-    <el-form ref="object" :model="object" label-position="left" label-width="180px" size="mini">
-      <el-form-item :label="t('wm.post_processors.regex_extractor.ref_name')" prop="refName">
-        <el-input v-model="object.refName.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.regex_extractor.ref_name')" label-width="180px" prop="refName">
+      <el-input v-model="object.refName.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.regex_extractor.regex')" prop="regex">
-        <el-input v-model="object.regex.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.regex_extractor.regex')" label-width="180px" prop="regex">
+      <el-input v-model="object.regex.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.regex_extractor.template')" prop="template">
-        <el-input v-model="object.template.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.regex_extractor.template')" label-width="180px" prop="template">
+      <el-input v-model="object.template.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.regex_extractor.match_number')" prop="matchNumber">
-        <el-input v-model="object.matchNumber.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.regex_extractor.match_number')" label-width="180px" prop="matchNumber">
+      <el-input v-model="object.matchNumber.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.regex_extractor.default')" prop="default">
-        <el-input v-model="object.default.value" :disabled="object.defaultEmpty.value">
-          <template slot="prepend">
-            <el-checkbox v-model="object.defaultEmpty.value" @change="changeEmpty">
-              {{ t('wm.post_processors.regex_extractor.default_empty') }}
-            </el-checkbox>
-          </template>
-        </el-input>
-      </el-form-item>
-    </el-form>
+    <el-form-item :label="t('wm.post_processors.regex_extractor.default')" label-width="180px" prop="default">
+      <el-input v-model="object.default.value" :disabled="object.defaultEmpty.value">
+        <template slot="prepend">
+          <el-checkbox v-model="object.defaultEmpty.value" @change="changeEmpty">
+            {{ t('wm.post_processors.regex_extractor.default_empty') }}
+          </el-checkbox>
+        </template>
+      </el-input>
+    </el-form-item>
   </component-container>
 </template>
 

@@ -2,12 +2,12 @@
   <component-field-set :title="t('wm.configurations.jdbc_data_source.pool_config')">
     <el-row type="flex" :gutter="20">
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.pool_max')" prop="poolMax">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.pool_max')" label-width="180px" prop="poolMax">
           <el-input v-model="object.poolMax.value"/>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.timeout')" prop="timeout">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.timeout')" label-width="180px" prop="timeout">
           <el-input v-model="object.timeout.value"/>
         </el-form-item>
       </el-col>
@@ -15,12 +15,13 @@
 
     <el-row type="flex" :gutter="20">
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.trim_interval')" prop="trimInterval">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.trim_interval')" label-width="180px"
+                      prop="trimInterval">
           <el-input v-model="object.trimInterval.value"/>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.transaction_isolation')"
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.transaction_isolation')" label-width="180px"
                       prop="transactionIsolation">
           <el-select v-model="object.transactionIsolation.value"
                      :placeholder="t('wm.commons.please_select')"
@@ -40,12 +41,13 @@
 
     <el-row type="flex" :gutter="20">
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.auto_commit')" prop="autoCommit">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.auto_commit')" label-width="180px"
+                      prop="autoCommit">
           <el-checkbox v-model="object.autoCommit.value"/>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.pre_init')" prop="preInit">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.pre_init')" label-width="180px" prop="preInit">
           <el-checkbox v-model="object.preInit.value"/>
         </el-form-item>
       </el-col>

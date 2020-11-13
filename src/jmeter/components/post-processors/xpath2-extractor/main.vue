@@ -11,39 +11,37 @@
       </el-radio-group>
     </component-field-set>
 
-    <el-form ref="object" :model="object" label-position="left" label-width="180px" size="mini">
-      <el-form-item :label="t('wm.post_processors.xpath2_extractor.ref_name')" prop="refName">
-        <el-input v-model="object.refName.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.xpath2_extractor.ref_name')" label-width="180px" prop="refName">
+      <el-input v-model="object.refName.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.xpath2_extractor.xpath_query')" prop="xpathQuery">
-        <el-input v-model="object.xpathQuery.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.xpath2_extractor.xpath_query')" label-width="180px" prop="xpathQuery">
+      <el-input v-model="object.xpathQuery.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.xpath2_extractor.match_number')" prop="matchNumber">
-        <el-input v-model="object.matchNumber.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.xpath2_extractor.match_number')" label-width="180px" prop="matchNumber">
+      <el-input v-model="object.matchNumber.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.xpath2_extractor.default')" prop="default">
-        <el-input v-model="object.default.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.xpath2_extractor.default')" label-width="180px" prop="default">
+      <el-input v-model="object.default.value"/>
+    </el-form-item>
 
-      <el-form-item prop="namespaces">
-        <template v-slot:label>
-          <span>{{ t('wm.post_processors.xpath2_extractor.namespaces') }}</span>
-          <el-tooltip :content="t('wm.post_processors.xpath2_extractor.namespaces_desc')" placement="top-start">
-            <el-icon name="question"/>
-          </el-tooltip>
-        </template>
-        <el-input type="textarea" v-model="object.namespaces.value" :autosize="{minRows: 4, maxRows:6}" size="mini"/>
-      </el-form-item>
+    <el-form-item label-width="180px" prop="namespaces">
+      <template v-slot:label>
+        <span>{{ t('wm.post_processors.xpath2_extractor.namespaces') }}</span>
+        <el-tooltip :content="t('wm.post_processors.xpath2_extractor.namespaces_desc')" placement="top-start">
+          <el-icon name="question"/>
+        </el-tooltip>
+      </template>
+      <el-input type="textarea" v-model="object.namespaces.value" :autosize="{minRows: 4, maxRows:6}" size="mini"/>
+    </el-form-item>
 
-      <el-form-item label-width="0" prop="fragment">
-        <el-checkbox v-model="object.fragment.value">
-          {{ t('wm.post_processors.xpath2_extractor.fragment') }}
-        </el-checkbox>
-      </el-form-item>
-    </el-form>
+    <el-form-item label-width="0" prop="fragment">
+      <el-checkbox v-model="object.fragment.value">
+        {{ t('wm.post_processors.xpath2_extractor.fragment') }}
+      </el-checkbox>
+    </el-form-item>
   </component-container>
 </template>
 

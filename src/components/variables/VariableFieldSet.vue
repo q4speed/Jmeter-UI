@@ -1,6 +1,6 @@
 <template>
   <component-field-set :title="title">
-    <el-form :disabled="disabled">
+    <el-form :disabled="disable">
       <el-table
         size="mini"
         :height="height"
@@ -91,6 +91,11 @@ export default {
       }
     },
   },
+  computed: {
+    disable() {
+      return this.disabled || this.$parent.disabled;
+    }
+  }
 }
 </script>
 

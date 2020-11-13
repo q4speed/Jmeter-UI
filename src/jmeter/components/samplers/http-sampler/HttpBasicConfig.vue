@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="basic" :model="object" label-width="auto" size="mini">
+  <div>
     <component-field-set :title="t('wm.samplers.http.web_server')">
       <el-row type="flex" :gutter="10">
         <el-col class="protocol-col">
@@ -58,17 +58,17 @@
 
       <el-tabs v-model="activeName">
         <el-tab-pane :label="t('wm.samplers.http.arguments')" name="arguments" :disabled="hasBody">
-          <http-variables :items="object.arguments"/>
+          <http-variables :items="object.arguments" :disabled="disabled"/>
         </el-tab-pane>
         <el-tab-pane :label="t('wm.samplers.http.body')" name="body" :disabled="hasArguments">
           <el-input type="textarea" v-model="object.body" :autosize="{minRows: 6, maxRows: 10}" @change="changeBody"/>
         </el-tab-pane>
         <el-tab-pane :label="t('wm.samplers.http.file')" name="file">
-          <http-files :items="object.files"/>
+          <http-files :items="object.files" :disabled="disabled"/>
         </el-tab-pane>
       </el-tabs>
     </component-field-set>
-  </el-form>
+  </div>
 </template>
 
 <script>
@@ -77,6 +77,7 @@ import HTTPSamplerProxy from "@/jmeter/components/samplers/http-sampler/index";
 import HttpVariables from "@/jmeter/components/samplers/http-sampler/HttpVariables";
 import Locale from "@/mixins/locale";
 import HttpFiles from "@/jmeter/components/samplers/http-sampler/HttpFiles";
+import {Setting} from "@/jmeter/setting";
 
 export default {
   name: "HttpBasicConfig",
@@ -101,6 +102,10 @@ export default {
     },
     hasArguments() {
       return this.object.arguments !== undefined && this.object.arguments.length > 0;
+    },
+    disabled() {
+      let setting = Setting[this.object.name];
+      return setting !== undefined && setting.edit !== undefined && setting.edit.disabled === true
     }
   }
 }

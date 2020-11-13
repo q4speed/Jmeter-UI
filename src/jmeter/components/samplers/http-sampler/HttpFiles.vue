@@ -1,5 +1,5 @@
 <template>
-  <variable-field-set :title="t('wm.samplers.http.send_arguments')" height="300" :items="items">
+  <variable-field-set :title="t('wm.samplers.http.send_arguments')" height="300" :items="items" :disabled="disabled">
     <el-table-column :label="t('wm.samplers.http.file_path')">
       <template v-slot:default="{row}">
         <el-input v-model="row.path" size="mini"/>
@@ -29,6 +29,7 @@ export default {
   components: {VariableFieldSet},
   mixins: [Locale],
   props: {
+    disabled: Boolean,
     items: Array
   }
 }

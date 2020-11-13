@@ -11,31 +11,29 @@
       </el-radio-group>
     </component-field-set>
 
-    <el-form ref="object" :model="object" label-position="left" label-width="180px" size="mini">
-      <el-form-item :label="t('wm.post_processors.json_processor.ref_name')" prop="referenceNames">
-        <el-input v-model="object.referenceNames.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.json_processor.ref_name')" label-width="180px" prop="referenceNames">
+      <el-input v-model="object.referenceNames.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.json_processor.expression')" prop="jsonPathExprs">
-        <el-input v-model="object.jsonPathExprs.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.json_processor.expression')" label-width="180px" prop="jsonPathExprs">
+      <el-input v-model="object.jsonPathExprs.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.json_processor.match_number')" prop="matchNumber">
-        <el-input v-model="object.matchNumber.value"/>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.json_processor.match_number')" label-width="180px" prop="matchNumber">
+      <el-input v-model="object.matchNumber.value"/>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.json_processor.concat')" prop="computeConcat">
-        <el-checkbox v-model="object.computeConcat.value">
-          <el-tooltip :content="t('wm.post_processors.json_processor.concat_desc')" placement="top-start">
-            <el-icon name="question"/>
-          </el-tooltip>
-        </el-checkbox>
-      </el-form-item>
+    <el-form-item :label="t('wm.post_processors.json_processor.concat')" label-width="180px" prop="computeConcat">
+      <el-checkbox v-model="object.computeConcat.value">
+        <el-tooltip :content="t('wm.post_processors.json_processor.concat_desc')" placement="top-start">
+          <el-icon name="question"/>
+        </el-tooltip>
+      </el-checkbox>
+    </el-form-item>
 
-      <el-form-item :label="t('wm.post_processors.json_processor.default')" prop="default">
-        <el-input v-model="object.defaultValues.value"/>
-      </el-form-item>
-    </el-form>
+    <el-form-item :label="t('wm.post_processors.json_processor.default')" label-width="180px" prop="default">
+      <el-input v-model="object.defaultValues.value"/>
+    </el-form-item>
   </component-container>
 </template>
 

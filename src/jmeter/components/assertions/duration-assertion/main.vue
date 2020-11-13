@@ -8,12 +8,8 @@
         <el-radio label="children">{{ t('wm.assertions.duration_assertion.children') }}</el-radio>
       </el-radio-group>
     </component-field-set>
-    <component-field-set>
-      <el-form ref="object" :model="object" size="mini">
-        <el-form-item :label="t('wm.assertions.duration_assertion.duration')" prop="duration">
-          <el-input v-model="object.duration.value" size="mini"/>
-        </el-form-item>
-      </el-form>
+    <component-field-set :title="t('wm.assertions.duration_assertion.duration')">
+      <el-input v-model="object.duration.value" size="mini"/>
     </component-field-set>
   </component-container>
 </template>

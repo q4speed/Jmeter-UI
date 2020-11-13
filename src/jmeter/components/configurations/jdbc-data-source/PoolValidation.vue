@@ -1,17 +1,19 @@
 <template>
   <component-field-set :title="t('wm.configurations.jdbc_data_source.validation_pool')">
-    <el-form-item :label="t('wm.configurations.jdbc_data_source.keep_alive')" prop="keepAlive">
+    <el-form-item :label="t('wm.configurations.jdbc_data_source.keep_alive')" label-width="100px" prop="keepAlive">
       <el-checkbox v-model="object.keepAlive.value"/>
     </el-form-item>
 
     <el-row type="flex" :gutter="20">
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.connection_age')" prop="connectionAge">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.connection_age')" label-width="100px"
+                      prop="connectionAge">
           <el-input v-model="object.connectionAge.value"/>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.check_query')" prop="checkQuery">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.check_query')" label-width="100px"
+                      prop="checkQuery">
           <el-select v-model="object.checkQuery.value"
                      :placeholder="t('wm.commons.please_select')"
                      filterable

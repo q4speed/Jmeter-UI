@@ -2,19 +2,17 @@
   <component-container :object="object"
                        help-url="https://jmeter.apache.org/usermanual/component_reference.html#DNS_Cache_Manager">
     <component-field-set :title="t('wm.configurations.dns_cache_manager.options')">
-      <el-form ref="object" :model="object" label-width="auto" label-position="left" size="mini">
-        <el-form-item label-width="0" prop="clearEachIteration">
-          <el-checkbox v-model="object.clearEachIteration.value">
-            {{ t('wm.configurations.dns_cache_manager.clear') }}
-          </el-checkbox>
-        </el-form-item>
-        <el-form-item label-width="0" prop="controlledByThreadGroup">
-          <el-radio-group v-model="object.isCustomResolver.value">
-            <el-radio :label="false">{{ t('wm.configurations.dns_cache_manager.system') }}</el-radio>
-            <el-radio :label="true">{{ t('wm.configurations.dns_cache_manager.custom') }}</el-radio>
-          </el-radio-group>
-        </el-form-item>
-      </el-form>
+      <el-form-item label-width="0" prop="clearEachIteration">
+        <el-checkbox v-model="object.clearEachIteration.value">
+          {{ t('wm.configurations.dns_cache_manager.clear') }}
+        </el-checkbox>
+      </el-form-item>
+      <el-form-item label-width="0" prop="controlledByThreadGroup">
+        <el-radio-group v-model="object.isCustomResolver.value">
+          <el-radio :label="false">{{ t('wm.configurations.dns_cache_manager.system') }}</el-radio>
+          <el-radio :label="true">{{ t('wm.configurations.dns_cache_manager.custom') }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
     </component-field-set>
     <variable-field-set :title="t('wm.configurations.dns_cache_manager.servers')" height="200" :items="object.servers"
                         :disabled="!object.isCustomResolver.value">

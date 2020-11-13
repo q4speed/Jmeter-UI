@@ -1,10 +1,10 @@
 <template>
   <component-field-set :title="t('wm.configurations.jdbc_data_source.db_config')">
-    <el-form-item :label="t('wm.configurations.jdbc_data_source.db_url')" prop="dbUrl">
+    <el-form-item :label="t('wm.configurations.jdbc_data_source.db_url')" label-width="100px" prop="dbUrl">
       <el-input v-model="object.dbUrl.value"/>
     </el-form-item>
 
-    <el-form-item :label="t('wm.configurations.jdbc_data_source.driver')" prop="driver">
+    <el-form-item :label="t('wm.configurations.jdbc_data_source.driver')" label-width="100px" prop="driver">
       <el-select v-model="object.driver.value"
                  :placeholder="t('wm.commons.please_select')"
                  filterable
@@ -28,18 +28,18 @@
 
     <el-row type="flex" :gutter="20">
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.username')" prop="username">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.username')" label-width="100px" prop="username">
           <el-input v-model="object.username.value"/>
         </el-form-item>
       </el-col>
       <el-col>
-        <el-form-item :label="t('wm.configurations.jdbc_data_source.password')" prop="password">
+        <el-form-item :label="t('wm.configurations.jdbc_data_source.password')" label-width="100px" prop="password">
           <el-input v-model="object.password.value"/>
         </el-form-item>
       </el-col>
     </el-row>
 
-    <el-form-item :label="t('wm.configurations.jdbc_data_source.connection_properties')"
+    <el-form-item :label="t('wm.configurations.jdbc_data_source.connection_properties')" label-width="100px"
                   prop="connectionProperties">
       <el-input v-model="object.connectionProperties.value"/>
     </el-form-item>
