@@ -1,5 +1,8 @@
 import Element from "@/jmeter/element";
 import {loadComponent} from "@/jmeter/components";
+import JmeterTestPlan from "@/jmeter/components/others/jmeter-test-plan";
+import TestPlan from "@/jmeter/components/others/test-plan";
+import {js2xml, xml2js} from "xml-js";
 
 const DEFAULT_OPTIONS = {
   declaration: {attributes: {version: "1.0", encoding: "UTF-8"}}
@@ -28,5 +31,22 @@ export default class JMX extends Element {
       })
     }
     return json;
+  }
+
+  toXML() {
+    return js2xml(this.toJson(), {spaces: 2});
+  }
+
+  static create() {
+    let jmx = new JMX();
+    let jmeterTestPlan = new JmeterTestPlan();
+    let testPlan = new TestPlan();
+    jmeterTestPlan.hashTree = [testPlan];
+    jmx.elements = [jmeterTestPlan];
+    return jmx;
+  }
+
+  static fromJMX(xml) {
+    return new JMX(xml2js(xml));
   }
 }

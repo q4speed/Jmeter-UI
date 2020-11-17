@@ -13,6 +13,14 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    // entry: './src/index.js',
+    // output: {
+    //   path: path.resolve(__dirname, './dist'),
+    //   filename: 'jmeter-ui.min.js',
+    //   library: 'JMeterUI',
+    //   libraryTarget: 'umd',
+    //   umdNamedDefine: true
+    // }
   }
 };

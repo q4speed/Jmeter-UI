@@ -21,12 +21,9 @@
 <script>
 
 import JmxView from "@/jmeter/jmx/main";
-import {xml2json, json2xml} from "xml-js";
 import JMX from "@/jmeter/jmx";
 import {downloadFile} from "@/commons/utils";
 import demo from "@/assets/demo";
-import JmeterTestPlan from "@/jmeter/components/others/jmeter-test-plan";
-import TestPlan from "@/jmeter/components/others/test-plan";
 
 export default {
   name: 'App',
@@ -38,12 +35,7 @@ export default {
   },
   methods: {
     create() {
-      let jmx = new JMX();
-      let jmeterTestPlan = new JmeterTestPlan();
-      let testPlan = new TestPlan();
-      jmeterTestPlan.hashTree = [testPlan];
-      jmx.elements = [jmeterTestPlan];
-      this.jmx = jmx;
+      this.jmx = JMX.create();
     },
     open() {
       document.getElementById("file").click();
@@ -53,20 +45,17 @@ export default {
       const reader = new FileReader();
 
       reader.onload = e => {
-        const json = JSON.parse(xml2json(e.target.result));
-        this.jmx = new JMX(json);
+        this.jmx = JMX.fromJMX(e.target.result);
       };
       reader.readAsText(file);
     },
     log() {
-      let json = this.jmx.toJson();
-      let xml = json2xml(json);
+      let xml = this.jmx.toXML();
       console.log(xml)
     },
     download() {
       if (this.jmx) {
-        let json = this.jmx.toJson();
-        let xml = json2xml(json);
+        let xml = this.jmx.toXML();
         this.$prompt('请输入文件名', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
