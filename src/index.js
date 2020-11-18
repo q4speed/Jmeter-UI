@@ -1,7 +1,6 @@
 import locale from "@/locale"
 import Setting from "@/jmeter/setting"
-import splitPane from 'vue-splitpane'
-import JmxView from "@/jmeter/jmx/main";
+import JmeterView from "@/JmeterView";
 
 const components = require.context('@/jmeter/components/', true, /main\.vue$/);
 
@@ -10,8 +9,7 @@ const install = function (Vue, opts = {}) {
   locale.i18n(opts.i18n);
   Setting.use(opts.setting)
 
-  Vue.component('jmx-view', JmxView);
-  Vue.component('split-pane', splitPane);
+  Vue.component(JmeterView.name, JmeterView);
   components.keys().forEach(key => {
     let component = components(key).default;
     // 允许外部自定义组件

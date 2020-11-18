@@ -1,14 +1,12 @@
 <template>
-  <div class="jmx-container">
-    <split-pane :min-percent='10' :default-percent='20' split="vertical">
-      <template slot="paneL">
-        <components-tree :data="testPlan" :select="select"></components-tree>
-      </template>
-      <template slot="paneR">
-        <component :is="className" :object="selected" v-if="selected"></component>
-      </template>
-    </split-pane>
-  </div>
+  <el-container>
+    <el-aside class="jmx-tree">
+      <components-tree :data="testPlan" :select="select"></components-tree>
+    </el-aside>
+    <el-main class="jmx-content">
+      <component :is="className" :object="selected" v-if="selected"></component>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
@@ -17,7 +15,7 @@ import JMX from "@/jmeter/jmx/index";
 import {hasComponent} from "@/jmeter/components";
 
 export default {
-  name: "JmxView",
+  name: "Jmx",
   components: {ComponentsTree},
   props: {
     jmx: JMX
@@ -45,9 +43,13 @@ export default {
 </script>
 
 <style scoped>
-.jmx-container {
-  background-color: #F9F9F9;
-  position: relative;
-  height: 100%;
+.jmx-tree {
+  border-right: 1px solid #DFDFDF;
+  min-width: 300px;
+  overflow: auto;
+}
+
+.jmx-content {
+  padding: 10px 20px;
 }
 </style>

@@ -223,6 +223,11 @@ export default {
 
 .component-tree > .el-tree {
   background-color: inherit;
+  height: 100%;
+}
+
+.component-tree >>> .el-tree-node__children {
+  width: fit-content;
 }
 
 .component-tree >>> .el-tree-node__label i {

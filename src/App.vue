@@ -14,28 +14,26 @@
       保存JMX文件
     </el-button>
     <span> 增删控件：右键菜单</span>
-    <jmx-view :jmx="jmx" v-if="jmx" style="height: calc(100% - 28px)"/>
+    <jmeter-view ref="jmeter" :xml="xml" style="height: calc(100% - 28px)"/>
   </div>
 </template>
 
 <script>
 
-import JmxView from "@/jmeter/jmx/main";
-import JMX from "@/jmeter/jmx";
 import {downloadFile} from "@/commons/utils";
-import demo from "@/assets/demo";
+import demo from "./assets/demo"
+import {js2xml} from "xml-js"
 
 export default {
   name: 'App',
-  components: {JmxView},
   data() {
     return {
-      jmx: new JMX(demo)
+      xml: js2xml(demo)
     }
   },
   methods: {
     create() {
-      this.jmx = JMX.create();
+      this.$refs.jmeter.create();
     },
     open() {
       document.getElementById("file").click();
@@ -45,17 +43,17 @@ export default {
       const reader = new FileReader();
 
       reader.onload = e => {
-        this.jmx = JMX.fromJMX(e.target.result);
+        this.$refs.jmeter.edit(e.target.result)
       };
       reader.readAsText(file);
     },
     log() {
-      let xml = this.jmx.toXML();
+      let xml = this.$refs.jmeter.get();
       console.log(xml)
     },
     download() {
       if (this.jmx) {
-        let xml = this.jmx.toXML();
+        let xml = this.$refs.jmeter.get();
         this.$prompt('请输入文件名', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',

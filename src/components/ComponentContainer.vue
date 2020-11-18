@@ -45,7 +45,6 @@ export default {
   box-sizing: border-box;
   height: 100%;
   overflow: auto;
-  padding: 10px 20px;
 }
 
 .components-container .title {
