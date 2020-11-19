@@ -6,6 +6,7 @@ function resolve(dir) {
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? "./" : "/",
+  outputDir: path.resolve(__dirname, './lib'),
   productionSourceMap: true,
   configureWebpack: {
     devtool: 'source-map',
@@ -14,13 +15,12 @@ module.exports = {
         '@': resolve('src')
       }
     },
-    // entry: './src/index.js',
-    // output: {
-    //   path: path.resolve(__dirname, './dist'),
-    //   filename: 'jmeter-ui.min.js',
-    //   library: 'JMeterUI',
-    //   libraryTarget: 'umd',
-    //   umdNamedDefine: true
-    // }
+    entry: './src/index.js',
+    output: {
+      filename: 'jmeter-ui.min.js',
+      library: 'JMeterUI',
+      libraryTarget: 'umd',
+      umdNamedDefine: true
+    }
   }
 };
