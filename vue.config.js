@@ -5,8 +5,8 @@ function resolve(dir) {
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? "./" : "/",
-  outputDir: path.resolve(__dirname, './lib'),
+  publicPath: process.env.NODE_ENV === 'demo' ? "./" : "/",
+  outputDir: process.env.NODE_ENV === 'demo' ? resolve("./docs") : resolve('./lib'),
   productionSourceMap: true,
   configureWebpack: {
     devtool: 'source-map',
@@ -17,6 +17,13 @@ module.exports = {
     },
     output: {
       library: 'JMeterUI',
+    }
+  },
+  pages: {
+    demo: {
+      entry: "./demo/main.js",
+      template: "./demo/index.html",
+      filename: "index.html"
     }
   }
 };
