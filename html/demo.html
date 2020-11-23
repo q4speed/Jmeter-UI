@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jmeter-ui demo</title>
+  <link rel="stylesheet" href="../lib/jmeter-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+  <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  <script src="../lib/jmeter-ui.umd.min.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <el-button @click="create" size="mini">
+    创建JMX
+  </el-button>
+  <jmeter-view ref="jmeter" style="height: calc(100% - 28px)"></jmeter-view>
+</div>
+<script>
+  new Vue({
+    name: 'App',
+    data() {
+      return {
+        xml: {}
+      }
+    },
+    methods: {
+      create() {
+        this.$refs.jmeter.create();
+      }
+    }
+  }).$mount('#app')
+</script>
+</body>
+</html>
