@@ -5,7 +5,7 @@ import JmeterView from "@/JmeterView";
 const components = require.context('@/jmeter/components/', true, /main\.vue$/);
 
 const plugin = {
-  name: "WebMeter",
+  name: "JMeterUI",
   version: '1.1.0',
   locale: locale.use,
   i18n: locale.i18n,
