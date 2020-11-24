@@ -5,15 +5,14 @@
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build-demo": "vue-cli-service build --mode demo",
-    "build": "vue-cli-service build --target lib --name jmeter-ui ./src/index.js",
+    "build-demo": "vue-cli-service build --mode demo --dest docs",
+    "build": "vue-cli-service build --target lib --name jmeter-ui --dest lib ./src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "vue": "^2.6.11",
-    "vue-splitpane": "^1.0.6",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {

@@ -5,8 +5,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'demo' ? "./" : "/",
-  outputDir: process.env.NODE_ENV === 'demo' ? resolve("./docs") : resolve('./lib'),
+  publicPath: "./",
   productionSourceMap: true,
   configureWebpack: {
     devtool: 'source-map',
