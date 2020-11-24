@@ -5,7 +5,7 @@
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build-demo": "vue-cli-service build --mode demo --dest docs",
+    "build-demo": "vue-cli-service build --dest docs",
     "build": "vue-cli-service build --target lib --name jmeter-ui --dest lib ./src/index.js",
     "lint": "vue-cli-service lint"
   },
