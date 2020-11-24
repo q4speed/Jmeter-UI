@@ -9,6 +9,12 @@
     "build": "vue-cli-service build --target lib --name jmeter-ui --dest lib ./src/index.js",
     "lint": "vue-cli-service lint"
   },
+  "author": "Kun <kun@fit2cloud.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/q4speed/Jmeter-UI.git"
+  },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
